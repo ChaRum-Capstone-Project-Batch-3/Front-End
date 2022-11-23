@@ -16,8 +16,8 @@ function getItem(label, key, icon, children) {
 }
 export const Items = [
   getItem("Dashboard", "1", <PieChartOutlined />),
-  getItem("Manage Users", "2", <UserOutlined />),
-  getItem("Manage Threads", "3", <ContainerOutlined />),
+  getItem("Manage Threads", "2", <ContainerOutlined />),
+  getItem("Manage Users", "3", <UserOutlined />),
   getItem("Setting", "4", <SettingOutlined />, [
     getItem("Logout", "5", <LogoutOutlined />),
   ]),

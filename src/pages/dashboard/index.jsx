@@ -1,10 +1,16 @@
-import { Layout, Menu, Image, Input, Button } from "antd";
+import { Layout, Menu, Image, Input, Button, Typography } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 import { Items } from "./ListNavigate";
 import "./Dashboard.css";
-const { Header, Content, Footer, Sider } = Layout;
+import LogoHead from "./img/admin-header.png";
+import LogoCounterUser from "./img/counter-users.png";
+import LogoCounterThread from "./img/counter-thread.png";
+import LogoCounterReport from "./img/counter-report.png";
+import LogoCharum from "./img/logo-charum.png";
+const { Header, Content, Sider } = Layout;
 const { Search } = Input;
+const { Title } = Typography;
 
 const MainDashboard = () => {
   const [collapsed, setCollapsed] = useState({
@@ -32,7 +38,7 @@ const MainDashboard = () => {
           background: "rgba(255, 255, 255, 1)",
         }}
       >
-        <Image src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
+        <Image src={LogoCharum} preview={false} />
         <Menu
           theme="light"
           defaultSelectedKeys={["1"]}
@@ -42,7 +48,9 @@ const MainDashboard = () => {
       </Sider>
       <Layout
         className="site-layout"
-        style={{ marginLeft: !collapsed.status ? "200px" : "75px" }}
+        style={{
+          marginLeft: !collapsed.status ? "200px" : "75px",
+        }}
       >
         <Header className="header-bar site-layout-background">
           <Search
@@ -59,11 +67,6 @@ const MainDashboard = () => {
             overflow: "hidden",
           }}
         >
-          <div style={{ textAlign: "start" }}>
-            <div className="header-title" style={{ margin: "0 0 10px 0" }}>
-              Dashboard
-            </div>
-          </div>
           <div className="site-layout-background">
             <div
               className="content-main"
@@ -75,63 +78,80 @@ const MainDashboard = () => {
             >
               <div className="header-content">
                 <div className="text-head-content">
-                  <span className="title-head">Hello Admin</span>
-                  <p>
-                    Buat lebih banyak untuk menjangkau diskusi lebih banyak lagi
-                    sekarang juga
+                  <Title level={2} className="title-head">
+                    Hello Vinka!
+                  </Title>
+                  <p className="body-head">
+                    Tahukah kamu literasi digital masih kurang di masyarkat,
+                    maka dari itu buat lebih banyak topik untuk menjangkau
+                    diskusi lebih banyak lagi sekarang juga
                   </p>
 
                   <Button
                     type="primary"
+                    size="large"
                     style={{
-                      marginTop: "75px",
-                      background: "#B1B1B1",
+                      marginTop: "50px",
+                      borderRadius: "5px",
+                      background: "#04353D",
                     }}
                   >
                     Lihat Topik <ArrowRightOutlined />
                   </Button>
                 </div>
                 <div>
-                  <Image
-                    width={276}
-                    src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-                    preview={false}
-                  />
+                  <Image width={276} src={LogoHead} preview={false} />
                 </div>
               </div>
               <div className="counter-box">
-                <div className="counter-box-content">
-                  <div className="tittle-box-content">
+                <div
+                  className="counter-box-content"
+                  style={{
+                    background:
+                      "linear-gradient(1.62deg, #222222 -5.17%, #969696 119.13%)",
+                  }}
+                >
+                  <div
+                    className="tittle-box-content"
+                    style={{ color: "white" }}
+                  >
                     Users
-                    <span className="body-box-content">351</span>
+                    <span
+                      className="body-box-content"
+                      style={{ color: "white" }}
+                    >
+                      351
+                    </span>
                   </div>
-                  <Image
-                    width={48}
-                    src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-                    preview={false}
-                  />
+                  <Image width={48} src={LogoCounterUser} preview={false} />
                 </div>
-                <div className="counter-box-content">
+                <div
+                  className="counter-box-content"
+                  style={{
+                    background:
+                      "linear-gradient(9.78deg, #0074C1 21.79%, #88B7D5 118.89%)",
+                    color: "white",
+                  }}
+                >
                   <div className="tittle-box-content">
                     Thread
                     <span className="body-box-content">10000</span>
                   </div>
-                  <Image
-                    width={48}
-                    src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-                    preview={false}
-                  />
+                  <Image width={48} src={LogoCounterThread} preview={false} />
                 </div>
-                <div className="counter-box-content">
+                <div
+                  className="counter-box-content"
+                  style={{
+                    background:
+                      "linear-gradient(28.35deg, #561600 13.02%, #D39B88 101.86%)",
+                    color: "white",
+                  }}
+                >
                   <div className="tittle-box-content">
                     Report
                     <span className="body-box-content">5221</span>
                   </div>
-                  <Image
-                    width={48}
-                    src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-                    preview={false}
-                  />
+                  <Image width={48} src={LogoCounterReport} preview={false} />
                 </div>
               </div>
             </div>
@@ -139,19 +159,10 @@ const MainDashboard = () => {
               className="group-information"
               style={{ display: "flex", flexDirection: "column" }}
             >
-              <div
-                className="content-information"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignContent: "center",
-                  alignItems: "center",
-                  width: "auto",
-                  margin: "0 0 10px 0",
-                  padding: "10px",
-                }}
-              >
-                <span className="title-content-information">Top Topic</span>
+              <div className="content-information">
+                <span className="title-content-information">
+                  <Title level={4}>Top Topic</Title>
+                </span>
                 <div
                   className="body-card-information"
                   style={{ margin: "10px 0" }}
@@ -171,17 +182,10 @@ const MainDashboard = () => {
                   #3 Technology
                 </div>
               </div>
-              <div
-                className="content-information"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignContent: "center",
-                  alignItems: "center",
-                  width: "auto",
-                }}
-              >
-                <span className="title-content-information">Top Thread</span>
+              <div className="content-information">
+                <span className="title-content-information">
+                  <Title level={4}>Top Thread</Title>
+                </span>
                 <div
                   className="body-card-information"
                   style={{ margin: "10px 0", height: "auto" }}
@@ -204,13 +208,6 @@ const MainDashboard = () => {
             </div>
           </div>
         </Content>
-        <Footer
-          style={{
-            textAlign: "center",
-          }}
-        >
-          Ant Design ©2018 Created by Ant UED
-        </Footer>
       </Layout>
     </Layout>
   );

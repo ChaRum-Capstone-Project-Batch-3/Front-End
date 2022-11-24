@@ -1,9 +1,9 @@
-import MainDashboard from "./pages/dashboard";
 import "./App.css";
+import RouteConfiguration from "./RouteConfiguration";
 function App() {
   return (
     <div className="App">
-      <MainDashboard />
+      <RouteConfiguration />
     </div>
   );
 }

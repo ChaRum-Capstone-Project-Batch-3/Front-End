@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+
 .header-bar {
   padding: 0 !important;
   display: flex !important;
@@ -49,6 +51,7 @@
 }
 
 .content-information {
+  margin: 10px 0;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -58,21 +61,30 @@
 
 .title-content-information {
   font-family: "Roboto";
+  width: 200px;
   font-size: 20px;
   font-weight: 600;
   line-height: 23px;
   letter-spacing: 0.0014em;
-  text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .body-card-information {
-  height: 52px;
-  width: 197px;
-  left: 1171px;
-  top: 150px;
-  border-radius: 20px;
-  background: rgba(217, 217, 217, 1);
-  padding: 18px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 210px;
+  height: 68px;
+  align-items: center;
+  gap: 10px;
+  isolation: isolate;
+  border-radius: 10px;
+  background: rgb(228, 230, 226);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  text-align: justify;
 }
 
 .counter-box {
@@ -98,26 +110,38 @@
 }
 
 .title-head {
-  margin: 0px !important;
-  font-family: "Roboto" !important;
-  font-style: normal !important;
-  font-weight: 600 !important;
-  font-size: 34px !important;
-  line-height: 40px !important;
-  letter-spacing: 0.0025em !important;
-  color: #178066 !important;
+  width: 196px;
+  height: 40px;
+
+  /* Heading2/Semi bold */
+
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 40px;
+  /* identical to box height */
+
+  letter-spacing: 0.0025em;
+
+  /* Primary/500 */
+
+  color: #178066;
 }
 
 .body-head {
   width: 479px;
   height: 72px;
-  margin: 5px 0;
-  font-family: "Roboto";
+
+  font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
+  /* or 24px */
+
   letter-spacing: 0.0015em;
+
   color: #474747;
 }
 
@@ -137,4 +161,15 @@
   line-height: 24px;
   letter-spacing: 0.0015em;
   text-align: left;
+}
+
+.drop-down-topic {
+  width: 24px;
+  height: 24px;
+  background-color: rgba(69, 163, 29, 1);
+  opacity: 0.4;
+  color: rgb(211, 241, 211);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

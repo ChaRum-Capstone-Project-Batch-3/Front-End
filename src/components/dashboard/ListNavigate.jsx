@@ -1,7 +1,6 @@
 import {
   UserOutlined,
   PieChartOutlined,
-  SettingOutlined,
   ContainerOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";

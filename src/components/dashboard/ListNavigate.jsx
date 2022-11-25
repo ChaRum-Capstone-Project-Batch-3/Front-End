@@ -27,11 +27,9 @@ export const Items = [
     "3",
     <UserOutlined />
   ),
-  getItem("Setting", "4", <SettingOutlined />, [
-    getItem(
-      <div style={{ color: "red" }}>Logout</div>,
-      "5",
-      <LogoutOutlined style={{ color: "red" }} />
-    ),
-  ]),
+  getItem(
+    <span style={{ color: "red" }}>Logout</span>,
+    "4",
+    <LogoutOutlined style={{ color: "red" }} />
+  ),
 ];

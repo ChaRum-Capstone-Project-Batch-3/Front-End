@@ -1,5 +1,5 @@
-import { Register } from './Form-Register';
+import { Login } from './Form-Login';
 
 export {
-    Register
+    Login
 }

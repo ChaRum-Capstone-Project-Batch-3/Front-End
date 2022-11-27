@@ -10,9 +10,6 @@ const { Text } = Typography;
 
 
 const HeroSection = () => {
-        const {innerWidth} = window;
-        // return innerWidth;
-        console.log(innerWidth);
     return(
         <div className='bgImage'>
             <Content>

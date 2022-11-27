@@ -12,7 +12,7 @@ const Features = () => {
     return (
         <Content style={{minHeight: 664, background: "#178066"}}>
             <div style={{padding: 40}}>
-                <Title className='featureTitle'>Features</Title>
+                <Title className='featureTitle'>FEATURES</Title>
                 <Row style={{marginTop: 100}}>
                     <Col xl={8} xs={24}>
                         <Row>

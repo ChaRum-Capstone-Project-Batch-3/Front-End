@@ -40,9 +40,6 @@ const HeroSection = () => {
                     </Col>
                 </Row>
             </Content>
-            <Content>
-                2
-            </Content>
             {/* <img src="../LandingPage/img/background.png" alt="" /> */}
         </div>
     )

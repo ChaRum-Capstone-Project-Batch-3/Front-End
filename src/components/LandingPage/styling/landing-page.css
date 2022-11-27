@@ -1,0 +1,38 @@
+.bgImage{
+    background-image: url('../img/heroBackground.png');
+    background-repeat: no-repeat;
+    height: 95vh;
+    width: 100vw;
+    z-index: 2;
+}
+
+.heroRightSide{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    padding: 30px;
+    height: 95vh;
+    width: 100%;
+}
+
+.heroText{
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 40px;
+    display: block;
+    text-align: left;
+    max-width: 469px;
+    color: #403F3F;
+}
+
+@media (max-width: 767px){
+    .heroLeftSide{
+        display: none;
+    }
+    .heroRightSide{
+        /* display: block; */
+        align-items: center;
+        justify-content: center;
+    }
+}

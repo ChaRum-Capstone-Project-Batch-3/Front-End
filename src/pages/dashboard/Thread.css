@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Poppins:wght@100;200;300;400;600;700&display=swap');
+
+.manage-thread{
+    /* border: 2px solid #000000; */
+    margin: 0 15px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto';
+    margin-top: 25px;
+}
+.header{
+    width: 85vw;
+    height: fit-content;
+}
+.header-text span{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 40px;
+}
+.bread-crumb{
+    margin-top: 10px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+}
+.bread-crumb .breadcrumb-text{
+    /* border: 2px solid #000000; */
+    font-family: 'Inter';
+    font-size: 16px;
+}
+.bread-crumb .manageThread{
+    color: #00827F;
+    font-family: 'Inter';
+    font-size: 16px;
+}

@@ -1,6 +1,7 @@
 import { Layout } from "antd";
 import React, { useState } from "react";
 import "./Dashboard.css";
+import "./Thread.css";
 
 import SiderNav from "../../components/dashboard/SiderNav";
 import SearchBar from "../../components/dashboard/SearchBar";

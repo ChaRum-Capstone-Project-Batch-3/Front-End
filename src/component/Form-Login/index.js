@@ -42,7 +42,7 @@ export const Login = () => {
                   {...register("userName", {
                     required: true,
                     maxLength: 20,
-                    pattern: /^[A-Za-z]+$/i,
+                    pattern: /^[A-Za-z ]+$/i,
                   })}
                   placeholder="Email or phone number"
                   type="text"

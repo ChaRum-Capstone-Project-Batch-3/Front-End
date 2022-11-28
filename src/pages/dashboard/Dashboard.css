@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
 
 .header-bar {
   padding: 0 !important;
@@ -74,7 +74,7 @@
 .body-card-information {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 210px;
   height: 68px;
   align-items: center;
@@ -83,8 +83,11 @@
   border-radius: 10px;
   background: rgb(228, 230, 226);
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  text-align: justify;
+  padding: 10px 0;
+}
+
+.body-card-information.thread {
+  padding: 10px 10px;
 }
 
 .counter-box {
@@ -99,7 +102,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  background: #d1e6e0;
+  background: url("../dashboard/Card\ -\ Main\ CTA.png");
+  background-repeat: no-repeat;
   padding: 40px 42px;
   margin: 10px 0;
   height: 315px;
@@ -120,29 +124,20 @@
   font-weight: 600;
   font-size: 34px;
   line-height: 40px;
-  /* identical to box height */
-
   letter-spacing: 0.0025em;
-
-  /* Primary/500 */
-
-  color: #178066;
+  color: white;
 }
 
 .body-head {
   width: 479px;
   height: 72px;
-
   font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 16px;
   line-height: 150%;
-  /* or 24px */
-
+  margin-top: 5px;
   letter-spacing: 0.0015em;
-
-  color: #474747;
+  color: rgb(237, 237, 237);
 }
 
 .text-head-content span.title-head {

@@ -9,6 +9,7 @@ import LogoCounterReport from "../img/counter-report.png";
 import LogoEducation from "../img/education.png";
 import LogoMovie from "../img/movie.png";
 import LogoBusiness from "../img/bussines.png";
+import ChartMain from "./ChartMain";
 const { Title } = Typography;
 
 const MainDashboard = () => {
@@ -92,6 +93,7 @@ const MainDashboard = () => {
             <Image width={48} src={LogoCounterReport} preview={false} />
           </div>
         </div>
+        <ChartMain />
       </div>
       <div
         className="group-information"
@@ -176,7 +178,7 @@ const MainDashboard = () => {
             </div>
           </div>
           <div
-            className="body-card-information"
+            className="body-card-information thread"
             style={{
               margin: "10px 0",
               height: "auto",
@@ -186,7 +188,7 @@ const MainDashboard = () => {
             Putin sakit kepala, Karena ini !!
           </div>
           <div
-            className="body-card-information"
+            className="body-card-information thread"
             style={{
               margin: "10px 0",
               height: "auto",
@@ -196,7 +198,7 @@ const MainDashboard = () => {
             Kenapa baju ada 4 lubang ?
           </div>
           <div
-            className="body-card-information"
+            className="body-card-information thread"
             style={{
               margin: "10px 0",
               height: "auto",

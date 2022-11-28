@@ -65,7 +65,7 @@ export const Login = () => {
                   placeholder="Enter your password"
                   type="password"
                 />
-                {errors?.userName?.type === "required" && (
+                {errors?.passWord?.type === "required" && (
                   <p>This field is required</p>
                 )}
                 {errors?.passWord?.type === "pattern" && (

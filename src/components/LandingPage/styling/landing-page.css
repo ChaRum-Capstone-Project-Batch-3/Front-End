@@ -54,12 +54,12 @@
 }
 
 .aboutSection{
-    height: 80vh;
+    height: 100%;
     padding: 100px;
 }
 
 .aboutSectionLeft{
-    height: 80vh;
+    max-height: 80vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -94,6 +94,34 @@
     color: #403F3F;
 }
 
+.downloadUsSection{
+    padding: 100px;
+    min-height: 80vh;
+    background: #F4F4F4;
+}
+
+.downloadUsLeft{
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.downloadUsSection span{
+    font-size: 24px;
+    line-height: 38px;
+    letter-spacing: 0.0025em;
+    color: #403F3F;
+}
+
+.downloadUsRight{
+    display: flex;
+    flex-direction: end;
+    /* align-items: center; */
+    justify-content: center;
+    padding: 30px;
+}
+
 @media (max-width: 767px){
     .heroLeftSide{
         display: none;
@@ -114,5 +142,11 @@
     }
     .aboutSectionImg{
         width: 350px !important;
+    }
+    .downloadUsSection{
+        padding: 20px;
+    }
+    .downloadUsLeft{
+        height: 40vh;
     }
 }

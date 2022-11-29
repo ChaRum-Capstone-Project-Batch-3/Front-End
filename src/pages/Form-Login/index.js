@@ -1,4 +1,5 @@
 import { Col, Row, Image, Button } from "antd";
+import './FormLogin.css';
 import { useForm } from "react-hook-form";
 import newSvg from './../../Group_277.svg'
 

@@ -1,9 +1,7 @@
 import { Breadcrumb } from "antd";
 import React from "react";
-import ThreadTable from "../../../components/table/ThreadTable";
-import Filter from "../../../components/filtertopic/Filter";
 
-const ManageThread = () => {
+const DetailReport = () => {
   return (
     <div className="site-layout-background">
       <div className="content-main manage-thread">
@@ -15,14 +13,12 @@ const ManageThread = () => {
               <Breadcrumb style={{ margin: '10px 0'}} separator="&#62;">
                 <Breadcrumb.Item className="breadcrumb-text">Manage Thread</Breadcrumb.Item>
                 <Breadcrumb.Item className= "manageThread">Thread Report</Breadcrumb.Item>
+                <Breadcrumb.Item className= "manageThread">Details Report</Breadcrumb.Item>
               </Breadcrumb>
               <div className="filter-thread">
-              <Filter/>
-              <Filter/>
               </div>
             </div>
             <div className="table-thread">
-              <ThreadTable/>
             </div>
         </div>
       </div>
@@ -30,4 +26,4 @@ const ManageThread = () => {
   );
 };
 
-export default ManageThread;
+export default DetailReport;

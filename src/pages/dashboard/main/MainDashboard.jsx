@@ -1,6 +1,6 @@
-import { Button, Image, Typography } from "antd";
+import { Breadcrumb, Button, Image, Typography } from "antd";
 import React from "react";
-import { ArrowRightOutlined, EllipsisOutlined } from "@ant-design/icons";
+import { RightCircleFilled, EllipsisOutlined } from "@ant-design/icons";
 
 import LogoHead from "../img/admin-header.png";
 import LogoCounterUser from "../img/counter-users.png";
@@ -23,6 +23,13 @@ const MainDashboard = () => {
           flexDirection: "column",
         }}
       >
+        <Breadcrumb
+          style={{
+            margin: "11px 0",
+          }}
+        >
+          <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
+        </Breadcrumb>
         <div className="header-content">
           <div className="text-head-content">
             <span className="title-head">Hello Vinka!</span>
@@ -41,7 +48,8 @@ const MainDashboard = () => {
                 background: "#04353D",
               }}
             >
-              Lihat Topik <ArrowRightOutlined />
+              Lihat Topik
+              <RightCircleFilled />
             </Button>
           </div>
           <div>

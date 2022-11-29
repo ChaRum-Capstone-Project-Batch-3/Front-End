@@ -26,7 +26,7 @@ const Dashboard = () => {
       <Layout
         className="site-layout"
         style={{
-          marginLeft: !collapsed.status ? "200px" : "75px",
+          marginLeft: !collapsed.status ? "150px" : "75px",
         }}
       >
         <Header className="header-bar site-layout-background">

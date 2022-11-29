@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Login } from "./pages";
 import Dashboard from "./pages/dashboard";
 import MainDashboard from "./pages/dashboard/main/MainDashboard";
 import ManageThread from "./pages/dashboard/threads/ManageThread";
@@ -9,6 +10,7 @@ const RouteConfiguration = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />}>
           <Route index element={<MainDashboard />} />
           <Route path="thread" element={<ManageThread />} />

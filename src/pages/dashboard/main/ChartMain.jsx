@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  CartesianGrid,
-  Legend,
-  Line,
-  LineChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { Legend, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
 const data = [
   { name: "January", users: 20, thread: 50, report: 120 },
   { name: "Febuary", users: 70, thread: 40, report: 100 },
@@ -20,18 +12,27 @@ const ChartMain = () => {
   return (
     <LineChart
       width={800}
-      height={300}
+      height={500}
       data={data}
-      style={{ margin: "20px 0" }}
+      style={{ margin: "60px 0px 0px 0px" }}
     >
       <Line type="monotone" dataKey="users" stroke="#2196f3" strokeWidth={3} />
       <Line type="monotone" dataKey="thread" stroke="red" strokeWidth={3} />
       <Line type="monotone" dataKey="report" stroke="orange" strokeWidth={3} />
-      <CartesianGrid stroke="#ccc" />
       <XAxis dataKey="name" />
       <YAxis />
       <Tooltip />
-      <Legend />
+      <Legend
+        width={100}
+        wrapperStyle={{
+          top: 10,
+          right: -150,
+          backgroundColor: "#f5f5f5",
+          border: "1px solid #d5d5d5",
+          borderRadius: 3,
+          lineHeight: "40px",
+        }}
+      />
     </LineChart>
   );
 };

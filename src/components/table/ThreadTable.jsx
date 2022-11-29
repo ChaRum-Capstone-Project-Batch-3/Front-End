@@ -86,30 +86,37 @@ const ThreadTable = () => {
     {
       title: 'ID',
       dataIndex: 'key',
-      width: '25%',
+      width: '5%',
       editable: true,
     },
     {
-      title: 'name',
+      title: 'Username',
       dataIndex: 'name',
-      width: '25%',
+      width: '12%',
       editable: true,
     },
     {
-      title: 'age',
+      title: 'Thread Title',
       dataIndex: 'age',
       width: '15%',
       editable: true,
     },
     {
-      title: 'address',
+      title: 'Topic',
       dataIndex: 'address',
-      width: '40%',
+      width: '10%',
       editable: true,
     },
     {
-      title: 'operation',
+      title: 'Report Amount',
+      dataIndex: 'address',
+      width: '10%',
+      editable: true,
+    },
+    {
+      title: 'Action',
       dataIndex: 'operation',
+      width: '10%',
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
@@ -123,12 +130,12 @@ const ThreadTable = () => {
               Save
             </Typography.Link>
             <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <a>Cancel</a>
+              Cancel
             </Popconfirm>
           </span>
         ) : (
           <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-            Edit
+            &#x2022; &#x2022; &#x2022;
           </Typography.Link>
         );
       },

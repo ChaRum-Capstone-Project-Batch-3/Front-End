@@ -1,6 +1,7 @@
 import { Breadcrumb } from "antd";
 import React from "react";
 import ThreadTable from "../../../components/table/ThreadTable";
+import Filter from "../../../components/filtertopic/Filter";
 
 const ManageThread = () => {
   return (
@@ -15,6 +16,10 @@ const ManageThread = () => {
                 <Breadcrumb.Item className="breadcrumb-text">Home</Breadcrumb.Item>
                 <Breadcrumb.Item className= "manageThread">Manage Thread</Breadcrumb.Item>
               </Breadcrumb>
+              <div className="filter-thread">
+              <Filter/>
+              <Filter/>
+              </div>
             </div>
             <div className="table-thread">
               <ThreadTable/>

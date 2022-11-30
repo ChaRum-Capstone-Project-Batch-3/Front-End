@@ -5,6 +5,11 @@ import {
   Popover,
   Table,
 } from "antd";
+import {
+  InfoCircleOutlined, DeleteOutlined
+} from '@ant-design/icons';
+import { Link } from "react-router-dom";
+
 const originData = [];
 for (let i = 0; i < 100; i++) {
   originData.push({
@@ -36,10 +41,15 @@ const ThreadTable = () => {
     setEditingKey(record.key);
   };
   // 
-  const cancleEdit = (record) => {
+  const cancelDetail = (record) => {
     console.log(record);
     setEditingKey('');
   };
+  // 
+  // const onDetail = (record) => {
+  //   console.log(record);
+  //   setEditingKey('');
+  // };
   //
   const cancel = () => {
     setEditingKey("");
@@ -87,13 +97,31 @@ const ThreadTable = () => {
               editable ? 
                 <Popover
                 defaultOpen = {editable}
-                title="Title"
-                content={<a onClick={() => cancleEdit()}>Close</a>}
+                content={
+                <div style={{ 'display' : 'grid' }}>
+                  <Button 
+                  type="text" 
+                  style={{ 'marginBottom' : '10px', 'background' : '#D1E6E0'}} 
+                  onClick={
+                    <Link to="/users">
+                    </Link>
+                  }
+                  >
+                    <InfoCircleOutlined />Details
+                  </Button>
+                  <Button 
+                  type="text" 
+                  onClick={() => cancelDetail()}>
+                    <DeleteOutlined />Delete
+                  </Button>
+                </div>
+              }
                 destroyTooltipOnHide
                 >
                   <Button
                   disabled={editingKey === ""}
-                  onClick={() => cancleEdit()}
+                  onClick={() => cancelDetail()}
+                  type={'text'}
                   >
                     &#x2022; &#x2022; &#x2022;
                   </Button>
@@ -102,6 +130,7 @@ const ThreadTable = () => {
                 <Button
                   disabled={editingKey !== ""}
                   onClick={() => edit(record)}
+                  type={'text'}
                 >
                   &#x2022; &#x2022; &#x2022;
                 </Button>

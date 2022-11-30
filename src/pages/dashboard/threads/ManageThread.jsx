@@ -4,20 +4,8 @@ import ThreadTable from "../../../components/table/ThreadTable";
 import Filter from "../../../components/filtertopic/Filter";
 
 const ManageThread = () => {
-  const [filterTopic, setFilterTopic] = useState();
-  const [filterReported, setFilterReported] = useState();
-
-  const topic = (event) => event.topic = filterTopic;
-  const report = (event) => event.report = filterReported;
-
-  const [transDecision, setTransDecision] = useState(
-    {
-      topic: '',
-      reported: ''
-    }
-  );
-
-  
+  const [filterTopic, setFilterTopic] = useState(true);
+  const [filterReported, setFilterReported] = useState(true);
 
   return (
     <div className="site-layout-background">
@@ -33,10 +21,10 @@ const ManageThread = () => {
               </Breadcrumb>
               <div className="filter-thread">
                 <div className="sort-topic">
-                  <Filter/>
+                  <Filter topic={filterTopic}/>
                 </div>
                 <div className="sort-reported">
-                  <Filter/>
+                  <Filter report={filterReported}/>
                 </div>
               </div>
             </div>

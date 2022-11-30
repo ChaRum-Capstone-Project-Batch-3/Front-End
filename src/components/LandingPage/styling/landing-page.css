@@ -122,6 +122,14 @@
     padding: 30px;
 }
 
+.ourTeamTitle{
+    margin-top: 0;
+    padding-top: 20px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 60px !important;
+}
+
 @media (max-width: 767px){
     .heroLeftSide{
         display: none;
@@ -148,5 +156,8 @@
     }
     .downloadUsLeft{
         height: 40vh;
+    }
+    .ant-col-xs-24-footer-custom{
+        height: 200px !important;
     }
 }

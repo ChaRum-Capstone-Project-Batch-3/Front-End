@@ -10,7 +10,7 @@ const {Title, Text} = Typography;
 
 const Features = () => {
     return (
-        <Content style={{minHeight: 664, background: "#178066"}}>
+        <Content style={{minHeight: 664, background: "#178066", display:'flex', alignItems: 'center'}}>
             <div style={{padding: 40}}>
                 <Title className='featureTitle'>FEATURES</Title>
                 <Row style={{marginTop: 100}}>

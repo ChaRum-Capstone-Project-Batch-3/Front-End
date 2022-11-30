@@ -44,6 +44,9 @@
     padding-top: 7px;
     display: flex;
     width: 30vw;
-    justify-content: space-between;
+    justify-content: end;
     padding-left: 140px;
+}
+.filter-thread .sort-topic{
+    margin-right: 30px;
 }

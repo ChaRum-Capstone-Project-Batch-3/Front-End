@@ -1,9 +1,12 @@
 import { Breadcrumb } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import ThreadTable from "../../../components/table/ThreadTable";
 import Filter from "../../../components/filtertopic/Filter";
 
 const ManageThread = () => {
+  const [filterTopic, setFilterTopic] = useState();
+  const [filterReported, setFilterReported] = useState();
+
   return (
     <div className="site-layout-background">
       <div className="content-main manage-thread">
@@ -17,8 +20,12 @@ const ManageThread = () => {
                 <Breadcrumb.Item className= "manageThread">Thread Report</Breadcrumb.Item>
               </Breadcrumb>
               <div className="filter-thread">
-              <Filter/>
-              <Filter/>
+                <div className="sort-topic">
+                  <Filter/>
+                </div>
+                <div className="sort-reported">
+                  <Filter/>
+                </div>
               </div>
             </div>
             <div className="table-thread">

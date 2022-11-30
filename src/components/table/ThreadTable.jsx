@@ -26,16 +26,6 @@ const ThreadTable = () => {
   const [editingKey, setEditingKey] = useState("");
   const isEditing = (record) => record.key === editingKey;
 
-  const [open, setOpen] = useState(false);
-
-  const hide = () => {
-    setOpen(false);
-  };
-  // 
-  const handleOpenChange = (newOpen) => {
-    setOpen(newOpen);
-  };
-  //
   const edit = (record) => {
     console.log(record);
     setEditingKey(record.key);
@@ -45,16 +35,7 @@ const ThreadTable = () => {
     console.log(record);
     setEditingKey('');
   };
-  // 
-  // const onDetail = (record) => {
-  //   console.log(record);
-  //   setEditingKey('');
-  // };
-  //
-  const cancel = () => {
-    setEditingKey("");
-  };
-  //
+  
   const columns = [
     {
       title: "ID",

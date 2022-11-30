@@ -7,6 +7,18 @@ const ManageThread = () => {
   const [filterTopic, setFilterTopic] = useState();
   const [filterReported, setFilterReported] = useState();
 
+  const topic = (event) => event.topic = filterTopic;
+  const report = (event) => event.report = filterReported;
+
+  const [transDecision, setTransDecision] = useState(
+    {
+      topic: '',
+      reported: ''
+    }
+  );
+
+  
+
   return (
     <div className="site-layout-background">
       <div className="content-main manage-thread">

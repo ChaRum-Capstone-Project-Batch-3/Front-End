@@ -50,3 +50,55 @@
 .filter-thread .sort-topic{
     margin-right: 30px;
 }
+
+/* Details Report */
+.card {
+    /* border: 2px solid #000000; */
+    box-shadow : 0 5px 10px #a6a6a6;
+    border-radius: 20px;
+    padding-left: 35px;
+    padding-top: 15px;
+    padding-right: 20px;
+    margin-top: 15px;
+}
+/* .card .skeleton{
+    width: 1300px;
+} */
+.card, .card .card-header{
+    display: flex;
+}
+.card .card-header{
+    padding-left: 3px;
+    margin-bottom: 20px;
+}
+.card-header .header-title{
+    width: 500px;
+    padding-left: 20px;
+    display: grid;
+    gap: 2px;
+}
+.header-title h3{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+}
+.details-thread .card-body .card-title{
+    margin-bottom: 20px;
+}
+/* .details-thread .card-body .content-class, 
+.details-thread .card-body .card-title{
+
+} */
+.details-thread .card-body .image{
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+}
+.details-thread .card-body p{
+    text-align: justify;
+    font-size: 18px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+}

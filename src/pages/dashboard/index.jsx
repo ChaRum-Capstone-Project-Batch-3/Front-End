@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "./Dashboard.css";
 
 import SiderNav from "../../components/dashboard/SiderNav";
-import SearchBar from "../../components/dashboard/SearchBar";
 import { Outlet } from "react-router-dom";
 const { Header, Content } = Layout;
 

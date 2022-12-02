@@ -1,18 +1,31 @@
-import { Col, Row, Image, Button } from "antd";
-import './FormLogin.css';
+import { Col, Row, Image } from "antd";
+import "./FormLogin.css";
 import { useForm } from "react-hook-form";
-import newSvg from './../../Group_277.svg'
+import newSvg from "./../../Group_277.svg";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { fetchAuth } from "../../store/auth/AuthSlicer";
 
 export const Login = () => {
+  const dispatch = useDispatch();
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const onChangeHandler = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
   const {
     register,
-    handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(fetchAuth({ email: data.email, password: data.password }));
   };
 
   return (
@@ -20,10 +33,10 @@ export const Login = () => {
       <div className="box">
         <Row className="row-main">
           <Col span={11} className="col-1">
-            <Image 
-            preview={false}
-            style={{ width: "39vw", height: "35vw"}}
-            src={ newSvg }
+            <Image
+              preview={false}
+              style={{ width: "39vw", height: "35vw" }}
+              src={newSvg}
             />
           </Col>
           <Col span={13} className="col-2">
@@ -31,11 +44,11 @@ export const Login = () => {
               <h1>Welcome Back!</h1>
               <p>
                 Don't have any account?
-                <a> Sign up</a>
+                <Link> Sign up</Link>
               </p>
             </div>
             <div className="form-input">
-              <form onSubmit={handleSubmit(onSubmit)}>
+              <form onSubmit={(e) => onSubmit(e)}>
                 <div className="username">
                   <h3>Username</h3>
                 </div>
@@ -45,6 +58,8 @@ export const Login = () => {
                     maxLength: 20,
                     pattern: /^[A-Za-z ]+$/i,
                   })}
+                  name="email"
+                  onChange={onChangeHandler}
                   placeholder="Email or phone number"
                   type="text"
                 />
@@ -61,10 +76,11 @@ export const Login = () => {
                   {...register("passWord", {
                     required: true,
                     maxLength: 20,
-                    pattern: /^[A-Za-z0-9]+$/i,
                   })}
+                  onChange={onChangeHandler}
                   placeholder="Enter your password"
                   type="password"
+                  name="password"
                 />
                 {errors?.passWord?.type === "required" && (
                   <p>This field is required</p>
@@ -73,12 +89,19 @@ export const Login = () => {
                   <p>Alphabetical characters only</p>
                 )}
                 <div className="check-box">
-                  <input {...register("checkbox")} type="checkbox" id="checkbox" value={true} />
+                  <input
+                    {...register("checkbox")}
+                    type="checkbox"
+                    id="checkbox"
+                    value={true}
+                  />
                   <span>Keep me signed in</span>
                 </div>
                 <input type="submit" value="SIGN IN"></input>
                 <div className="forgot-password">
-                  <span>Forgot Password? <a>Reset Password</a></span>
+                  <span>
+                    Forgot Password? <Link>Reset Password</Link>
+                  </span>
                 </div>
               </form>
             </div>

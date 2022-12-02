@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "./Dashboard.css";
 
 import SiderNav from "../../components/dashboard/SiderNav";
-import SearchBar from "../../components/dashboard/SearchBar";
 import { Outlet } from "react-router-dom";
 const { Header, Content } = Layout;
 
@@ -29,9 +28,7 @@ const Dashboard = () => {
           marginLeft: !collapsed.status ? "150px" : "75px",
         }}
       >
-        <Header className="header-bar site-layout-background">
-          <SearchBar />
-        </Header>
+        <Header className="header-bar site-layout-background"></Header>
         <Content
           style={{
             margin: "24px 16px 0",

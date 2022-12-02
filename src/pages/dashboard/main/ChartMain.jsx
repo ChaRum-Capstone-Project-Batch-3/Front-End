@@ -26,7 +26,7 @@ const ChartMain = () => {
         width={100}
         wrapperStyle={{
           top: 10,
-          right: -150,
+          right: -120,
           backgroundColor: "#f5f5f5",
           border: "1px solid #d5d5d5",
           borderRadius: 3,

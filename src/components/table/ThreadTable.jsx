@@ -10,7 +10,7 @@ import {
 } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 
-const originData = [];
+const originData = ([{}]);
 for (let i = 0; i < 100; i++) {
   originData.push({
     key: i,
@@ -23,17 +23,17 @@ for (let i = 0; i < 100; i++) {
 const ThreadTable = () => {
   const [form] = Form.useForm();
   const [data, setData] = useState(originData);
-  const [editingKey, setEditingKey] = useState("");
-  const isEditing = (record) => record.key === editingKey;
+  const [infoKeyId, setInfoKeyId] = useState("");
+  const isEditing = (record) => record.key === infoKeyId;
 
-  const edit = (record) => {
+  const getInfo = (record) => {
     console.log(record);
-    setEditingKey(record.key);
+    setInfoKeyId(record.key);
   };
   // 
   const cancelDetail = (record) => {
     console.log(record);
-    setEditingKey('');
+    setInfoKeyId('');
   };
   
   const columns = [
@@ -68,16 +68,14 @@ const ThreadTable = () => {
       width: "10%",
       editable: true,
       render: (_, record) => {
-        const editable = isEditing(record);
-
-        console.log(editingKey);
+        const infoDetail = isEditing(record);
 
         return (
           <>
             {
-              editable ? 
+              infoDetail ? 
                 <Popover
-                defaultOpen = {editable}
+                defaultOpen = {infoDetail}
                 content={
                 <div style={{ 'display' : 'grid' }}>
                   <Button 
@@ -100,7 +98,7 @@ const ThreadTable = () => {
                 destroyTooltipOnHide
                 >
                   <Button
-                  disabled={editingKey === ""}
+                  disabled={infoKeyId === ""}
                   onClick={() => cancelDetail()}
                   type={'text'}
                   >
@@ -109,8 +107,8 @@ const ThreadTable = () => {
                 </Popover>
               : 
                 <Button
-                  disabled={editingKey !== ""}
-                  onClick={() => edit(record)}
+                  disabled={infoKeyId !== ""}
+                  onClick={() => getInfo(record)}
                   type={'text'}
                 >
                   &#x2022; &#x2022; &#x2022;
@@ -133,7 +131,7 @@ const ThreadTable = () => {
         inputType: col.dataIndex === "age" ? "number" : "text",
         dataIndex: col.dataIndex,
         title: col.title,
-        edit
+        getInfo
       }),
     };
   });

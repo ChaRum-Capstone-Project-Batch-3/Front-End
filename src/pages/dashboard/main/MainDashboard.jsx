@@ -10,9 +10,11 @@ import LogoEducation from "../img/education.png";
 import LogoMovie from "../img/movie.png";
 import LogoBusiness from "../img/bussines.png";
 import ChartMain from "./ChartMain";
+import { useNavigate } from "react-router-dom";
 const { Title } = Typography;
 
 const MainDashboard = () => {
+  const navigate = useNavigate();
   return (
     <div className="site-layout-background">
       <div
@@ -47,6 +49,8 @@ const MainDashboard = () => {
                 borderRadius: "5px",
                 background: "#04353D",
               }}
+              className="btn-header"
+              onClick={() => navigate("/dashboard/topic")}
             >
               Lihat Topik
               <RightCircleFilled />

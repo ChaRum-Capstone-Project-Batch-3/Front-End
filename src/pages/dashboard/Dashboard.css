@@ -3,6 +3,7 @@
 .ant-breadcrumb li span {
   font-family: "Roboto";
   font-weight: normal;
+  color: #178066;
 }
 
 .header-bar {
@@ -28,7 +29,7 @@
 
 .site-layout-background {
   padding: 15px 24px 30px 0px;
-  min-height: 360;
+  min-height: 45px;
   text-align: start;
   display: flex;
   flex-direction: row;
@@ -47,9 +48,9 @@
   color: white;
 }
 
-Button span,
-Button path {
-  color: wheat;
+Button.btn-header span,
+Button.btn-header path {
+  color: white;
 }
 
 .body-box-content {

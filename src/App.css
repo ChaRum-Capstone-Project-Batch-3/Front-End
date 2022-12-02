@@ -9,3 +9,7 @@
 .logout-btn svg path {
   color: red;
 }
+
+span.ant-menu-title-content a {
+  font-weight: 400;
+}

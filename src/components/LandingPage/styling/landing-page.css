@@ -160,4 +160,14 @@
     .ant-col-xs-24-footer-custom{
         height: 200px !important;
     }
+    .uiux-flutter{
+        padding-left: 420px !important;
+        /* padding-right: 30px !important */
+    }
+    .react{
+        padding-left: 250px;
+    }
+    .qa{
+        width: 100%;
+    }
 }

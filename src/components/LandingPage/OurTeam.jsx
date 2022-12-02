@@ -26,25 +26,25 @@ const {Title, Text} = Typography;
 
 const OurTeam = () => {
     return(
-        <Content style={{padding: 30}}>
+        <Content style={{}}>
             <Title style={{color:'#178066'}} className='ourTeamTitle'>Our Team</Title>
             <Row>
-                <Col span={24}>
+                <Col span={24} className='ant-col-24-our-team-custom'>
                     <Title style={{textAlign: 'center'}}>UI/UX Designer</Title>
-                    <div className="ourTeamContainer" style={{display: "flex", flexDirection: 'row', justifyContent: 'space-around', overflowX: 'scroll'}}>
-                        <div style={{maxWidth: 150}}>
+                    <div className="ourTeamContainer uiux-flutter" style={{display: "flex", flexDirection: 'row', justifyContent: 'space-around', overflowX: 'scroll'}}>
+                        <div style={{maxWidth: 150, marginRight: 20}}>
                             <Image width={145} src={Shaharani} preview={false} />
                             <p style={{textAlign: 'center'}}>Shaharani A.C</p>
                         </div>
-                        <div style={{maxWidth: 150}}>
+                        <div style={{maxWidth: 150, marginRight: 20}}>
                             <Image width={145} src={Vinka} preview={false} />
                             <p style={{textAlign: 'center'}}>Vinka Annisa A.R.</p>
                         </div>
-                        <div style={{maxWidth: 150}}>
+                        <div style={{maxWidth: 150, marginRight: 20}}>
                             <Image width={145} src={Puan} preview={false} />
                             <p style={{textAlign: 'center'}}>Puan Maharani S.</p>
                         </div>
-                        <div style={{maxWidth: 150}}>
+                        <div style={{maxWidth: 150, marginRight: 20}}>
                             <Image width={145} src={Farhan} preview={false} />
                             <p style={{textAlign: 'center'}}>M. Farhan Alfauzan</p>
                         </div>
@@ -56,18 +56,18 @@ const OurTeam = () => {
                 </Col>
             </Row>
             <Row>
-                <Col xl={16}>
+                <Col xl={16} xs={24}>
                     <Title style={{textAlign: 'center'}}>React Js <br /> Front End Engineer</Title>
-                    <div className="ourTeamContainer" style={{display: "flex", flexDirection: 'row', justifyContent: 'space-around', overflowX: 'scroll'}}>
-                        <div style={{maxWidth: 150}}>
+                    <div className="ourTeamContainer react" style={{display: "flex", flexDirection: 'row', justifyContent: 'space-around', overflowX: 'scroll'}}>
+                        <div style={{maxWidth: 150, marginRight: 20}}>
                             <Image width={145} src={Fadillah} preview={false} />
                             <p style={{textAlign: 'center'}}>M. Fadillah A.A.</p>
                         </div>
-                        <div style={{maxWidth: 150}}>
+                        <div style={{maxWidth: 150, marginRight: 20}}>
                             <Image width={145} src={Arsyal} preview={false} />
                             <p style={{textAlign: 'center'}}>M.Arsyal A.E.</p>
                         </div>
-                        <div style={{maxWidth: 150}}>
+                        <div style={{maxWidth: 150, marginRight: 20}}>
                             <Image width={145} src={Dio} preview={false} />
                             <p style={{textAlign: 'center'}}>Putu Bagus D.P.</p>
                         </div>
@@ -77,9 +77,9 @@ const OurTeam = () => {
                         </div>
                     </div>
                 </Col>
-                <Col xl={8}>
+                <Col xl={8} xs={24}>
                     <Title style={{textAlign: 'center'}}>Golang <br /> Back End Engineer</Title>
-                    <div className="ourTeamContainer" style={{display: "flex", flexDirection: 'row', justifyContent: 'space-around', overflowX: 'scroll'}}>
+                    <div className="ourTeamContainer golang" style={{display: "flex", flexDirection: 'row', justifyContent: 'space-around', overflowX: 'scroll'}}>
                         <div style={{maxWidth: 150}}>
                             <Image width={145} src={Razan} preview={false} />
                             <p style={{textAlign: 'center'}}>M. Razan F.</p>
@@ -94,20 +94,20 @@ const OurTeam = () => {
             <Row>
                 <Col span={24}>
                     <Title style={{textAlign: 'center'}}>Mobile Flutter</Title>
-                    <div className="ourTeamContainer" style={{display: "flex", flexDirection: 'row', justifyContent: 'space-around', overflowX: 'scroll'}}>
-                        <div style={{maxWidth: 150}}>
+                    <div className="ourTeamContainer uiux-flutter" style={{display: "flex", flexDirection: 'row', justifyContent: 'space-around', overflowX: 'scroll'}}>
+                        <div style={{maxWidth: 150, marginRight: 20}}>
                             <Image width={145} src={Fivo} preview={false} />
                             <p style={{textAlign: 'center'}}>M. Fivo Arnande</p>
                         </div>
-                        <div style={{maxWidth: 150}}>
+                        <div style={{maxWidth: 150, marginRight: 20}}>
                             <Image width={145} src={Khaerul} preview={false} />
                             <p style={{textAlign: 'center'}}>Khaerul Latif</p>
                         </div>
-                        <div style={{maxWidth: 150}}>
+                        <div style={{maxWidth: 150, marginRight: 20}}>
                             <Image width={145} src={Nur} preview={false} />
                             <p style={{textAlign: 'center'}}>Nur Muhammad A.</p>
                         </div>
-                        <div style={{maxWidth: 150}}>
+                        <div style={{maxWidth: 150, marginRight: 20}}>
                             <Image width={145} src={Maulidya} preview={false} />
                             <p style={{textAlign: 'center'}}>Maulidya Amanda</p>
                         </div>
@@ -119,9 +119,9 @@ const OurTeam = () => {
                 </Col>
             </Row>
             <Row>
-                <Col xs={24}>
+                <Col xl={24} xs={24}>
                     <Title style={{textAlign: 'center'}}>Quality Engineer</Title>
-                    <div className="ourTeamContainer" style={{margin: 'auto', display: "flex", flexDirection: 'row', justifyContent: 'space-evenly', overflowX: 'scroll', width: '60%'}}>
+                    <div className="ourTeamContainer qa" style={{margin: 'auto', display: "flex", flexDirection: 'row', justifyContent: 'space-around', overflowX: 'scroll', width: '60%'}}>
                         <div style={{maxWidth: 150}}>
                             <Image width={145} src={Shidan} preview={false} />
                             <p style={{textAlign: 'center'}}>M. Shidan Nur A.</p>

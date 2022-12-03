@@ -1,18 +1,57 @@
 import { Col, Row, Image, Button } from "antd";
-import './FormLogin.css';
+import "./FormLogin.css";
 import { useForm } from "react-hook-form";
-import newSvg from './../../Group_277.svg'
+import newSvg from "./../../Group_277.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { fetchAuth } from "../../store/auth/AuthSlicer";
+import Cookies from "js-cookie";
 
 export const Login = () => {
+  const [loadings, setLoadings] = useState([]);
+  const dispatch = useDispatch();
+  const dataAPI = useSelector((state) => state.login);
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+  console.log(dataAPI);
+
+  const onChangeHandler = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
   const {
     register,
-    handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+  const enterLoading = (index) => {
+    setLoadings((prevLoadings) => {
+      const newLoadings = [...prevLoadings];
+      newLoadings[index] = true;
+      return newLoadings;
+    });
+    setTimeout(() => {
+      setLoadings((prevLoadings) => {
+        const newLoadings = [...prevLoadings];
+        newLoadings[index] = false;
+        return newLoadings;
+      });
+    }, 1750);
+  };
+
+  const onClickHandler = (e) => {
+    e.preventDefault();
+    dispatch(fetchAuth({ email: data.email, password: data.password }));
+    enterLoading(0);
+    setTimeout(() => {
+      if (Cookies.get("token")) {
+        navigate("/dashboard");
+      }
+    }, 2000);
   };
 
   return (
@@ -20,22 +59,18 @@ export const Login = () => {
       <div className="box">
         <Row className="row-main">
           <Col span={11} className="col-1">
-            <Image 
-            preview={false}
-            style={{ width: "39vw", height: "35vw"}}
-            src={ newSvg }
+            <Image
+              preview={false}
+              style={{ width: "39vw", height: "35vw" }}
+              src={newSvg}
             />
           </Col>
           <Col span={13} className="col-2">
             <div className="title">
               <h1>Welcome Back!</h1>
-              <p>
-                Don't have any account?
-                <a> Sign up</a>
-              </p>
             </div>
             <div className="form-input">
-              <form onSubmit={handleSubmit(onSubmit)}>
+              <form>
                 <div className="username">
                   <h3>Username</h3>
                 </div>
@@ -45,7 +80,9 @@ export const Login = () => {
                     maxLength: 20,
                     pattern: /^[A-Za-z ]+$/i,
                   })}
-                  placeholder="Email or phone number"
+                  name="email"
+                  onChange={onChangeHandler}
+                  placeholder="Email or Username"
                   type="text"
                 />
                 {errors?.userName?.type === "required" && (
@@ -61,10 +98,11 @@ export const Login = () => {
                   {...register("passWord", {
                     required: true,
                     maxLength: 20,
-                    pattern: /^[A-Za-z0-9]+$/i,
                   })}
+                  onChange={onChangeHandler}
                   placeholder="Enter your password"
                   type="password"
+                  name="password"
                 />
                 {errors?.passWord?.type === "required" && (
                   <p>This field is required</p>
@@ -73,12 +111,27 @@ export const Login = () => {
                   <p>Alphabetical characters only</p>
                 )}
                 <div className="check-box">
-                  <input {...register("checkbox")} type="checkbox" id="checkbox" value={true} />
+                  <input
+                    {...register("checkbox")}
+                    type="checkbox"
+                    id="checkbox"
+                    value={true}
+                  />
                   <span>Keep me signed in</span>
                 </div>
-                <input type="submit" value="SIGN IN"></input>
+                <div className="btn-submit" onClick={(e) => onClickHandler(e)}>
+                  <Button
+                    style={{ border: "none !important", background: "#04353d" }}
+                    type="primary"
+                    loading={loadings[0]}
+                  >
+                    SIGN IN
+                  </Button>
+                </div>
                 <div className="forgot-password">
-                  <span>Forgot Password? <a>Reset Password</a></span>
+                  <span>
+                    Forgot Password? <Link>Reset Password</Link>
+                  </span>
                 </div>
               </form>
             </div>

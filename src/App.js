@@ -1,5 +1,5 @@
 import "./App.css";
-import RouteConfiguration from "./RouteConfiguration";
+import RouteConfiguration from "./route/RouteConfiguration";
 function App() {
   return (
     <div className="App">

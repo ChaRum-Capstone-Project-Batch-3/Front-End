@@ -13,10 +13,9 @@ export const fetchAuth = createAsyncThunk("auth", async (data) => {
   try {
     const res = await ApiAuth.login(data);
     Cookies.set("token", res.data.data.token);
-    console.log(res.data.data.token);
-    return res.data.token;
+    return res.data.data.token;
   } catch (err) {
-    console.log(err.message);
+    console.log(err);
   }
 });
 

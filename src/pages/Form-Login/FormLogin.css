@@ -101,7 +101,7 @@ input[type="password"] {
   margin-top: 10px;
   font-size: 14px;
 }
-.col-2 .form-input input[type="submit"] {
+.col-2 .form-input .btn-submit {
   background: #04353d;
   color: white;
   border: none;
@@ -111,8 +111,18 @@ input[type="password"] {
   font-size: 20px;
   font-weight: 600;
   width: 90%;
+  height: 60px;
   text-align: center;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.col-2 .form-input .btn-submit span {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  text-align: center;
 }
 /* h3,p,-Form */
 .col-2 .form-input h3 {

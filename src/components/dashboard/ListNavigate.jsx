@@ -4,6 +4,7 @@ import {
   ContainerOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
+import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 
 function getItem(label, key, icon, children) {
@@ -37,7 +38,18 @@ export const Items = [
     <UserOutlined />
   ),
   getItem(
-    <span style={{ color: "red", fontWeight: "400" }}>Logout</span>,
+    <span
+      onClick={() => {
+        Cookies.remove("token");
+      }}
+    >
+      <Link
+        to="/login"
+        style={{ color: "red", fontWeight: "400", fontSize: "14px" }}
+      >
+        Logout
+      </Link>
+    </span>,
     "4",
     <LogoutOutlined className="logout-btn" />
   ),

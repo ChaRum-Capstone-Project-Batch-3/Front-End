@@ -1,18 +1,23 @@
-import { Col, Row, Image } from "antd";
+import { Col, Row, Image, Button } from "antd";
 import "./FormLogin.css";
 import { useForm } from "react-hook-form";
 import newSvg from "./../../Group_277.svg";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { fetchAuth } from "../../store/auth/AuthSlicer";
+import Cookies from "js-cookie";
 
 export const Login = () => {
+  const [loadings, setLoadings] = useState([]);
   const dispatch = useDispatch();
+  const dataAPI = useSelector((state) => state.login);
   const [data, setData] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
+  console.log(dataAPI);
 
   const onChangeHandler = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -23,9 +28,30 @@ export const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (e) => {
+  const enterLoading = (index) => {
+    setLoadings((prevLoadings) => {
+      const newLoadings = [...prevLoadings];
+      newLoadings[index] = true;
+      return newLoadings;
+    });
+    setTimeout(() => {
+      setLoadings((prevLoadings) => {
+        const newLoadings = [...prevLoadings];
+        newLoadings[index] = false;
+        return newLoadings;
+      });
+    }, 1750);
+  };
+
+  const onClickHandler = (e) => {
     e.preventDefault();
     dispatch(fetchAuth({ email: data.email, password: data.password }));
+    enterLoading(0);
+    setTimeout(() => {
+      if (Cookies.get("token")) {
+        navigate("/dashboard");
+      }
+    }, 2000);
   };
 
   return (
@@ -42,13 +68,9 @@ export const Login = () => {
           <Col span={13} className="col-2">
             <div className="title">
               <h1>Welcome Back!</h1>
-              <p>
-                Don't have any account?
-                <Link> Sign up</Link>
-              </p>
             </div>
             <div className="form-input">
-              <form onSubmit={(e) => onSubmit(e)}>
+              <form>
                 <div className="username">
                   <h3>Username</h3>
                 </div>
@@ -60,7 +82,7 @@ export const Login = () => {
                   })}
                   name="email"
                   onChange={onChangeHandler}
-                  placeholder="Email or phone number"
+                  placeholder="Email or Username"
                   type="text"
                 />
                 {errors?.userName?.type === "required" && (
@@ -97,7 +119,15 @@ export const Login = () => {
                   />
                   <span>Keep me signed in</span>
                 </div>
-                <input type="submit" value="SIGN IN"></input>
+                <div className="btn-submit" onClick={(e) => onClickHandler(e)}>
+                  <Button
+                    style={{ border: "none !important", background: "#04353d" }}
+                    type="primary"
+                    loading={loadings[0]}
+                  >
+                    SIGN IN
+                  </Button>
+                </div>
                 <div className="forgot-password">
                   <span>
                     Forgot Password? <Link>Reset Password</Link>

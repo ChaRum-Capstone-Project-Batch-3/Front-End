@@ -3,11 +3,18 @@
 }
 
 header.ant-layout-header {
-  height: 95px !important;
+  width: 100%;
+  height: 80px !important;
   background-color: rgba(23, 128, 102, 1) !important;
+  position: fixed;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .home-page {
   background: url("./img/LANDING_PAGE.png");
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }

@@ -8,7 +8,7 @@ const AboutPage = () => {
       className="about-page"
       style={{
         display: "flex",
-        padding: "170px 100px",
+        padding: "140px 0 225px 0",
         gap: "50px",
         flexWrap: "wrap-reverse",
         justifyContent: "center",
@@ -16,7 +16,7 @@ const AboutPage = () => {
       }}
     >
       <div className="side-img">
-        <Image src={OrangDuduk} width={500} preview={false} />
+        <Image src={OrangDuduk} width={400} preview={false} />
       </div>
       <div className="body-content">
         <Title

@@ -11,7 +11,7 @@ const HomePage = () => {
       className="home-page"
       style={{
         display: "flex",
-        padding: "112px 0 80px 0",
+        padding: "170px 0 100px 0",
         flexWrap: "wrap-reverse",
         justifyContent: "center",
       }}

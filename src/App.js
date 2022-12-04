@@ -1,10 +1,9 @@
-// import './App.css';
-import LandingPage from './pages/LandingPage';
-
+import "./App.css";
+import RouteConfiguration from "./route/RouteConfiguration";
 function App() {
   return (
     <div className="App">
-      <LandingPage />
+      <RouteConfiguration />
     </div>
   );
 }

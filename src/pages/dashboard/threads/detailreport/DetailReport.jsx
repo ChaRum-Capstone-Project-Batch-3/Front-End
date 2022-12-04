@@ -1,7 +1,7 @@
 import { Breadcrumb } from "antd";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { UserPost } from "../../../../components/cardpost/UserPost";
+import  UserPost  from "../../../../components/cardpost/assets/UserPost";
 
 const DetailReport = () => {
   const  param = useParams();

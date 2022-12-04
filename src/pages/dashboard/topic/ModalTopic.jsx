@@ -11,6 +11,8 @@ const defaultData = {
 const regexName = /^[A-Za-z ]*$/;
 
 const ModalTopic = (props) => {
+  // const dispacth = useDispatch();
+
   const [form] = Form.useForm();
   const [data, setData] = useState(defaultData);
   const [errorMessages, setErrorMessages] = useState({

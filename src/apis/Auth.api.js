@@ -2,7 +2,6 @@ import axiosInstance from "../config/AxiosInstance";
 
 const ApiAuth = {
   async login(data) {
-    console.log(data);
     try {
       const res = await axiosInstance.post("user/login", data);
       return res;

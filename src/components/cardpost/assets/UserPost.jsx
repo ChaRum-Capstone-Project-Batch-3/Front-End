@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Avatar, Card, Image, Skeleton } from "antd";
+import { DetailsChart } from '../../chart/DetailsChart'
 import total from '../assets/information.svg'
 import reached from '../assets/user-square.svg'
 import like from '../assets/like-tag.svg'
@@ -191,7 +192,7 @@ const UserPost = ({ props }) => {
           </Card>
 
           {/* Details Reports */}
-          <div className="card-detail-reports">
+          <div className="card-details-report">
             <Card
               className=" card details-report"
               size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
@@ -202,7 +203,9 @@ const UserPost = ({ props }) => {
             <div className="interaction-header">
               <h1> Details Report</h1>
             </div>
-              
+            <div className="chart-body">
+              <DetailsChart/>
+            </div>
             </Card>
           </div>
         </div>

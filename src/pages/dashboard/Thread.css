@@ -195,3 +195,18 @@
 .total-comments .comment{
     display: flex;
 }
+/* Details Report */
+.card-details-report{
+    width: inherit;
+    justify-content: start;
+}
+.details-report{
+    display: flex;
+}
+.interaction-header{
+    right: 0%;
+}
+.chart-body{
+    margin-left: 10px;
+    height: 200px;
+}

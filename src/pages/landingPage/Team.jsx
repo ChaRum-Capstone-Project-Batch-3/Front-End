@@ -61,28 +61,44 @@ const Team = () => {
           </div>
           <div
             className="avatar"
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
             <Image src={ImageAvatar.Vinka} width={75} preview={false} />
             Vinka Annisa A.R.
           </div>
           <div
             className="avatar"
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
             <Image src={ImageAvatar.Puan} width={75} preview={false} />
             Puan Maharani S.
           </div>
           <div
             className="avatar"
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
             <Image src={ImageAvatar.Farhan} width={75} preview={false} />
             M. Farhan Alfauzan
           </div>
           <div
             className="avatar"
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
             <Image src={ImageAvatar.Bagus} width={75} preview={false} />
             Bagus Satria K.
@@ -103,21 +119,33 @@ const Team = () => {
         >
           <div
             className="avatar"
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
             <Image src={ImageAvatar.Fadil} width={75} preview={false} />
             M. Fadillah A.A.
           </div>
           <div
             className="avatar"
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
             <Image src={ImageAvatar.Arsyal} width={75} preview={false} />
             M.Arsyal A.E.
           </div>
           <div
             className="avatar"
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
             <Image src={ImageAvatar.Putu} width={75} preview={false} />
             Putu Bagus D.P.
@@ -138,14 +166,22 @@ const Team = () => {
         >
           <div
             className="avatar"
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
             <Image src={ImageAvatar.Razan} width={75} preview={false} />
             M. Razan F.
           </div>
           <div
             className="avatar"
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
             <Image src={ImageAvatar.Timo} width={75} preview={false} />
             Timotius Wirawan
@@ -166,35 +202,66 @@ const Team = () => {
         >
           <div
             className="avatar"
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
             <Image src={ImageAvatar.Fivo} width={75} preview={false} />
             M. Fivo Arnande
           </div>
           <div
             className="avatar"
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
-            <Image src={ImageAvatar.Latif} width={75} preview={false} />
+            <Image
+              style={{ borderRadius: "50%" }}
+              src={ImageAvatar.Latif}
+              width={75}
+              preview={false}
+            />
             Khaerul Latif
           </div>
           <div
             className="avatar"
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
-            <Image src={ImageAvatar.Nur} width={75} preview={false} />
+            <Image
+              src={ImageAvatar.Nur}
+              width={75}
+              height={75}
+              style={{ borderRadius: "50%" }}
+              preview={false}
+            />
             Nur Muhammad A.
           </div>
           <div
             className="avatar"
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
             <Image src={ImageAvatar.Manda} width={75} preview={false} />
             Maulidya Amanda
           </div>
           <div
             className="avatar"
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
             <Image src={ImageAvatar.Faishal} width={75} preview={false} />
             Faisal Aprianto
@@ -215,14 +282,22 @@ const Team = () => {
         >
           <div
             className="avatar"
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
             <Image src={ImageAvatar.Shidan} width={75} preview={false} />
             M. Shidan Nur A.
           </div>
           <div
             className="avatar"
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
             <Image src={ImageAvatar.Faraz} width={75} preview={false} />
             Faraz Herviansyah

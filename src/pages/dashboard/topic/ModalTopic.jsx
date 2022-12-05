@@ -28,9 +28,8 @@ const ModalTopic = (props) => {
   const [form] = Form.useForm();
 
   const [errorMessages, setErrorMessages] = useState({
-    topic: false,
-    description: false,
-    img: false,
+    topic: true,
+    description: true,
   });
 
   const onChangeHandler = (e) => {
@@ -67,11 +66,19 @@ const ModalTopic = (props) => {
 
   const onClickHandler = (e) => {
     e.preventDefault();
-    if (!errorMessages.topic || !errorMessages.description) {
+    if (errorMessages.topic === false && errorMessages.description === false) {
       if (!props.getId) {
         dispacth(
           createTopic({ topic: data.topic, description: data.description })
         );
+        setData({
+          topic: "",
+          description: "",
+        });
+        setErrorMessages({
+          topic: true,
+          description: true,
+        });
       } else {
         dispacth(
           updateTopic({
@@ -80,12 +87,23 @@ const ModalTopic = (props) => {
             id: props.getId,
           })
         );
+        setData({
+          topic: "",
+          description: "",
+        });
         props.setGetId("");
       }
-      setData({});
       props.handleOk();
     } else {
       Swal.fire("Data Kosong");
+      setData({
+        topic: "",
+        description: "",
+      });
+      setErrorMessages({
+        topic: true,
+        description: true,
+      });
     }
   };
 
@@ -93,16 +111,10 @@ const ModalTopic = (props) => {
     props.handleCancel();
     setData("");
   };
+
+  console.log("status error ", errorMessages);
   return (
-    <Modal
-      open={props.isModalOpen}
-      onOk={
-        !errorMessages.title || !errorMessages.description
-          ? onClickHandler
-          : "disable"
-      }
-      onCancel={onCancel}
-    >
+    <Modal open={props.isModalOpen} onOk={onClickHandler} onCancel={onCancel}>
       <Form
         layout="vertical"
         form={form}

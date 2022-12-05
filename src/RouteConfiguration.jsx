@@ -13,6 +13,7 @@ const RouteConfiguration = () => {
         <Route path="/dashboard" element={<Dashboard />}>
           <Route index element={<MainDashboard />} />
           <Route path="thread" element={<ManageThread />}/>
+          <Route path="thread/details/:id" element={<DetailReport />}/>
           <Route path="details" element={<DetailReport />}/>
           <Route path="users" element={<ManageUsers />} />
         </Route>

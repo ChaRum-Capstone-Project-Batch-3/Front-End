@@ -10,7 +10,7 @@ import {
 } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 
-const originData = ([{}]);
+const originData = [];
 for (let i = 0; i < 100; i++) {
   originData.push({
     key: i,
@@ -69,6 +69,8 @@ const ThreadTable = () => {
       editable: true,
       render: (_, record) => {
         const infoDetail = isEditing(record);
+        
+        console.log(record);
 
         return (
           <>
@@ -78,16 +80,14 @@ const ThreadTable = () => {
                 defaultOpen = {infoDetail}
                 content={
                 <div style={{ 'display' : 'grid' }}>
-                  <Button 
-                  type="text" 
-                  style={{ 'marginBottom' : '10px', 'background' : '#D1E6E0'}} 
-                  onClick={
-                    <Link to="/users">
-                    </Link>
-                  }
-                  >
-                    <InfoCircleOutlined />Details
-                  </Button>
+                  <Link to={`details/${JSON.stringify(record)}`}>
+                    <Button 
+                    type="text" 
+                    style={{ 'marginBottom' : '10px', 'background' : '#D1E6E0'}}
+                    >
+                      <InfoCircleOutlined />Details
+                    </Button>
+                  </Link>
                   <Button 
                   type="text" 
                   onClick={() => cancelDetail()}>

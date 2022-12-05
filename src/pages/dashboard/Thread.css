@@ -52,14 +52,23 @@
 }
 
 /* Details Report */
-.card {
+.main-card{
     /* border: 2px solid #000000; */
-    box-shadow : 0 5px 10px #a6a6a6;
-    border-radius: 20px;
-    padding-left: 35px;
+    display: flex;
+    gap: 25px;
+    width: 1400px;
+    height: fit-content;
+}
+.card {
+    box-shadow : 0 5px 5px #cfcfcf;
+    border-radius: 15px;
+    padding-left: 25px;
     padding-top: 15px;
     padding-right: 20px;
     margin-top: 15px;
+    width: 600px;
+    height: inherit;
+    /* border: 2px solid #000000; */
 }
 /* .card .skeleton{
     width: 1300px;
@@ -72,7 +81,8 @@
     margin-bottom: 20px;
 }
 .card-header .header-title{
-    width: 500px;
+    /* border: 2px solid #000000; */
+    width: 400px;
     padding-left: 20px;
     display: grid;
     gap: 2px;
@@ -86,12 +96,13 @@
 .details-thread .card-body .card-title{
     margin-bottom: 20px;
 }
-/* .details-thread .card-body .content-class, 
-.details-thread .card-body .card-title{
-
-} */
-.details-thread .card-body .image{
-    border-radius: 20px;
+.card-body{
+    display: block;
+    width: inherit;
+    height: inherit;
+}
+.details-thread .image{
+    border-radius: 15px;
     box-sizing: border-box;
     margin-bottom: 30px;
 }
@@ -101,4 +112,101 @@
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
+}
+/* thread-interaction */
+.interaction{
+    width: 800px;
+    /* border: 2px solid #000000; */
+}
+.thread-interaction{
+    height: 350px;
+    width: inherit;
+    display: flex;
+    /* border: 2px solid #000000; */
+}
+.interaction-header h1{
+    margin-left: 20px;
+    font-size: 25px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+}
+.interaction-body,
+.interaction-footer{
+    border: 0px solid #cfcfcf;
+}
+.details-report{
+    height: 280px;
+    width: inherit;
+}
+.total-reports, .account-reached{
+    width: 345px;
+    height: 155px;
+    display: grid;
+    padding-top: 0px;
+    padding-left: 15px;
+}
+.total-reports h2, .total-reports h1,
+.account-reached h2, .account-reached h1{
+    font-size: 20px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+}
+.total-reports h2, .account-reached h2{
+    margin-top: 5px;
+}
+.total-reports h1, .account-reached h1{
+    font-size: 35px;
+}
+.total-reports h1{
+    color: #E23900;
+}
+.account-reached h1{
+    color: #45A31D;
+}
+/* Interaction Footer */
+.interaction-footer{
+    height: 100px;
+    /* border: 2px solid #000000; */
+}
+.total-likes, .total-comments{
+    /* border: 2px solid #000000; */
+    width: 160px;
+    height: 80px;
+    display: grid;
+    padding: 0px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    margin-top: 5px;
+}
+.total-likes h2, .total-likes h1,
+.total-comments h2, .total-comments h1{
+    font-size: 15px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+}
+.total-likes h1, .total-comments h1{
+    margin-left: 10px;
+    margin-Top: 2px;
+}
+.total-likes .like, 
+.total-comments .comment{
+    display: flex;
+}
+/* Details Report */
+.card-details-report{
+    width: inherit;
+    justify-content: start;
+}
+.details-report{
+    display: flex;
+}
+.interaction-header{
+    right: 0%;
+}
+.chart-body{
+    margin-left: 10px;
+    height: 200px;
 }

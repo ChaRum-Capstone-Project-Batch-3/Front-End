@@ -4,6 +4,7 @@ import ApiTopic from "../../apis/Topic.api";
 const initialState = {
   data: [],
   status: false,
+  rescode: "",
   fecthStatus: "idle",
   error: null,
 };
@@ -14,6 +15,7 @@ export const getAllTopic = createAsyncThunk("get all topic", async () => {
     return res.data.data.topics;
   } catch (err) {
     console.log(err.message);
+    throw Error(err.message);
   }
 });
 
@@ -23,6 +25,7 @@ export const deleteTopic = createAsyncThunk("delete topic", async (id) => {
     return res.data.data.topic;
   } catch (err) {
     console.log(err.message);
+    throw Error(err.message);
   }
 });
 
@@ -32,6 +35,7 @@ export const createTopic = createAsyncThunk("create topic", async (data) => {
     return res.data.data.topic;
   } catch (err) {
     console.log(err.message);
+    throw Error(err.message);
   }
 });
 
@@ -41,6 +45,7 @@ export const updateTopic = createAsyncThunk("update topic", async (data) => {
     return res.data.data.topic;
   } catch (err) {
     console.log(err.message);
+    throw Error(err.message);
   }
 });
 

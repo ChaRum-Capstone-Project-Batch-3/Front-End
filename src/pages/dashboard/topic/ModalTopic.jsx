@@ -15,28 +15,33 @@ const ModalTopic = (props) => {
     description: "",
   });
   const dispacth = useDispatch();
-  const stateData = useSelector((state) => state.topic.data);
+  const stateData = useSelector((state) => state.topic);
 
   useEffect(() => {
     if (props.getId) {
-      const index = stateData?.findIndex((val) => val._id === props.getId);
-      setData(stateData[index]);
+      const index = stateData?.data.findIndex((val) => val._id === props.getId);
+      setData(stateData.data[index]);
     }
   }, [props.getId]);
 
-  console.log(data);
+  useEffect(() => {
+    if (stateData.err) {
+      Swal.fire({
+        title: stateData.err,
+        icon: "error",
+      });
+    }
+  }, [stateData.err]);
+
   const [form] = Form.useForm();
 
-  const [errorMessages, setErrorMessages] = useState({
-    topic: true,
-    description: true,
-  });
+  const [errorMessages, setErrorMessages] = useState({});
 
   const onChangeHandler = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setData({ ...data, [e.target.name]: e.target.value });
-    if (name === "topic") {
+    if (name === "topic" || data.topic !== "") {
       if (regexName.test(value) && value !== "") {
         setErrorMessages({
           ...errorMessages,
@@ -50,7 +55,7 @@ const ModalTopic = (props) => {
       }
     }
     if (name === "description") {
-      if (value !== "") {
+      if (value !== "" || data.description !== "") {
         setErrorMessages({
           ...errorMessages,
           description: false,
@@ -112,7 +117,6 @@ const ModalTopic = (props) => {
     setData("");
   };
 
-  console.log("status error ", errorMessages);
   return (
     <Modal open={props.isModalOpen} onOk={onClickHandler} onCancel={onCancel}>
       <Form

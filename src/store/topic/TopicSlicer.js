@@ -20,7 +20,7 @@ export const getAllTopic = createAsyncThunk("get all topic", async () => {
 export const deleteTopic = createAsyncThunk("delete topic", async (id) => {
   try {
     const res = await ApiTopic.deleteTopic(id);
-    return res.data.message;
+    return res.data.data.topic;
   } catch (err) {
     console.log(err.message);
   }
@@ -29,7 +29,16 @@ export const deleteTopic = createAsyncThunk("delete topic", async (id) => {
 export const createTopic = createAsyncThunk("create topic", async (data) => {
   try {
     const res = await ApiTopic.createTopic(data);
-    return res.data.message;
+    return res.data.data.topic;
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
+export const updateTopic = createAsyncThunk("update topic", async (data) => {
+  try {
+    const res = await ApiTopic.updateTopic(data.id, data);
+    return res.data.data.topic;
   } catch (err) {
     console.log(err.message);
   }
@@ -43,6 +52,7 @@ const topicSlice = createSlice({
       .addCase(getAllTopic.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         state.data = action.payload;
+        state.status = !state.status;
       })
       .addCase(getAllTopic.rejected, (state, action) => {
         state.status = "failed";
@@ -50,7 +60,8 @@ const topicSlice = createSlice({
       })
       .addCase(deleteTopic.fulfilled, (state, action) => {
         state.fecthStatus = "success";
-        state.data = action.payload;
+        state.data = state.data.filter((val) => val._id !== action.payload._id);
+        state.status = !state.status;
       })
       .addCase(deleteTopic.rejected, (state, action) => {
         state.status = "failed";
@@ -58,9 +69,25 @@ const topicSlice = createSlice({
       })
       .addCase(createTopic.fulfilled, (state, action) => {
         state.fecthStatus = "success";
-        state.data = action.payload;
+        state.data.push(action.payload);
+        state.status = !state.status;
       })
       .addCase(createTopic.rejected, (state, action) => {
+        state.status = "failed";
+        state.err = action.error.message;
+      })
+      .addCase(updateTopic.fulfilled, (state, action) => {
+        state.fecthStatus = "success";
+        const id = action.payload._id;
+        const indexData = state.data.findIndex((value) => value._id === id);
+        const newArr = [...state.data];
+        if (indexData >= 0) {
+          newArr[indexData] = action.payload;
+        }
+        state.data = [...newArr];
+        state.status = !state.status;
+      })
+      .addCase(updateTopic.rejected, (state, action) => {
         state.status = "failed";
         state.err = action.error.message;
       });

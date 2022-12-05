@@ -2,21 +2,33 @@ import { Button, Form, Input, Modal, Upload } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import React, { useState } from "react";
 import { UploadOutlined } from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { createTopic, updateTopic } from "../../../store/topic/TopicSlicer";
+import Swal from "sweetalert2";
+import { useEffect } from "react";
 
-const defaultData = {
-  title: "",
-  description: "",
-  img: "",
-};
 const regexName = /^[A-Za-z ]*$/;
 
 const ModalTopic = (props) => {
-  // const dispacth = useDispatch();
+  const [data, setData] = useState({
+    topic: "",
+    description: "",
+  });
+  const dispacth = useDispatch();
+  const stateData = useSelector((state) => state.topic.data);
 
+  useEffect(() => {
+    if (props.getId) {
+      const index = stateData?.findIndex((val) => val._id === props.getId);
+      setData(stateData[index]);
+    }
+  }, [props.getId]);
+
+  console.log(data);
   const [form] = Form.useForm();
-  const [data, setData] = useState(defaultData);
+
   const [errorMessages, setErrorMessages] = useState({
-    title: false,
+    topic: false,
     description: false,
     img: false,
   });
@@ -25,16 +37,16 @@ const ModalTopic = (props) => {
     const name = e.target.name;
     const value = e.target.value;
     setData({ ...data, [e.target.name]: e.target.value });
-    if (name === "title") {
+    if (name === "topic") {
       if (regexName.test(value) && value !== "") {
         setErrorMessages({
           ...errorMessages,
-          title: false,
+          topic: false,
         });
       } else {
         setErrorMessages({
           ...errorMessages,
-          title: true,
+          topic: true,
         });
       }
     }
@@ -52,15 +64,44 @@ const ModalTopic = (props) => {
       }
     }
   };
+
+  const onClickHandler = (e) => {
+    e.preventDefault();
+    if (!errorMessages.topic || !errorMessages.description) {
+      if (!props.getId) {
+        dispacth(
+          createTopic({ topic: data.topic, description: data.description })
+        );
+      } else {
+        dispacth(
+          updateTopic({
+            topic: data.topic,
+            description: data.description,
+            id: props.getId,
+          })
+        );
+        props.setGetId("");
+      }
+      setData({});
+      props.handleOk();
+    } else {
+      Swal.fire("Data Kosong");
+    }
+  };
+
+  const onCancel = () => {
+    props.handleCancel();
+    setData("");
+  };
   return (
     <Modal
       open={props.isModalOpen}
       onOk={
-        !errorMessages.title && !errorMessages.description
-          ? props.handleOk
+        !errorMessages.title || !errorMessages.description
+          ? onClickHandler
           : "disable"
       }
-      onCancel={props.handleCancel}
+      onCancel={onCancel}
     >
       <Form
         layout="vertical"
@@ -71,25 +112,25 @@ const ModalTopic = (props) => {
       >
         <Form.Item
           label="Topic Title"
-          validateStatus={!errorMessages.title ? "" : "error"}
+          validateStatus={!errorMessages.topic ? "" : "error"}
           help={
-            !errorMessages.title
+            !errorMessages.topic
               ? ""
               : "Should be combination alphabets and required"
           }
           style={{ fontWeight: "600" }}
         >
           <Input
-            placeholder="Write the title here.."
-            value={data.title}
-            name="title"
+            placeholder="Write the topic here.."
+            value={data.topic}
+            name="topic"
             onChange={onChangeHandler}
             required={true}
           />
         </Form.Item>
         <Form.Item
           style={{ fontWeight: "600" }}
-          label="TextArea"
+          label="Description Topic"
           validateStatus={!errorMessages.description ? "" : "error"}
           help={!errorMessages.description ? "" : "required deskripsi"}
           hasFeedback

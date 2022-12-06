@@ -16,6 +16,7 @@ export const fetchAuth = createAsyncThunk("auth", async (data) => {
     return res.data.data.token;
   } catch (err) {
     console.log(err);
+    throw err;
   }
 });
 

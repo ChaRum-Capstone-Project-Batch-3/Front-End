@@ -2,7 +2,7 @@ import { Col, Row, Image, Button } from "antd";
 import "./FormLogin.css";
 import { useForm } from "react-hook-form";
 import newSvg from "./../../Group_277.svg";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { fetchAuth } from "../../store/auth/AuthSlicer";
@@ -11,13 +11,11 @@ import Cookies from "js-cookie";
 export const Login = () => {
   const [loadings, setLoadings] = useState([]);
   const dispatch = useDispatch();
-  const dataAPI = useSelector((state) => state.login);
   const [data, setData] = useState({
-    email: "",
+    key: "",
     password: "",
   });
   const navigate = useNavigate();
-  console.log(dataAPI);
 
   const onChangeHandler = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -45,7 +43,7 @@ export const Login = () => {
 
   const onClickHandler = (e) => {
     e.preventDefault();
-    dispatch(fetchAuth({ email: data.email, password: data.password }));
+    dispatch(fetchAuth({ key: data.key, password: data.password }));
     enterLoading(0);
     setTimeout(() => {
       if (Cookies.get("token")) {
@@ -75,12 +73,12 @@ export const Login = () => {
                   <h3>Username</h3>
                 </div>
                 <input
-                  {...register("userName", {
+                  {...register("key", {
                     required: true,
                     maxLength: 20,
                     pattern: /^[A-Za-z ]+$/i,
                   })}
-                  name="email"
+                  name="key"
                   onChange={onChangeHandler}
                   placeholder="Email or Username"
                   type="text"

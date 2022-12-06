@@ -2,42 +2,60 @@ import { Button, Form, Input, Modal, Upload } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import React, { useState } from "react";
 import { UploadOutlined } from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { createTopic, updateTopic } from "../../../store/topic/TopicSlicer";
+import Swal from "sweetalert2";
+import { useEffect } from "react";
 
-const defaultData = {
-  title: "",
-  description: "",
-  img: "",
-};
 const regexName = /^[A-Za-z ]*$/;
 
 const ModalTopic = (props) => {
-  const [form] = Form.useForm();
-  const [data, setData] = useState(defaultData);
-  const [errorMessages, setErrorMessages] = useState({
-    title: false,
-    description: false,
-    img: false,
+  const [data, setData] = useState({
+    topic: "",
+    description: "",
   });
+  const dispacth = useDispatch();
+  const stateData = useSelector((state) => state.topic);
+
+  useEffect(() => {
+    if (props.getId) {
+      const index = stateData?.data.findIndex((val) => val._id === props.getId);
+      setData(stateData.data[index]);
+    }
+  }, [props.getId]);
+
+  useEffect(() => {
+    if (stateData.err) {
+      Swal.fire({
+        title: stateData.err,
+        icon: "error",
+      });
+    }
+  }, [stateData.err]);
+
+  const [form] = Form.useForm();
+
+  const [errorMessages, setErrorMessages] = useState({});
 
   const onChangeHandler = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setData({ ...data, [e.target.name]: e.target.value });
-    if (name === "title") {
+    if (name === "topic" || data.topic !== "") {
       if (regexName.test(value) && value !== "") {
         setErrorMessages({
           ...errorMessages,
-          title: false,
+          topic: false,
         });
       } else {
         setErrorMessages({
           ...errorMessages,
-          title: true,
+          topic: true,
         });
       }
     }
     if (name === "description") {
-      if (value !== "") {
+      if (value !== "" || data.description !== "") {
         setErrorMessages({
           ...errorMessages,
           description: false,
@@ -50,16 +68,57 @@ const ModalTopic = (props) => {
       }
     }
   };
-  return (
-    <Modal
-      open={props.isModalOpen}
-      onOk={
-        !errorMessages.title && !errorMessages.description
-          ? props.handleOk
-          : "disable"
+
+  const onClickHandler = (e) => {
+    e.preventDefault();
+    if (errorMessages.topic === false && errorMessages.description === false) {
+      if (!props.getId) {
+        dispacth(
+          createTopic({ topic: data.topic, description: data.description })
+        );
+        setData({
+          topic: "",
+          description: "",
+        });
+        setErrorMessages({
+          topic: true,
+          description: true,
+        });
+      } else {
+        dispacth(
+          updateTopic({
+            topic: data.topic,
+            description: data.description,
+            id: props.getId,
+          })
+        );
+        setData({
+          topic: "",
+          description: "",
+        });
+        props.setGetId("");
       }
-      onCancel={props.handleCancel}
-    >
+      props.handleOk();
+    } else {
+      Swal.fire("Data Kosong");
+      setData({
+        topic: "",
+        description: "",
+      });
+      setErrorMessages({
+        topic: true,
+        description: true,
+      });
+    }
+  };
+
+  const onCancel = () => {
+    props.handleCancel();
+    setData("");
+  };
+
+  return (
+    <Modal open={props.isModalOpen} onOk={onClickHandler} onCancel={onCancel}>
       <Form
         layout="vertical"
         form={form}
@@ -69,25 +128,25 @@ const ModalTopic = (props) => {
       >
         <Form.Item
           label="Topic Title"
-          validateStatus={!errorMessages.title ? "" : "error"}
+          validateStatus={!errorMessages.topic ? "" : "error"}
           help={
-            !errorMessages.title
+            !errorMessages.topic
               ? ""
               : "Should be combination alphabets and required"
           }
           style={{ fontWeight: "600" }}
         >
           <Input
-            placeholder="Write the title here.."
-            value={data.title}
-            name="title"
+            placeholder="Write the topic here.."
+            value={data.topic}
+            name="topic"
             onChange={onChangeHandler}
             required={true}
           />
         </Form.Item>
         <Form.Item
           style={{ fontWeight: "600" }}
-          label="TextArea"
+          label="Description Topic"
           validateStatus={!errorMessages.description ? "" : "error"}
           help={!errorMessages.description ? "" : "required deskripsi"}
           hasFeedback

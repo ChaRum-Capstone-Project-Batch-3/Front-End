@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   Button,
-  Form,
   Popover,
   Table,
 } from "antd";
@@ -20,9 +19,14 @@ for (let i = 0; i < 100; i++) {
   });
 }
 
-const ThreadTable = () => {
-  const [form] = Form.useForm();
+const ThreadTable = (props) => {
+
+  console.log(props);
+  const value = props.response.data;
+
+  console.log(value);
   const [data, setData] = useState(originData);
+
   const [infoKeyId, setInfoKeyId] = useState("");
   const isEditing = (record) => record.key === infoKeyId;
 
@@ -35,7 +39,7 @@ const ThreadTable = () => {
     console.log(record);
     setInfoKeyId('');
   };
-  
+  // 
   const columns = [
     {
       title: "ID",
@@ -137,17 +141,21 @@ const ThreadTable = () => {
   });
   //
   return (
-    <Form form={form} component={false}>
       <Table
         bordered
-        dataSource={data}
+        dataSource={
+          // props.response?.data? 
+          // value 
+          // :
+          // null
+          data
+        }
         columns={mergedColumns}
         rowClassName="editable-row"
         pagination={{
           position: ["bottomCenter"]
         }}
       />
-    </Form>
   );
 };
 export default ThreadTable;

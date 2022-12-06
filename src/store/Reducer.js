@@ -1,8 +1,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import topic from "./thread/ThreadSlicer";
+import thread from "./thread/ThreadSlicer";
 
 const rootReducers = combineReducers({
-  topic
+  thread
 });
 
 export default rootReducers;

@@ -3,7 +3,7 @@ import axiosInstance from "../config/AxiosInstance";
 const ApiThread = {
   async getAllThread(page) {
     try {
-      const res = await axiosInstance.get(`thread/${page}`);
+      const res = await axiosInstance.post(`admin/thread/${page}`);
       return res;
     } catch (err) {
       const { message } = err.response.data;

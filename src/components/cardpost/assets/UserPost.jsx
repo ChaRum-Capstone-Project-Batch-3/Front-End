@@ -28,7 +28,7 @@ const UserPost = ({ props }) => {
   const data = JSON.parse(props);
   const { key, name, age, address } = data;
 
-  console.log(key);
+  console.log(`success get users ${name} ; id ${key}`);
 
   return (
     <>

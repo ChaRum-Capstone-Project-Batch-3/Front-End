@@ -4,7 +4,6 @@ import "./Dashboard.css";
 import "./Thread.css";
 
 import SiderNav from "../../components/dashboard/SiderNav";
-import SearchBar from "../../components/dashboard/SearchBar";
 import { Outlet } from "react-router-dom";
 const { Header, Content } = Layout;
 
@@ -27,12 +26,10 @@ const Dashboard = () => {
       <Layout
         className="site-layout"
         style={{
-          marginLeft: !collapsed.status ? "200px" : "75px",
+          marginLeft: !collapsed.status ? "150px" : "75px",
         }}
       >
-        <Header className="header-bar site-layout-background">
-          <SearchBar />
-        </Header>
+        <Header className="header-bar site-layout-background"></Header>
         <Content
           style={{
             margin: "24px 16px 0",

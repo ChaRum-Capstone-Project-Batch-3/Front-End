@@ -1,6 +1,6 @@
-import { Button, Image, Typography } from "antd";
+import { Breadcrumb, Button, Image, Typography } from "antd";
 import React from "react";
-import { ArrowRightOutlined, EllipsisOutlined } from "@ant-design/icons";
+import { RightCircleFilled, EllipsisOutlined } from "@ant-design/icons";
 
 import LogoHead from "../img/admin-header.png";
 import LogoCounterUser from "../img/counter-users.png";
@@ -9,9 +9,12 @@ import LogoCounterReport from "../img/counter-report.png";
 import LogoEducation from "../img/education.png";
 import LogoMovie from "../img/movie.png";
 import LogoBusiness from "../img/bussines.png";
+import ChartMain from "./ChartMain";
+import { useNavigate } from "react-router-dom";
 const { Title } = Typography;
 
 const MainDashboard = () => {
+  const navigate = useNavigate();
   return (
     <div className="site-layout-background">
       <div
@@ -22,6 +25,13 @@ const MainDashboard = () => {
           flexDirection: "column",
         }}
       >
+        <Breadcrumb
+          style={{
+            margin: "11px 0",
+          }}
+        >
+          <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
+        </Breadcrumb>
         <div className="header-content">
           <div className="text-head-content">
             <span className="title-head">Hello Vinka!</span>
@@ -39,8 +49,11 @@ const MainDashboard = () => {
                 borderRadius: "5px",
                 background: "#04353D",
               }}
+              className="btn-header"
+              onClick={() => navigate("/dashboard/topic")}
             >
-              Lihat Topik <ArrowRightOutlined />
+              Lihat Topik
+              <RightCircleFilled />
             </Button>
           </div>
           <div>
@@ -92,6 +105,7 @@ const MainDashboard = () => {
             <Image width={48} src={LogoCounterReport} preview={false} />
           </div>
         </div>
+        <ChartMain />
       </div>
       <div
         className="group-information"
@@ -176,7 +190,7 @@ const MainDashboard = () => {
             </div>
           </div>
           <div
-            className="body-card-information"
+            className="body-card-information thread"
             style={{
               margin: "10px 0",
               height: "auto",
@@ -186,7 +200,7 @@ const MainDashboard = () => {
             Putin sakit kepala, Karena ini !!
           </div>
           <div
-            className="body-card-information"
+            className="body-card-information thread"
             style={{
               margin: "10px 0",
               height: "auto",
@@ -196,7 +210,7 @@ const MainDashboard = () => {
             Kenapa baju ada 4 lubang ?
           </div>
           <div
-            className="body-card-information"
+            className="body-card-information thread"
             style={{
               margin: "10px 0",
               height: "auto",

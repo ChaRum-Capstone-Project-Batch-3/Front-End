@@ -12,7 +12,7 @@ const initialState = {
 export const getAllTopic = createAsyncThunk("get all topic", async () => {
   try {
     const res = await ApiTopic.getAllTopic();
-    return res.data.data.topics;
+    return res.data.data.users;
   } catch (err) {
     console.log(err.message);
     throw Error(err.message);

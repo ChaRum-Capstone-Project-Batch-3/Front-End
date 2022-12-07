@@ -3,7 +3,7 @@ import axiosInstance from "../config/AxiosInstance";
 const ApiTopic = {
   async getAllTopic() {
     try {
-      const res = await axiosInstance.get("admin/topic");
+      const res = await axiosInstance.get(`admin/topic/${1}`);
       return res;
     } catch (err) {
       const { message } = err.response.data;
@@ -21,7 +21,7 @@ const ApiTopic = {
   },
   async getTopic(id) {
     try {
-      const res = await axiosInstance.get(`admin/topic/${id}`);
+      const res = await axiosInstance.get(`admin/topic/id/${id}`);
       return res;
     } catch (err) {
       const { message } = err.response.data;
@@ -30,7 +30,7 @@ const ApiTopic = {
   },
   async updateTopic(id, data) {
     try {
-      const res = await axiosInstance.put(`admin/topic/${id}`, data);
+      const res = await axiosInstance.put(`admin/topic/id/${id}`, data);
       return res;
     } catch (err) {
       const { message } = err.response.data;
@@ -39,7 +39,7 @@ const ApiTopic = {
   },
   async deleteTopic(id) {
     try {
-      const res = await axiosInstance.delete(`admin/topic/${id}`);
+      const res = await axiosInstance.delete(`admin/topic/id/${id}`);
       return res;
     } catch (err) {
       const { message } = err.response.data;

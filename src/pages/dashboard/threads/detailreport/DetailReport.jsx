@@ -1,7 +1,7 @@
 import { Breadcrumb } from "antd";
 import React from "react";
 import { useParams } from "react-router-dom";
-import  UserPost  from "../../../../components/cardpost/assets/UserPost";
+import  CardPost  from "../../../../components/cardpost/CardPost";
 
 const DetailReport = () => {
   const  param = useParams();
@@ -28,7 +28,7 @@ const DetailReport = () => {
         </div>
         <div className="body">
           <div className="details-thread">
-              <UserPost props={param.id}/>
+              <CardPost props={param.id}/>
           </div>
         </div>
       </div>

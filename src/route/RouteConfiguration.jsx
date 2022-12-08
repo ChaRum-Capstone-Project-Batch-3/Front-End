@@ -4,7 +4,7 @@ import { Login } from "../pages";
 import Dashboard from "../pages/dashboard";
 import MainDashboard from "../pages/dashboard/main/MainDashboard";
 import ManageThread from "../pages/dashboard/threads/ManageThread";
-import DetailReport from "../pages/dashboard/threads/detailreport/DetailReport";
+import DetailReport from "../pages/dashboard/detailreport/DetailReport";
 import TopicMain from "../pages/dashboard/topic/TopicMain";
 import ManageUsers from "../pages/dashboard/users/ManageUsers";
 import PrivateRoute from "./PrivateRoute";

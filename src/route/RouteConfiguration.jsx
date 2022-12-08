@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Login } from "../pages";
 import Dashboard from "../pages/dashboard";
 import MainDashboard from "../pages/dashboard/main/MainDashboard";
+import DetailReport from "../pages/dashboard/threads/detailreport/DetailReport";
 import ManageThread from "../pages/dashboard/threads/ManageThread";
 import TopicMain from "../pages/dashboard/topic/TopicMain";
 import ManageUsers from "../pages/dashboard/users/ManageUsers";
@@ -21,6 +22,7 @@ const RouteConfiguration = () => {
             <Route index element={<MainDashboard />} />
             <Route path="topic" element={<TopicMain />} />
             <Route path="thread" element={<ManageThread />} />
+            <Route path="thread/:id" element={<DetailReport />} />
             <Route path="users" element={<ManageUsers />} />
           </Route>
         </Route>

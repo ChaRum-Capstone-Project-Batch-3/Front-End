@@ -1,69 +1,58 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Popover,
-  Table,
-} from "antd";
-import {
-  InfoCircleOutlined, DeleteOutlined
-} from '@ant-design/icons';
-import { Link } from "react-router-dom";
-
-const originData = [];
-for (let i = 0; i < 100; i++) {
-  originData.push({
-    key: i,
-    name: `Edrward ${i}`,
-    age: 32,
-    address: `London Park no. ${i}`,
-  });
-}
+import { Button, Popover, Table } from "antd";
+import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteThread, getThread } from "../../store/thread/ThreadSlicer";
 
 const ThreadTable = (props) => {
-
-  console.log(props);
-  const value = props.response.data;
-
-  console.log(value);
-  const [data, setData] = useState(originData);
-
+  const response = useSelector((state) => state?.thread.data.threads);
   const [infoKeyId, setInfoKeyId] = useState("");
   const isEditing = (record) => record.key === infoKeyId;
+  const navigate = useNavigate();
+  const dispacth = useDispatch();
+  console.log("response ", response);
 
   const getInfo = (record) => {
-    console.log(record);
     setInfoKeyId(record.key);
   };
-  // 
+  //
   const cancelDetail = (record) => {
-    console.log(record);
-    setInfoKeyId('');
+    setInfoKeyId("");
   };
-  // 
+
+  const onDeleteHandler = (id) => {
+    dispacth(deleteThread(id));
+    cancelDetail();
+  };
+  //
   const columns = [
     {
-      title: "ID",
-      dataIndex: "key",
+      title: "#",
+      dataIndex: "_id",
+      key: "_id",
       width: "5%",
     },
     {
       title: "Username",
-      dataIndex: "name",
+      dataIndex: "creator",
+      render: (val) => val.userName,
       width: "12%",
     },
     {
       title: "Thread Title",
-      dataIndex: "age",
+      dataIndex: "title",
       width: "15%",
     },
     {
       title: "Topic",
-      dataIndex: "address",
+      dataIndex: "topic",
+      render: (data) => data.topic,
       width: "10%",
     },
     {
-      title: "Report Amount",
-      dataIndex: "address",
+      title: "Date",
+      dataIndex: "createdAt",
       width: "10%",
     },
     {
@@ -73,53 +62,54 @@ const ThreadTable = (props) => {
       editable: true,
       render: (_, record) => {
         const infoDetail = isEditing(record);
-        
-        console.log(record);
-
         return (
           <>
-            {
-              infoDetail ? 
-                <Popover
-                defaultOpen = {infoDetail}
+            {infoDetail ? (
+              <Popover
+                defaultOpen={infoDetail}
                 content={
-                <div style={{ 'display' : 'grid' }}>
-                  <Link to={`details/${JSON.stringify(record)}`}>
-                    <Button 
-                    type="text" 
-                    style={{ 'marginBottom' : '10px', 'background' : '#D1E6E0'}}
+                  <div style={{ display: "grid" }}>
+                    <Button
+                      type="text"
+                      style={{ marginBottom: "10px", background: "#D1E6E0" }}
+                      onClick={() => {
+                        dispacth(getThread(record._id));
+                        navigate("/dashboard/thread/" + record._id);
+                      }}
                     >
-                      <InfoCircleOutlined />Details
+                      <InfoCircleOutlined />
+                      Details
                     </Button>
-                  </Link>
-                  <Button 
-                  type="text" 
-                  onClick={() => cancelDetail()}>
-                    <DeleteOutlined />Delete
-                  </Button>
-                </div>
-              }
+                    <Button
+                      type="text"
+                      onClick={() => onDeleteHandler(record._id)}
+                    >
+                      <DeleteOutlined />
+                      Delete
+                    </Button>
+                  </div>
+                }
                 destroyTooltipOnHide
-                >
-                  <Button
+              >
+                <Button
                   disabled={infoKeyId === ""}
                   onClick={() => cancelDetail()}
-                  type={'text'}
-                  >
-                    &#x2022; &#x2022; &#x2022;
-                  </Button>
-                </Popover>
-              : 
-                <Button
-                  disabled={infoKeyId !== ""}
-                  onClick={() => getInfo(record)}
-                  type={'text'}
+                  type={"text"}
                 >
                   &#x2022; &#x2022; &#x2022;
                 </Button>
-            }
+              </Popover>
+            ) : (
+              <Button
+                disabled={infoKeyId !== ""}
+                onClick={() => getInfo(record)}
+                type={"text"}
+              >
+                &#x2022; &#x2022; &#x2022;
+              </Button>
+            )}
           </>
-        )
+        );
       },
     },
   ];
@@ -132,30 +122,28 @@ const ThreadTable = (props) => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === "age" ? "number" : "text",
-        dataIndex: col.dataIndex,
         title: col.title,
-        getInfo
       }),
     };
   });
   //
   return (
-      <Table
-        bordered
-        dataSource={
-          // props.response?.data? 
-          // value 
-          // :
-          // null
-          data
-        }
-        columns={mergedColumns}
-        rowClassName="editable-row"
-        pagination={{
-          position: ["bottomCenter"]
-        }}
-      />
+    <Table
+      bordered
+      dataSource={
+        // props.response?.data?
+        // value
+        // :
+        // null
+        response
+      }
+      columns={mergedColumns}
+      rowClassName="editable-row"
+      rowKey={(val) => val._id}
+      pagination={{
+        position: ["bottomCenter"],
+      }}
+    />
   );
 };
 export default ThreadTable;

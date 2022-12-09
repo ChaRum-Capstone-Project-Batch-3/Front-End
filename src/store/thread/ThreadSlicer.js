@@ -67,9 +67,11 @@ const threadSlice = createSlice({
       })
       .addCase(deleteThread.fulfilled, (state, action) => {
         state.status = "success";
+        console.log(action.payload);
         state.data.threads = state.data.threads.filter(
-          (val) => val._id !== action.payload.data._id
+          (val) => val._id !== action.payload.data.thread._id
         );
+        state.status = !state.status;
       })
       .addCase(deleteThread.rejected, (state, action) => {
         state.status = "failed";

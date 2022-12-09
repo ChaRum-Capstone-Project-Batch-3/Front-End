@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ThreadTable from "../../../components/table/ThreadTable";
 import Filter from "../../../components/filtertopic/Filter";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllThread } from "../../../store/thread/ThreadSlicer";
 
@@ -17,10 +17,11 @@ const ManageThread = () => {
   const dispacth = useDispatch();
 
   const [getId, setGetId] = useState("");
+  const response = useSelector((state) => state.thread.data?.threads);
 
   useEffect(() => {
     dispacth(getAllThread(page));
-  }, []);
+  }, [dispacth]);
 
   const navigate = useNavigate();
   return (
@@ -62,7 +63,12 @@ const ManageThread = () => {
             </div>
           </div>
           <div className="table-thread">
-            <ThreadTable setGetId={setGetId} page={page} setPage={setPage} />
+            <ThreadTable
+              response={response}
+              setGetId={setGetId}
+              page={page}
+              setPage={setPage}
+            />
           </div>
         </div>
       </div>

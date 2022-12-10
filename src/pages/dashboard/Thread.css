@@ -368,7 +368,11 @@
     margin-Top: 5px;
 }
 .total-likes-user h2, .total-comments-user h2{
-    margin-left: 5px;
+    margin-left: 4px;
+}
+.total-likes-user img, .total-comments-user img{
+    width: 30px;
+    height: 30px;
 }
 .total-likes-user .like, 
 .total-comments-user .comment{

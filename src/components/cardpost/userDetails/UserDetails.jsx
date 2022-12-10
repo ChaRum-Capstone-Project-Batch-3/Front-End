@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Avatar, Button, Card, Image, Skeleton } from "antd";
-import like from '../assets/like-tag.svg'
-import massage from '../assets/messages.svg'
-import share from '../assets/share.svg'
-import receipt from '../assets/receipt-square.svg'
+import people from '../assets/people.svg'
+import add from '../assets/user-add.svg'
+import minus from '../assets/user-minus.svg'
+import remove from '../assets/user-remove.svg'
 import ThreadTable from "../../table/ThreadTable";
 import { DeleteOutlined, StopOutlined } from "@ant-design/icons";
 import Filter from "../../filtertopic/Filter";
@@ -83,7 +83,7 @@ export const UserDetails = ({data}) => {
                         <h2>Likes</h2>
                         <div className="like">
                         <img
-                            src={like}
+                            src={people}
                             alt='total'
                         />
                         <h1> 2.477 </h1>
@@ -96,7 +96,7 @@ export const UserDetails = ({data}) => {
                         <h2>Comment</h2>
                         <div className="comment">
                         <img
-                            src={massage}
+                            src={add}
                             alt='reached'
                         />
                         <h1> 2.477</h1>
@@ -109,7 +109,7 @@ export const UserDetails = ({data}) => {
                         <h2>Shares</h2>
                         <div className="like">
                         <img
-                            src={share}
+                            src={minus}
                             alt='total'
                         />
                         <h1> 2.477 </h1>
@@ -122,7 +122,7 @@ export const UserDetails = ({data}) => {
                         <h2>Bookmark</h2>
                         <div className="comment">
                         <img
-                            src={receipt}
+                            src={remove}
                             alt='reached'
                         />
                         <h1> 2.477</h1>

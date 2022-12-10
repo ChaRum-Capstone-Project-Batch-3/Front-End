@@ -24,6 +24,7 @@ const RouteConfiguration = () => {
             <Route path="thread" element={<ManageThread />} />
             <Route path="thread/:id" element={<DetailReport />} />
             <Route path="users" element={<ManageUsers />} />
+            <Route path="users/details/:id" element={<DetailReport />} />
           </Route>
         </Route>
       </Routes>

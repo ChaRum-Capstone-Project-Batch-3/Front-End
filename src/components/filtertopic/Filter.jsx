@@ -1,5 +1,6 @@
 import React from 'react';
 import { Select } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 
 const Filter = (props) => {
 

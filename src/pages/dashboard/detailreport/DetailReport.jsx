@@ -1,18 +1,13 @@
 import { Breadcrumb } from "antd";
 import React from "react";
 import { useParams } from "react-router-dom";
-import  UserPost  from "../../../../components/cardpost/assets/UserPost";
+import  CardPost  from "../../../components/cardpost/CardPost";
 
 const DetailReport = () => {
   const  param = useParams();
 
-  // const { key, name, age, address } = param.id;
-
-
-  console.log( param.id )
-
   return (
-    <div className="site-layout-background">
+    <div className="detail-report">
       <div className="content-main manage-thread">
         <div className="header">
           <div className="header-text">
@@ -28,7 +23,7 @@ const DetailReport = () => {
         </div>
         <div className="body">
           <div className="details-thread">
-              <UserPost props={param.id}/>
+              <CardPost props={param.id}/>
           </div>
         </div>
       </div>

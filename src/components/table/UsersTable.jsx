@@ -16,27 +16,23 @@ for (let i = 0; i < 100; i++) {
     name: `User Edrward ${i}`,
     followers: 32,
     address: `London Park no. ${i}`,
+    report: 100
   });
 }
 
 const UsersTable = (props) => {
 
-  console.log(props);
   const value = props.response.data;
-
-  console.log(value);
   const [data, setData] = useState(originData);
 
   const [infoKeyId, setInfoKeyId] = useState("");
   const isEditing = (record) => record.key === infoKeyId;
 
   const getInfo = (record) => {
-    console.log(record);
     setInfoKeyId(record.key);
   };
   // 
   const cancelDetail = (record) => {
-    console.log(record);
     setInfoKeyId('');
   };
   // 
@@ -67,20 +63,21 @@ const UsersTable = (props) => {
     },
     {
       title: "Report Amount",
-      dataIndex: "address",
+      dataIndex: "report",
       width: "10%",
       align: "center",
+      hidden: record => record.address,
     },
     {
       title: "Action",
       dataIndex: "operation",
       width: "10%",
       align: "center",
-      editable: true,
-      render: (_, record) => {
+      render: (text, record) => {
         const infoDetail = isEditing(record);
-        
-        console.log(record);
+
+        // return record.followers? 
+        // null : (
 
         return (
           <>
@@ -130,22 +127,6 @@ const UsersTable = (props) => {
     },
   ];
   //
-  const mergedColumns = columns.map((col) => {
-    if (!col.editable) {
-      return col;
-    }
-    return {
-      ...col,
-      onCell: (record) => ({
-        record,
-        inputType: col.dataIndex === "age" ? "number" : "text",
-        dataIndex: col.dataIndex,
-        title: col.title,
-        getInfo
-      }),
-    };
-  });
-  //
   return (
       <Table
         bordered
@@ -156,7 +137,7 @@ const UsersTable = (props) => {
           // null
           data
         }
-        columns={mergedColumns}
+        columns={columns}
         rowClassName="editable-row"
         pagination={{
           position: ["bottomCenter"]

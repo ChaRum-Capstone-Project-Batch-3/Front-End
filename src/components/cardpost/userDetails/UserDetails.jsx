@@ -4,9 +4,9 @@ import people from '../assets/people.svg'
 import add from '../assets/user-add.svg'
 import minus from '../assets/user-minus.svg'
 import remove from '../assets/user-remove.svg'
-import ThreadTable from "../../table/ThreadTable";
 import { DeleteOutlined, StopOutlined } from "@ant-design/icons";
 import Filter from "../../filtertopic/Filter";
+import UsersTable from "../../table/UsersTable";
 // import { useDispatch, useSelector } from "react-redux";
 // import { useEffect } from "react";
 // import { getAllThread } from "../../../store/thread/ThreadSlicer";
@@ -32,13 +32,9 @@ export const UserDetails = ({data}) => {
     // state
     const [filterTopic, setFilterTopic] = useState(true);
     const [filterReported, setFilterReported] = useState(true);
-
-    console.log(data)
     
     // props data
-    const { key, name, followers, age } = data
-    
-    console.log(followers)
+    const { name, followers } = data
 
     return (
         <>
@@ -141,7 +137,7 @@ export const UserDetails = ({data}) => {
             size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
             bodyStyle={{ 'width' : '80vw'}}
         >
-            <ThreadTable
+            <UsersTable
                 response={followers}
             />
         </Card>

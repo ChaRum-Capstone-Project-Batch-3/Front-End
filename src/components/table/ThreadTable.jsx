@@ -8,35 +8,24 @@ import {
   InfoCircleOutlined, DeleteOutlined
 } from '@ant-design/icons';
 import { Link } from "react-router-dom";
-
-const originData = [];
-for (let i = 0; i < 100; i++) {
-  originData.push({
-    key: i,
-    name: `Edrward ${i}`,
-    age: 32,
-    address: `London Park no. ${i}`,
-  });
-}
+import Highlighter from 'react-highlight-words';
 
 const ThreadTable = (props) => {
 
-  console.log(props);
-  const value = props.response.data;
-
-  console.log(value);
-  const [data, setData] = useState(originData);
+  const value = props.response;
+  const searchText = props.searchText;
+  // console.log(value);
 
   const [infoKeyId, setInfoKeyId] = useState("");
   const isEditing = (record) => record.key === infoKeyId;
 
   const getInfo = (record) => {
-    console.log(record);
+    // console.log(record);
     setInfoKeyId(record.key);
   };
   // 
   const cancelDetail = (record) => {
-    console.log(record);
+    // console.log(record);
     setInfoKeyId('');
   };
   // 
@@ -50,6 +39,14 @@ const ThreadTable = (props) => {
       title: "Username",
       dataIndex: "name",
       width: "12%",
+      render: text => (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text.toString()}
+        />
+      )
     },
     {
       title: "Thread Title",
@@ -60,6 +57,14 @@ const ThreadTable = (props) => {
       title: "Topic",
       dataIndex: "address",
       width: "10%",
+      render: text => (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text.toString()}
+        />
+      )
     },
     {
       title: "Report Amount",
@@ -74,7 +79,7 @@ const ThreadTable = (props) => {
         render: (_, record) => {
           const infoDetail = isEditing(record);
           
-          console.log(record);
+          // console.log(record);
   
           return (
             <>
@@ -122,22 +127,7 @@ const ThreadTable = (props) => {
           )}
     }
   ];
-  //
-  const mergedColumns = columns.map((col) => {
-    if (!col.editable) {
-      return col;
-    }
-    return {
-      ...col,
-      onCell: (record) => ({
-        record,
-        dataIndex: col.dataIndex,
-        title: col.title,
-        getInfo
-      }),
-    };
-  });
-  //
+
   return (
       <Table
         bordered
@@ -146,9 +136,9 @@ const ThreadTable = (props) => {
           // value 
           // :
           // null
-          data
+          value
         }
-        columns={mergedColumns}
+        columns={columns}
         rowClassName="editable-row"
         pagination={{
           position: ["bottomCenter"]

@@ -6,11 +6,6 @@ import  CardPost  from "../../../components/cardpost/CardPost";
 const DetailReport = () => {
   const  param = useParams();
 
-  // const { key, name, age, address } = param.id;
-
-
-  console.log( param.id )
-
   return (
     <div className="detail-report">
       <div className="content-main manage-thread">

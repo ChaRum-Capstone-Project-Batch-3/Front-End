@@ -8,11 +8,6 @@ const CardPost = ({ props }) => {
 
   const data = JSON.parse(props);
 
-  const { key, name } = data
-
-  console.log(data.followers)
-  console.log(`success get users ${name} ; id ${key}`);
-
   return (
     <>  
         {

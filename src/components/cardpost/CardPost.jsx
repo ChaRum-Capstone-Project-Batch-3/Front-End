@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Skeleton } from "antd";
-import {UserPost} from './userPost/UserPost'
+import { UserThread } from './userPost/UserPost'
 import { UserDetails } from "./userDetails/UserDetails";
 
 
@@ -8,7 +8,7 @@ const CardPost = ({ props }) => {
 
   const data = JSON.parse(props);
 
-  const { key, name, address, age } = data
+  const { key, name } = data
 
   console.log(data.followers)
   console.log(`success get users ${name} ; id ${key}`);
@@ -33,7 +33,7 @@ const CardPost = ({ props }) => {
                 <UserDetails data={ data }/>
             )
             : (
-                <UserPost data={ data }/>
+                <UserThread data={ data }/>
             )
         }
     </>

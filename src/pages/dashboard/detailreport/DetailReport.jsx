@@ -12,7 +12,7 @@ const DetailReport = () => {
   console.log( param.id )
 
   return (
-    <div className="site-layout-background">
+    <div className="detail-report">
       <div className="content-main manage-thread">
         <div className="header">
           <div className="header-text">

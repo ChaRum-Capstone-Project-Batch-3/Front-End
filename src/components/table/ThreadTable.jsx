@@ -67,61 +67,60 @@ const ThreadTable = (props) => {
       width: "10%",
     },
     {
-      title: "Action",
-      dataIndex: "operation",
-      width: "10%",
-      editable: true,
-      render: (_, record) => {
-        const infoDetail = isEditing(record);
-        
-        console.log(record);
-
-        return (
-          <>
-            {
-              infoDetail ? 
-                <Popover
-                defaultOpen = {infoDetail}
-                content={
-                <div style={{ 'display' : 'grid' }}>
-                  <Link to={`details/${JSON.stringify(record)}`}>
+        title: "Action",
+        dataIndex: "operation",
+        width: "10%",
+        editable: true,
+        render: (_, record) => {
+          const infoDetail = isEditing(record);
+          
+          console.log(record);
+  
+          return (
+            <>
+              {
+                infoDetail ? 
+                  <Popover
+                  defaultOpen = {infoDetail}
+                  content={
+                  <div style={{ 'display' : 'grid' }}>
+                    <Link to={`details/${JSON.stringify(record)}`}>
+                      <Button 
+                      type="text" 
+                      style={{ 'marginBottom' : '10px', 'background' : '#D1E6E0'}}
+                      >
+                        <InfoCircleOutlined />Details
+                      </Button>
+                    </Link>
                     <Button 
                     type="text" 
-                    style={{ 'marginBottom' : '10px', 'background' : '#D1E6E0'}}
-                    >
-                      <InfoCircleOutlined />Details
+                    onClick={() => cancelDetail()}>
+                      <DeleteOutlined />Delete
                     </Button>
-                  </Link>
-                  <Button 
-                  type="text" 
-                  onClick={() => cancelDetail()}>
-                    <DeleteOutlined />Delete
-                  </Button>
-                </div>
-              }
-                destroyTooltipOnHide
-                >
+                  </div>
+                }
+                  destroyTooltipOnHide
+                  >
+                    <Button
+                    disabled={infoKeyId === ""}
+                    onClick={() => cancelDetail()}
+                    type={'text'}
+                    >
+                      &#x2022; &#x2022; &#x2022;
+                    </Button>
+                  </Popover>
+                : 
                   <Button
-                  disabled={infoKeyId === ""}
-                  onClick={() => cancelDetail()}
-                  type={'text'}
+                    disabled={infoKeyId !== ""}
+                    onClick={() => getInfo(record)}
+                    type={'text'}
                   >
                     &#x2022; &#x2022; &#x2022;
                   </Button>
-                </Popover>
-              : 
-                <Button
-                  disabled={infoKeyId !== ""}
-                  onClick={() => getInfo(record)}
-                  type={'text'}
-                >
-                  &#x2022; &#x2022; &#x2022;
-                </Button>
-            }
-          </>
-        )
-      },
-    },
+              }
+            </>
+          )}
+    }
   ];
   //
   const mergedColumns = columns.map((col) => {
@@ -132,7 +131,6 @@ const ThreadTable = (props) => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === "age" ? "number" : "text",
         dataIndex: col.dataIndex,
         title: col.title,
         getInfo

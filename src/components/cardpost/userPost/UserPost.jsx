@@ -24,7 +24,7 @@ const ReadMore = ({children}) =>{
   );
 }
 
-export const UserPost = (data) => {
+export const UserThread = ({data}) => {
 
   // props data
   const { key, name, address, age } = data

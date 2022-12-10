@@ -44,19 +44,19 @@ const UsersTable = (props) => {
     {
       title: "ID",
       dataIndex: "key",
-      width: "3%",
+      width: "5%",
       align: "center",
     },
     {
       title: "Username",
       dataIndex: "name",
-      width: "5%",
+      width: "10%",
       align: "center",
     },
     {
       title: "Followers",
       dataIndex: "followers",
-      width: "15%",
+      width: "12%",
       align: "center",
     },
     {
@@ -90,7 +90,7 @@ const UsersTable = (props) => {
                 defaultOpen = {infoDetail}
                 content={
                 <div style={{ 'display' : 'grid' }}>
-                  <Link to={`details/${JSON.stringify(record, props.user)}`}>
+                  <Link to={`details/${JSON.stringify(record)}`}>
                     <Button 
                     type="text" 
                     style={{ 'marginBottom' : '10px', 'background' : '#D1E6E0'}}

@@ -9,7 +9,6 @@ import { getThread } from "../../../../store/thread/ThreadSlicer";
 
 const DetailReport = () => {
   const param = useParams();
-  console.log(param.id);
   const dispacth = useDispatch();
   const response = useSelector((state) => state.thread);
   useEffect(() => {

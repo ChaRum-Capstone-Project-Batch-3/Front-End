@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
+import Swal from "sweetalert2";
 import ApiAuth from "../../apis/Auth.api";
 
 const initialState = {
@@ -14,9 +15,11 @@ export const fetchAuth = createAsyncThunk("auth", async (data) => {
     const res = await ApiAuth.login(data);
     Cookies.set("token", res.data.data.token);
     return res.data.data.token;
-  } catch (err) {
-    console.log(err);
-    throw err;
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: error.message,
+    });
   }
 });
 
@@ -31,7 +34,7 @@ const AuthSlice = createSlice({
       })
       .addCase(fetchAuth.rejected, (state, action) => {
         state.fecthStatus = "failed";
-        state.err = action.error.message;
+        state.error = action.error.message;
       });
   },
 });

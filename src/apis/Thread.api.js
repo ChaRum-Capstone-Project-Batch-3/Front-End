@@ -33,7 +33,7 @@ const ApiThread = {
       const res = await axiosInstance.delete(`admin/thread/id/${id}`);
       return res;
     } catch (error) {
-      throw new Error(error.message);
+      throw new Error(error.response.data);
     }
   },
 };

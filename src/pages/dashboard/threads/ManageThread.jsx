@@ -1,4 +1,4 @@
-import { Breadcrumb, Input, Table } from "antd";
+import { Breadcrumb, Input, Skeleton, Table } from "antd";
 import React, { useState } from "react";
 import ThreadTable from "../../../components/table/ThreadTable";
 import Filter from "../../../components/filtertopic/Filter";
@@ -50,7 +50,7 @@ const ManageThread = () => {
   // data
   const dispacth = useDispatch();
 
-  const response = useSelector((state) => state.thread.data?.threads);
+  const response = useSelector((state) => state.thread);
 
   useEffect(() => {
     dispacth(getAllThread(page));
@@ -122,12 +122,16 @@ const ManageThread = () => {
             </div>
           </div>
           <div className="table-thread">
-            <ThreadTable
-              response={response}
-              page={page}
-              setPage={setPage}
-              searchText={searchText}
-            />
+            {response?.status !== "loading" ? (
+              <ThreadTable
+                response={response.data?.threads}
+                page={page}
+                setPage={setPage}
+                searchText={searchText}
+              />
+            ) : (
+              <Skeleton />
+            )}
           </div>
         </div>
       </div>

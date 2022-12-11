@@ -1,12 +1,6 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Popover,
-  Table,
-} from "antd";
-import {
-  InfoCircleOutlined, DeleteOutlined
-} from '@ant-design/icons';
+import { Button, Popover, Table } from "antd";
+import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
 const originData = [];
@@ -16,14 +10,12 @@ for (let i = 0; i < 100; i++) {
     name: `User Edrward ${i}`,
     followers: 32,
     address: `London Park no. ${i}`,
-    report: 100
+    report: 100,
   });
 }
 
 const UsersTable = (props) => {
-
-  const value = props.response.data;
-  const [data, setData] = useState(originData);
+  const data = props.response?.users.users;
 
   const [infoKeyId, setInfoKeyId] = useState("");
   const isEditing = (record) => record.key === infoKeyId;
@@ -31,42 +23,42 @@ const UsersTable = (props) => {
   const getInfo = (record) => {
     setInfoKeyId(record.key);
   };
-  // 
+  //
   const cancelDetail = (record) => {
-    setInfoKeyId('');
+    setInfoKeyId("");
   };
-  // 
+  //
   const columns = [
     {
       title: "ID",
-      dataIndex: "key",
+      dataIndex: "_id",
+      key: "_id",
       width: "5%",
       align: "center",
     },
     {
       title: "Username",
-      dataIndex: "name",
+      dataIndex: "userName",
       width: "10%",
       align: "center",
     },
     {
       title: "Followers",
-      dataIndex: "followers",
+      dataIndex: "email",
       width: "12%",
       align: "center",
     },
     {
       title: "Thread Amount",
-      dataIndex: "address",
+      dataIndex: "socialMedia",
       width: "10%",
       align: "center",
     },
     {
       title: "Report Amount",
-      dataIndex: "report",
+      dataIndex: "createdAt",
       width: "10%",
       align: "center",
-      hidden: record => record.address,
     },
     {
       title: "Action",
@@ -76,73 +68,72 @@ const UsersTable = (props) => {
       render: (text, record) => {
         const infoDetail = isEditing(record);
 
-        // return record.followers? 
+        // return record.followers?
         // null : (
 
         return (
           <>
-            {
-              infoDetail ? 
-                <Popover
-                defaultOpen = {infoDetail}
+            {infoDetail ? (
+              <Popover
+                defaultOpen={infoDetail}
                 content={
-                <div style={{ 'display' : 'grid' }}>
-                  <Link to={`details/${JSON.stringify(record)}`}>
-                    <Button 
-                    type="text" 
-                    style={{ 'marginBottom' : '10px', 'background' : '#D1E6E0'}}
-                    >
-                      <InfoCircleOutlined />Details
+                  <div style={{ display: "grid" }}>
+                    <Link to={`details/${JSON.stringify(record)}`}>
+                      <Button
+                        type="text"
+                        style={{ marginBottom: "10px", background: "#D1E6E0" }}
+                      >
+                        <InfoCircleOutlined />
+                        Details
+                      </Button>
+                    </Link>
+                    <Button type="text" onClick={() => cancelDetail()}>
+                      <DeleteOutlined />
+                      Delete
                     </Button>
-                  </Link>
-                  <Button 
-                  type="text" 
-                  onClick={() => cancelDetail()}>
-                    <DeleteOutlined />Delete
-                  </Button>
-                </div>
-              }
+                  </div>
+                }
                 destroyTooltipOnHide
-                >
-                  <Button
+              >
+                <Button
                   disabled={infoKeyId === ""}
                   onClick={() => cancelDetail()}
-                  type={'text'}
-                  >
-                    &#x2022; &#x2022; &#x2022;
-                  </Button>
-                </Popover>
-              : 
-                <Button
-                  disabled={infoKeyId !== ""}
-                  onClick={() => getInfo(record)}
-                  type={'text'}
+                  type={"text"}
                 >
                   &#x2022; &#x2022; &#x2022;
                 </Button>
-            }
+              </Popover>
+            ) : (
+              <Button
+                disabled={infoKeyId !== ""}
+                onClick={() => getInfo(record)}
+                type={"text"}
+              >
+                &#x2022; &#x2022; &#x2022;
+              </Button>
+            )}
           </>
-        )
+        );
       },
     },
   ];
   //
   return (
-      <Table
-        bordered
-        dataSource={
-          // props.response?.data? 
-          // value 
-          // :
-          // null
-          data
-        }
-        columns={columns}
-        rowClassName="editable-row"
-        pagination={{
-          position: ["bottomCenter"]
-        }}
-      />
+    <Table
+      bordered
+      dataSource={
+        // props.response?.data?
+        // value
+        // :
+        // null
+        data
+      }
+      columns={columns}
+      rowClassName="editable-row"
+      pagination={{
+        position: ["bottomCenter"],
+      }}
+    />
   );
 };
 export default UsersTable;

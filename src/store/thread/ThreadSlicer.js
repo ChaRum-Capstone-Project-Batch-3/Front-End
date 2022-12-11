@@ -17,7 +17,7 @@ export const getAllThread = createAsyncThunk("get all thread", async (page) => {
     const res = await ApiThread.getAllThread(page);
     return res.data.data.threads;
   } catch (err) {
-    console.log(err.message);
+    Swal.fire({ icon: "error", title: err.message });
   }
 });
 
@@ -27,7 +27,6 @@ export const getThread = createAsyncThunk("get thread", async (id) => {
     return res.data.data;
   } catch (err) {
     Swal.fire({ icon: "error", title: err.message });
-    console.log(err.message);
   }
 });
 
@@ -40,7 +39,6 @@ export const deleteThread = createAsyncThunk("delete thread", async (id) => {
       icon: "error",
       title: error.message,
     });
-    console.message(error.message);
   }
 });
 
@@ -49,31 +47,45 @@ const threadSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
+      // get all thread
+      .addCase(getAllThread.pending, (state) => {
+        state.status = "loading";
+      })
       .addCase(getAllThread.fulfilled, (state, action) => {
         state.fecthStatus = "success";
+        state.status = "success";
         state.data.threads = action.payload;
       })
       .addCase(getAllThread.rejected, (state, action) => {
         state.status = "failed";
         state.err = action.error.message;
       })
+      // get thread by id
+      .addCase(getThread.pending, (state) => {
+        state.status = "loading";
+      })
       .addCase(getThread.fulfilled, (state, action) => {
         state.fecthStatus = "success";
+        state.status = "success";
         state.data.thread = action.payload;
       })
       .addCase(getThread.rejected, (state, action) => {
         state.status = "failed";
         state.err = action.error.message;
       })
+      // delete thread
+      .addCase(deleteThread.pending, (state) => {
+        state.status = "loading";
+      })
       .addCase(deleteThread.fulfilled, (state, action) => {
         state.status = "success";
-        console.log(action.payload);
+        state.fecthStatus = "success";
         state.data.threads = state.data.threads.filter(
           (val) => val._id !== action.payload.data.thread._id
         );
         state.status = !state.status;
       })
-      .addCase(deleteThread.rejected, (state, action) => {
+      .addCase(deleteThread.rejected, (state) => {
         state.status = "failed";
       });
   },

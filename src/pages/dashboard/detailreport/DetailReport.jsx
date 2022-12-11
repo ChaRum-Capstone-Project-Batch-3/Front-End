@@ -4,8 +4,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import UserPost from "../../../../components/cardpost/assets/UserPost";
-import { getThread } from "../../../../store/thread/ThreadSlicer";
+import CardPost from "../../../components/cardpost/CardPost";
+import { UserThread } from "../../../components/cardpost/userPost/UserPost";
+import { getThread } from "../../../store/thread/ThreadSlicer";
 
 const DetailReport = () => {
   const param = useParams();
@@ -38,7 +39,7 @@ const DetailReport = () => {
         </div>
         <div className="body">
           <div className="details-thread">
-            <UserPost response={response} />
+            <CardPost response={response} />
           </div>
         </div>
       </div>

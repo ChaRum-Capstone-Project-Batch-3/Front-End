@@ -2,7 +2,7 @@ import { Breadcrumb, Input, Table } from "antd";
 import React, { useState } from "react";
 import ThreadTable from "../../../components/table/ThreadTable";
 import Filter from "../../../components/filtertopic/Filter";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllThread } from "../../../store/thread/ThreadSlicer";
@@ -50,7 +50,6 @@ const ManageThread = () => {
   // data
   const dispacth = useDispatch();
 
-  const [getId, setGetId] = useState("");
   const response = useSelector((state) => state.thread.data?.threads);
 
   useEffect(() => {
@@ -63,9 +62,9 @@ const ManageThread = () => {
   function handleSearch(event) {
     setSearchText(event.target.value);
 
-    console.log(searchText);
+    // console.log(searchText);
 
-    if (searchText == null) {
+    if (searchText === "") {
       return data;
     }
 
@@ -125,9 +124,9 @@ const ManageThread = () => {
           <div className="table-thread">
             <ThreadTable
               response={response}
-              setGetId={setGetId}
               page={page}
               setPage={setPage}
+              searchText={searchText}
             />
           </div>
         </div>

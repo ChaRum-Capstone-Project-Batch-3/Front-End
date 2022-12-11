@@ -7,11 +7,12 @@ import { deleteThread, getThread } from "../../store/thread/ThreadSlicer";
 import moment from "moment";
 import "moment/locale/id";
 import Swal from "sweetalert2";
+import Highlighter from "react-highlight-words";
 
 const ThreadTable = (props) => {
   const navigate = useNavigate();
   const dispacth = useDispatch();
-
+  const searchText = props.searchText;
   const onDeleteHandler = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -40,14 +41,6 @@ const ThreadTable = (props) => {
       dataIndex: "creator",
       render: (val) => val.userName,
       width: "12%",
-      render: (text) => (
-        <Highlighter
-          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={text.toString()}
-        />
-      ),
     },
     {
       title: "Thread Title",
@@ -59,14 +52,6 @@ const ThreadTable = (props) => {
       dataIndex: "topic",
       render: (val) => val.topic,
       width: "10%",
-      render: (text) => (
-        <Highlighter
-          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={text.toString()}
-        />
-      ),
     },
     {
       title: "Date",

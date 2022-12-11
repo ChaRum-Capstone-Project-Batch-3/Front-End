@@ -3,12 +3,11 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import CardPost from "../../../components/cardpost/CardPost";
+import { useLocation, useParams } from "react-router-dom";
 import { UserThread } from "../../../components/cardpost/userPost/UserPost";
 import { getThread } from "../../../store/thread/ThreadSlicer";
 
-const DetailReport = () => {
+const DetailReportUser = () => {
   const param = useParams();
   const dispacth = useDispatch();
   const response = useSelector((state) => state.thread);
@@ -39,7 +38,7 @@ const DetailReport = () => {
         </div>
         <div className="body">
           <div className="details-thread">
-            <CardPost response={response} />
+            <UserThread response={response} />
           </div>
         </div>
       </div>
@@ -47,4 +46,4 @@ const DetailReport = () => {
   );
 };
 
-export default DetailReport;
+export default DetailReportUser;

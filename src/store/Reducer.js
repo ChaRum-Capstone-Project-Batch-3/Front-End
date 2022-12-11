@@ -6,7 +6,7 @@ import thread from "./thread/ThreadSlicer";
 const rootReducers = combineReducers({
   login,
   topic,
-  thread
+  thread,
 });
 
 export default rootReducers;

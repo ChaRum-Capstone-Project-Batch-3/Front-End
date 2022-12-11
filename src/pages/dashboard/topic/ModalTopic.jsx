@@ -1,7 +1,7 @@
 import { Button, Form, Input, Modal, Upload } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import React, { useState } from "react";
-import { UploadOutlined } from "@ant-design/icons";
+import { UploadOutlined, SendOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { createTopic, updateTopic } from "../../../store/topic/TopicSlicer";
 import Swal from "sweetalert2";
@@ -24,24 +24,19 @@ const ModalTopic = (props) => {
     }
   }, [props.getId]);
 
-  useEffect(() => {
-    if (stateData.err) {
-      Swal.fire({
-        title: stateData.err,
-        icon: "error",
-      });
-    }
-  }, [stateData.err]);
-
   const [form] = Form.useForm();
 
-  const [errorMessages, setErrorMessages] = useState({});
+  const [errorMessages, setErrorMessages] = useState({
+    topic: false,
+    description: false,
+  });
 
   const onChangeHandler = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setData({ ...data, [e.target.name]: e.target.value });
-    if (name === "topic" || data.topic !== "") {
+
+    if (name === "topic") {
       if (regexName.test(value) && value !== "") {
         setErrorMessages({
           ...errorMessages,
@@ -54,8 +49,9 @@ const ModalTopic = (props) => {
         });
       }
     }
+
     if (name === "description") {
-      if (value !== "" || data.description !== "") {
+      if (value !== "") {
         setErrorMessages({
           ...errorMessages,
           description: false,
@@ -81,8 +77,8 @@ const ModalTopic = (props) => {
           description: "",
         });
         setErrorMessages({
-          topic: true,
-          description: true,
+          topic: false,
+          description: false,
         });
       } else {
         dispacth(
@@ -106,8 +102,8 @@ const ModalTopic = (props) => {
         description: "",
       });
       setErrorMessages({
-        topic: true,
-        description: true,
+        topic: false,
+        description: false,
       });
     }
   };
@@ -115,10 +111,14 @@ const ModalTopic = (props) => {
   const onCancel = () => {
     props.handleCancel();
     setData("");
+    setErrorMessages({
+      topic: false,
+      description: false,
+    });
   };
 
   return (
-    <Modal open={props.isModalOpen} onOk={onClickHandler} onCancel={onCancel}>
+    <Modal open={props.isModalOpen} footer={null} onCancel={onCancel}>
       <Form
         layout="vertical"
         form={form}
@@ -141,7 +141,7 @@ const ModalTopic = (props) => {
             value={data.topic}
             name="topic"
             onChange={onChangeHandler}
-            required={true}
+            required
           />
         </Form.Item>
         <Form.Item
@@ -158,6 +158,7 @@ const ModalTopic = (props) => {
             value={data.description}
             onChange={onChangeHandler}
             allowClear
+            required
           />
         </Form.Item>
         <Form.Item style={{ fontWeight: "600" }} label="Upload Picture">
@@ -168,6 +169,43 @@ const ModalTopic = (props) => {
             <Button icon={<UploadOutlined />}>Upload</Button>
           </Upload>
         </Form.Item>
+        <div
+          className="btn-group"
+          style={{ display: "flex", justifyContent: "end", gap: "10px" }}
+        >
+          <button
+            style={{
+              background: "rgba(23, 128, 102, 1)",
+              padding: "7px 12px 7px 12px",
+              color: "white",
+              width: "150px",
+              borderRadius: "10px",
+              border: "none",
+              cursor: "pointer",
+            }}
+            onClick={(e) => onClickHandler(e)}
+            className="btn-submit"
+            type="submit"
+          >
+            <SendOutlined /> Submit
+          </button>
+          <button
+            style={{
+              background: "red",
+              padding: "7px 6px 7px 6px",
+              color: "white",
+              width: "70px",
+              borderRadius: "10px",
+              border: "none",
+              cursor: "pointer",
+            }}
+            className="btn-submit"
+            type="cancel"
+            onClick={() => onCancel()}
+          >
+            Cancel
+          </button>
+        </div>
       </Form>
     </Modal>
   );

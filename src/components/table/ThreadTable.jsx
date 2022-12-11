@@ -1,149 +1,132 @@
-import React, { useState } from "react";
-import {
-  Button,
-  Popover,
-  Table,
-} from "antd";
-import {
-  InfoCircleOutlined, DeleteOutlined
-} from '@ant-design/icons';
-import { Link } from "react-router-dom";
-import Highlighter from 'react-highlight-words';
+import React from "react";
+import { Button, Popover, Table } from "antd";
+import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteThread, getThread } from "../../store/thread/ThreadSlicer";
+import moment from "moment";
+import "moment/locale/id";
+import Swal from "sweetalert2";
+import Highlighter from "react-highlight-words";
 
 const ThreadTable = (props) => {
-
-  const value = props.response;
+  const navigate = useNavigate();
+  const dispacth = useDispatch();
   const searchText = props.searchText;
-  // console.log(value);
-
-  const [infoKeyId, setInfoKeyId] = useState("");
-  const isEditing = (record) => record.key === infoKeyId;
-
-  const getInfo = (record) => {
-    // console.log(record);
-    setInfoKeyId(record.key);
+  const onDeleteHandler = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Deleted!", "Topic has been deleted.", "success");
+        dispacth(deleteThread(id));
+      }
+    });
   };
-  // 
-  const cancelDetail = (record) => {
-    // console.log(record);
-    setInfoKeyId('');
-  };
-  // 
+  //
   const columns = [
     {
-      title: "ID",
-      dataIndex: "key",
+      title: "#",
+      dataIndex: "_id",
+      key: "_id",
       width: "5%",
     },
     {
       title: "Username",
-      dataIndex: "name",
+      dataIndex: "creator",
+      render: (val) => val.userName,
       width: "12%",
-      render: text => (
-        <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={text.toString()}
-        />
-      )
     },
     {
       title: "Thread Title",
-      dataIndex: "age",
+      dataIndex: "title",
       width: "15%",
     },
     {
       title: "Topic",
-      dataIndex: "address",
-      width: "10%",
-      render: text => (
-        <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={text.toString()}
-        />
-      )
-    },
-    {
-      title: "Report Amount",
-      dataIndex: "address",
+      dataIndex: "topic",
+      render: (val) => val.topic,
       width: "10%",
     },
     {
-        title: "Action",
-        dataIndex: "operation",
-        width: "10%",
-        editable: true,
-        render: (_, record) => {
-          const infoDetail = isEditing(record);
-          
-          // console.log(record);
-  
-          return (
-            <>
-              {
-                infoDetail ? 
-                  <Popover
-                  defaultOpen = {infoDetail}
-                  content={
-                  <div style={{ 'display' : 'grid' }}>
-                    <Link to={`details/${JSON.stringify(record)}`}>
-                      <Button 
-                      type="text" 
-                      style={{ 'marginBottom' : '10px', 'background' : '#D1E6E0'}}
-                      >
-                        <InfoCircleOutlined />Details
-                      </Button>
-                    </Link>
-                    <Button 
-                    type="text" 
-                    onClick={() => cancelDetail()}>
-                      <DeleteOutlined />Delete
-                    </Button>
-                  </div>
-                }
-                  destroyTooltipOnHide
-                  >
-                    <Button
-                    disabled={infoKeyId === ""}
-                    onClick={() => cancelDetail()}
-                    type={'text'}
-                    >
-                      &#x2022; &#x2022; &#x2022;
-                    </Button>
-                  </Popover>
-                : 
+      title: "Date",
+      dataIndex: "createdAt",
+      render: (val) => {
+        moment.locale("id");
+        return moment(val).format("ll");
+      },
+      width: "10%",
+    },
+    {
+      title: "Action",
+      dataIndex: "operation",
+      width: "10%",
+      editable: true,
+      render: (_, record) => {
+        return (
+          <>
+            <Popover
+              content={
+                <div style={{ display: "grid" }}>
                   <Button
-                    disabled={infoKeyId !== ""}
-                    onClick={() => getInfo(record)}
-                    type={'text'}
+                    type="text"
+                    style={{ marginBottom: "10px", background: "#D1E6E0" }}
+                    onClick={() => {
+                      dispacth(getThread(record._id));
+                      navigate("/dashboard/thread/" + record._id);
+                    }}
                   >
-                    &#x2022; &#x2022; &#x2022;
+                    <InfoCircleOutlined />
+                    Details
                   </Button>
+                  <Button
+                    type="text"
+                    onClick={() => onDeleteHandler(record._id)}
+                  >
+                    <DeleteOutlined />
+                    Delete
+                  </Button>
+                </div>
               }
-            </>
-          )}
-    }
+              destroyTooltipOnHide
+            >
+              <Button type={"text"}>&#x2022; &#x2022; &#x2022;</Button>
+            </Popover>
+          </>
+        );
+      },
+    },
   ];
-
+  //
+  const mergedColumns = columns.map((col) => {
+    if (!col.editable) {
+      return col;
+    }
+    return {
+      ...col,
+      onCell: (record) => ({
+        record,
+        title: col.title,
+      }),
+    };
+  });
+  //
   return (
-      <Table
-        bordered
-        dataSource={
-          // props.response?.data? 
-          // value 
-          // :
-          // null
-          value
-        }
-        columns={columns}
-        rowClassName="editable-row"
-        pagination={{
-          position: ["bottomCenter"]
-        }}
-      />
+    <Table
+      bordered
+      dataSource={props?.response}
+      columns={mergedColumns}
+      rowClassName="editable-row"
+      rowKey={(val) => val._id}
+      pagination={{
+        position: ["bottomCenter"],
+      }}
+    />
   );
 };
 export default ThreadTable;

@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import Swal from "sweetalert2";
 import ApiTopic from "../../apis/Topic.api";
 
 const initialState = {
@@ -14,7 +15,11 @@ export const getAllTopic = createAsyncThunk("get all topic", async () => {
     const res = await ApiTopic.getAllTopic();
     return res.data.data.topics;
   } catch (err) {
-    console.log(err.message);
+    Swal.fire({
+      title: err.message,
+      icon: "error",
+    });
+
     throw Error(err.message);
   }
 });
@@ -24,7 +29,10 @@ export const deleteTopic = createAsyncThunk("delete topic", async (id) => {
     const res = await ApiTopic.deleteTopic(id);
     return res.data.data.topic;
   } catch (err) {
-    console.log(err.message);
+    Swal.fire({
+      title: err.message,
+      icon: "error",
+    });
     throw Error(err.message);
   }
 });
@@ -34,7 +42,10 @@ export const createTopic = createAsyncThunk("create topic", async (data) => {
     const res = await ApiTopic.createTopic(data);
     return res.data.data.topic;
   } catch (err) {
-    console.log(err.message);
+    Swal.fire({
+      title: err.message,
+      icon: "error",
+    });
     throw Error(err.message);
   }
 });

@@ -82,7 +82,6 @@ const userSlice = createSlice({
       })
       .addCase(getAllUsers.fulfilled, (state, action) => {
         state.fecthStatus = "success";
-        console.log(action.payload);
         state.data.users = action.payload;
       })
       .addCase(getAllUsers.rejected, (state, action) => {
@@ -107,7 +106,6 @@ const userSlice = createSlice({
       })
       .addCase(deleteUser.fulfilled, (state, action) => {
         state.fecthStatus = "success";
-        console.log(action);
         state.data.users.users = state.data.users.users.filter(
           (val) => val._id !== action.payload.user._id
         );

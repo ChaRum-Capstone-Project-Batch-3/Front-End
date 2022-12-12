@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { fetchAuth } from "../../store/auth/AuthSlicer";
 import Cookies from "js-cookie";
+import Swal from "sweetalert2";
 
 export const Login = () => {
   const [loadings, setLoadings] = useState([]);

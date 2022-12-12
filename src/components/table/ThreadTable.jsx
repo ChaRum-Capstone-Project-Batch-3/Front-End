@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Popover, Table } from "antd";
 import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteThread, getThread } from "../../store/thread/ThreadSlicer";
 import moment from "moment";
 import "moment/locale/id";

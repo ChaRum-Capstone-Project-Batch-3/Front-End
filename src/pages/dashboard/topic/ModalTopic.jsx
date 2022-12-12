@@ -158,7 +158,6 @@ const ModalTopic = (props) => {
             value={data.description}
             onChange={onChangeHandler}
             allowClear
-            required
           />
         </Form.Item>
         <Form.Item style={{ fontWeight: "600" }} label="Upload Picture">

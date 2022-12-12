@@ -66,13 +66,16 @@ const topicSlice = createSlice({
   extraReducers: (builder) => {
     builder
       // get all topic
+      .addCase(getAllTopic.pending, (state) => {
+        state.fecthStatus = "loading";
+      })
       .addCase(getAllTopic.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         state.data = action.payload;
         state.status = !state.status;
       })
       .addCase(getAllTopic.rejected, (state, action) => {
-        state.status = "failed";
+        state.fecthStatus = "failed";
         state.err = action.error.message;
       })
       // delete topic
@@ -82,7 +85,7 @@ const topicSlice = createSlice({
         state.status = !state.status;
       })
       .addCase(deleteTopic.rejected, (state, action) => {
-        state.status = "failed";
+        state.fecthStatus = "failed";
         state.err = action.error.message;
       })
       // create topic
@@ -92,7 +95,7 @@ const topicSlice = createSlice({
         state.status = !state.status;
       })
       .addCase(createTopic.rejected, (state, action) => {
-        state.status = "failed";
+        state.fecthStatus = "failed";
         state.err = action.error.message;
       })
       // update topic
@@ -108,7 +111,7 @@ const topicSlice = createSlice({
         state.status = !state.status;
       })
       .addCase(updateTopic.rejected, (state, action) => {
-        state.status = "failed";
+        state.fecthStatus = "failed";
         state.err = action.error.message;
       });
   },

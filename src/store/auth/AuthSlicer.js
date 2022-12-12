@@ -14,7 +14,8 @@ export const fetchAuth = createAsyncThunk("auth", async (data) => {
   try {
     const res = await ApiAuth.login(data);
     Cookies.set("token", res.data.data.token);
-    return res.data.data.token;
+
+    return res.data;
   } catch (error) {
     Swal.fire({
       icon: "error",
@@ -31,6 +32,13 @@ const AuthSlice = createSlice({
       .addCase(fetchAuth.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         state.data = action.payload;
+        Swal.fire({
+          title: "Login Success!",
+          html: `<b>${action.payload.message}</b>`,
+          icon: "success",
+          timer: 3000,
+          timerProgressBar: true,
+        });
       })
       .addCase(fetchAuth.rejected, (state, action) => {
         state.fecthStatus = "failed";

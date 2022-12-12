@@ -1,4 +1,4 @@
-import { Breadcrumb, Typography } from "antd";
+import { Breadcrumb, Skeleton, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PlusCircleOutlined } from "@ant-design/icons";
@@ -29,6 +29,8 @@ const TopicMain = () => {
   useEffect(() => {
     dispacth(getAllTopic());
   }, [dispacth]);
+
+  console.log(response);
 
   return (
     <div className="site-layout-background">
@@ -73,11 +75,15 @@ const TopicMain = () => {
               onSearch={onSearch}
             />
           </div>
-          <CardTopic
-            response={response}
-            setIsModalOpen={setIsModalOpen}
-            setGetId={setGetId}
-          />
+          {response.fecthStatus !== "loading" ? (
+            <CardTopic
+              response={response}
+              setIsModalOpen={setIsModalOpen}
+              setGetId={setGetId}
+            />
+          ) : (
+            <Skeleton avatar active className="skeleton"></Skeleton>
+          )}
         </div>
         <ModalTopic
           isModalOpen={isModalOpen}

@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteUser, getUser } from "../../store/users/UserSlicer";
 import Swal from "sweetalert2";
+import moment from "moment/moment";
 
 const UsersTable = (props) => {
   const data = props.response;
@@ -66,8 +67,12 @@ const UsersTable = (props) => {
       align: "center",
     },
     {
-      title: "Report Amount",
+      title: "Date",
       dataIndex: "createdAt",
+      render: (val) => {
+        moment.locale("id");
+        return moment(val).format("ll");
+      },
       width: "10%",
       align: "center",
     },

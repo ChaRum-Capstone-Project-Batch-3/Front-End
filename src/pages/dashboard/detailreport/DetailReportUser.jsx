@@ -1,19 +1,21 @@
-import { Breadcrumb } from "antd";
+import { Breadcrumb, Card, Skeleton } from "antd";
 import React from "react";
-import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
-import { UserThread } from "../../../components/cardpost/userPost/UserPost";
-import { getThread } from "../../../store/thread/ThreadSlicer";
+import { useParams } from "react-router-dom";
+import { UserDetails } from "../../../components/cardpost/userDetails/UserDetails";
+import { getUser } from "../../../store/users/UserSlicer";
 
 const DetailReportUser = () => {
   const param = useParams();
   const dispacth = useDispatch();
-  const response = useSelector((state) => state.thread);
+
   useEffect(() => {
-    dispacth(getThread(param.id));
+    dispacth(getUser(param.id));
   }, []);
+
+  const response = useSelector((state) => state.user.data.user);
+  const loader = useSelector((state) => state.user.fecthStatus);
 
   return (
     <div className="site-layout-background" style={{ padding: "0 100px" }}>
@@ -37,9 +39,20 @@ const DetailReportUser = () => {
           </div>
         </div>
         <div className="body">
-          <div className="details-thread">
-            <UserThread response={response} />
-          </div>
+          {loader !== "loading" ? (
+            <div className="details-thread">
+              <UserDetails response={response} />
+            </div>
+          ) : (
+            <Card>
+              <Skeleton
+                avatar
+                active
+                className="skeleton"
+                paragraph={{ width: 1200 }}
+              ></Skeleton>
+            </Card>
+          )}
         </div>
       </div>
     </div>

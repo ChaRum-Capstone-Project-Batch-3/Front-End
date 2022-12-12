@@ -1,31 +1,42 @@
 import React, { useState } from "react";
 import { Button, Popover, Table } from "antd";
 import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
-
-const originData = [];
-for (let i = 0; i < 100; i++) {
-  originData.push({
-    key: i,
-    name: `User Edrward ${i}`,
-    followers: 32,
-    address: `London Park no. ${i}`,
-    report: 100,
-  });
-}
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deleteUser, getUser } from "../../store/users/UserSlicer";
+import Swal from "sweetalert2";
 
 const UsersTable = (props) => {
-  const data = props.response?.users.users;
-
+  const data = props.response;
   const [infoKeyId, setInfoKeyId] = useState("");
   const isEditing = (record) => record.key === infoKeyId;
+  const navigate = useNavigate();
+
+  const dispacth = useDispatch();
 
   const getInfo = (record) => {
     setInfoKeyId(record.key);
   };
   //
-  const cancelDetail = (record) => {
-    setInfoKeyId("");
+  const handleDelete = (record) => {
+    Swal.fire({
+      title: `Are you sure want to delete ${record.userName}?`,
+      text: " You can’t restore this user in other time.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          "Deleted!",
+          record.userName + " has been deleted.",
+          "success"
+        );
+        dispacth(deleteUser(record._id));
+      }
+    });
   };
   //
   const columns = [
@@ -73,45 +84,31 @@ const UsersTable = (props) => {
 
         return (
           <>
-            {infoDetail ? (
-              <Popover
-                defaultOpen={infoDetail}
-                content={
-                  <div style={{ display: "grid" }}>
-                    <Link to={`details/${JSON.stringify(record)}`}>
-                      <Button
-                        type="text"
-                        style={{ marginBottom: "10px", background: "#D1E6E0" }}
-                      >
-                        <InfoCircleOutlined />
-                        Details
-                      </Button>
-                    </Link>
-                    <Button type="text" onClick={() => cancelDetail()}>
-                      <DeleteOutlined />
-                      Delete
-                    </Button>
-                  </div>
-                }
-                destroyTooltipOnHide
-              >
-                <Button
-                  disabled={infoKeyId === ""}
-                  onClick={() => cancelDetail()}
-                  type={"text"}
-                >
-                  &#x2022; &#x2022; &#x2022;
-                </Button>
-              </Popover>
-            ) : (
-              <Button
-                disabled={infoKeyId !== ""}
-                onClick={() => getInfo(record)}
-                type={"text"}
-              >
-                &#x2022; &#x2022; &#x2022;
-              </Button>
-            )}
+            <Popover
+              defaultOpen={infoDetail}
+              content={
+                <div style={{ display: "grid" }}>
+                  <Button
+                    onClick={() => {
+                      dispacth(getUser(record._id));
+                      navigate("/dashboard/users/details/" + record._id);
+                    }}
+                    type="text"
+                    style={{ marginBottom: "10px", background: "#D1E6E0" }}
+                  >
+                    <InfoCircleOutlined />
+                    Details
+                  </Button>
+                  <Button type="text" onClick={() => handleDelete(record)}>
+                    <DeleteOutlined />
+                    Delete
+                  </Button>
+                </div>
+              }
+              destroyTooltipOnHide
+            >
+              <Button type={"text"}>&#x2022; &#x2022; &#x2022;</Button>
+            </Popover>
           </>
         );
       },
@@ -121,15 +118,10 @@ const UsersTable = (props) => {
   return (
     <Table
       bordered
-      dataSource={
-        // props.response?.data?
-        // value
-        // :
-        // null
-        data
-      }
+      dataSource={data}
       columns={columns}
       rowClassName="editable-row"
+      rowKey="_id"
       pagination={{
         position: ["bottomCenter"],
       }}

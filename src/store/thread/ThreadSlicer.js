@@ -49,44 +49,43 @@ const threadSlice = createSlice({
     builder
       // get all thread
       .addCase(getAllThread.pending, (state) => {
-        state.status = "loading";
+        state.fecthStatus = "loading";
       })
       .addCase(getAllThread.fulfilled, (state, action) => {
         state.fecthStatus = "success";
-        state.status = "success";
+        state.status = !state.status;
         state.data.threads = action.payload;
       })
       .addCase(getAllThread.rejected, (state, action) => {
-        state.status = "failed";
+        state.fecthStatus = "failed";
         state.err = action.error.message;
       })
       // get thread by id
       .addCase(getThread.pending, (state) => {
-        state.status = "loading";
+        state.fecthStatus = "loading";
       })
       .addCase(getThread.fulfilled, (state, action) => {
         state.fecthStatus = "success";
-        state.status = "success";
+        state.status = !state.status;
         state.data.thread = action.payload;
       })
       .addCase(getThread.rejected, (state, action) => {
-        state.status = "failed";
+        state.fecthStatus = "failed";
         state.err = action.error.message;
       })
       // delete thread
       .addCase(deleteThread.pending, (state) => {
-        state.status = "loading";
+        state.fecthStatus = "loading";
       })
       .addCase(deleteThread.fulfilled, (state, action) => {
-        state.status = "success";
+        state.status = !state.status;
         state.fecthStatus = "success";
         state.data.threads = state.data.threads.filter(
           (val) => val._id !== action.payload.data.thread._id
         );
-        state.status = !state.status;
       })
       .addCase(deleteThread.rejected, (state) => {
-        state.status = "failed";
+        state.fecthStatus = "failed";
       });
   },
 });

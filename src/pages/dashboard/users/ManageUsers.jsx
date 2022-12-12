@@ -1,4 +1,4 @@
-import { Breadcrumb } from "antd";
+import { Breadcrumb, Skeleton } from "antd";
 import React, { useState } from "react";
 import UsersTable from "../../../components/table/UsersTable";
 import Filter from "../../../components/filtertopic/Filter";
@@ -20,7 +20,8 @@ const ManageUsers = () => {
     dispacth(getAllUsers(page));
   }, [dispacth]);
 
-  const response = useSelector((state) => state.user.data);
+  const response = useSelector((state) => state.user.data.users);
+  const loader = useSelector((state) => state.user.fecthStatus);
 
   const navigate = useNavigate();
   return (
@@ -55,9 +56,13 @@ const ManageUsers = () => {
               </div>
             </div>
           </div>
-          <div className="table-thread">
-            <UsersTable response={response} />
-          </div>
+          {loader !== "loading" ? (
+            <div className="table-thread">
+              <UsersTable response={response.users} />
+            </div>
+          ) : (
+            <Skeleton />
+          )}
         </div>
       </div>
     </div>

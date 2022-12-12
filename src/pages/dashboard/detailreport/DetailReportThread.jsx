@@ -1,4 +1,4 @@
-import { Breadcrumb } from "antd";
+import { Breadcrumb, Card, Skeleton } from "antd";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -11,8 +11,7 @@ const DetailReport = () => {
   const param = useParams();
   const dispacth = useDispatch();
   const response = useSelector((state) => state.thread);
-  const getPath = useLocation().pathname;
-  console.log(getPath);
+  const loader = useSelector((state) => state.thread.fecthStatus);
   useEffect(() => {
     dispacth(getThread(param.id));
   }, []);
@@ -39,9 +38,20 @@ const DetailReport = () => {
           </div>
         </div>
         <div className="body">
-          <div className="details-thread">
-            <UserThread response={response} />
-          </div>
+          {loader !== "loading" ? (
+            <div className="details-thread">
+              <UserThread response={response} />
+            </div>
+          ) : (
+            <Card>
+              <Skeleton
+                avatar
+                active
+                className="skeleton"
+                paragraph={{ width: 1200 }}
+              ></Skeleton>
+            </Card>
+          )}
         </div>
       </div>
     </div>

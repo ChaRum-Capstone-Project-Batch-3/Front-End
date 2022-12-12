@@ -78,7 +78,7 @@ const ThreadTable = (props) => {
                     style={{ marginBottom: "10px", background: "#D1E6E0" }}
                     onClick={() => {
                       dispacth(getThread(record._id));
-                      navigate("/dashboard/thread/" + record._id);
+                      navigate("/dashboard/thread/details/" + record._id);
                     }}
                   >
                     <InfoCircleOutlined />

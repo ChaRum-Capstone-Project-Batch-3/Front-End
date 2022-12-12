@@ -23,7 +23,7 @@ const RouteConfiguration = () => {
             <Route index element={<MainDashboard />} />
             <Route path="topic" element={<TopicMain />} />
             <Route path="thread" element={<ManageThread />} />
-            <Route path="thread/:id" element={<DetailThreadReport />} />
+            <Route path="thread/details/:id" element={<DetailThreadReport />} />
             <Route path="users" element={<ManageUsers />} />
             <Route path="users/details/:id" element={<DetailReportUser />} />
           </Route>

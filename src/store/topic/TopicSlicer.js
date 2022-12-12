@@ -65,6 +65,7 @@ const topicSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
+      // get all topic
       .addCase(getAllTopic.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         state.data = action.payload;
@@ -74,6 +75,7 @@ const topicSlice = createSlice({
         state.status = "failed";
         state.err = action.error.message;
       })
+      // delete topic
       .addCase(deleteTopic.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         state.data = state.data.filter((val) => val._id !== action.payload._id);
@@ -83,6 +85,7 @@ const topicSlice = createSlice({
         state.status = "failed";
         state.err = action.error.message;
       })
+      // create topic
       .addCase(createTopic.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         state.data.push(action.payload);
@@ -92,6 +95,7 @@ const topicSlice = createSlice({
         state.status = "failed";
         state.err = action.error.message;
       })
+      // update topic
       .addCase(updateTopic.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         const id = action.payload._id;

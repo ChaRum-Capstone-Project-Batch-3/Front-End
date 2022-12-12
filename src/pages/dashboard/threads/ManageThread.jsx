@@ -122,7 +122,7 @@ const ManageThread = () => {
             </div>
           </div>
           <div className="table-thread">
-            {response?.status !== "loading" ? (
+            {response?.fecthStatus !== "loading" ? (
               <ThreadTable
                 response={response.data?.threads}
                 page={page}

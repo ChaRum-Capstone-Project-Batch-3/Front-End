@@ -21,7 +21,7 @@ const ApiTopic = {
   },
   async getTopic(id) {
     try {
-      const res = await axiosInstance.get(`admin/topic/${id}`);
+      const res = await axiosInstance.get(`admin/topic/id/${id}`);
       return res;
     } catch (err) {
       const { message } = err.response.data;

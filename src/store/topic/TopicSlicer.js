@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import Swal from "sweetalert2";
 import ApiTopic from "../../apis/Topic.api";
 
 const initialState = {
@@ -14,7 +15,11 @@ export const getAllTopic = createAsyncThunk("get all topic", async () => {
     const res = await ApiTopic.getAllTopic();
     return res.data.data.users;
   } catch (err) {
-    console.log(err.message);
+    Swal.fire({
+      title: err.message,
+      icon: "error",
+    });
+
     throw Error(err.message);
   }
 });
@@ -24,7 +29,10 @@ export const deleteTopic = createAsyncThunk("delete topic", async (id) => {
     const res = await ApiTopic.deleteTopic(id);
     return res.data.data.topic;
   } catch (err) {
-    console.log(err.message);
+    Swal.fire({
+      title: err.message,
+      icon: "error",
+    });
     throw Error(err.message);
   }
 });
@@ -34,7 +42,10 @@ export const createTopic = createAsyncThunk("create topic", async (data) => {
     const res = await ApiTopic.createTopic(data);
     return res.data.data.topic;
   } catch (err) {
-    console.log(err.message);
+    Swal.fire({
+      title: err.message,
+      icon: "error",
+    });
     throw Error(err.message);
   }
 });
@@ -54,6 +65,7 @@ const topicSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
+      // get all topic
       .addCase(getAllTopic.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         state.data = action.payload;
@@ -63,6 +75,7 @@ const topicSlice = createSlice({
         state.status = "failed";
         state.err = action.error.message;
       })
+      // delete topic
       .addCase(deleteTopic.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         state.data = state.data.filter((val) => val._id !== action.payload._id);
@@ -72,6 +85,7 @@ const topicSlice = createSlice({
         state.status = "failed";
         state.err = action.error.message;
       })
+      // create topic
       .addCase(createTopic.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         state.data.push(action.payload);
@@ -81,6 +95,7 @@ const topicSlice = createSlice({
         state.status = "failed";
         state.err = action.error.message;
       })
+      // update topic
       .addCase(updateTopic.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         const id = action.payload._id;

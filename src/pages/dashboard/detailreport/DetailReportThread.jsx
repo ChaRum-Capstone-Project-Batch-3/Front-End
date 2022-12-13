@@ -3,7 +3,7 @@ import React from "react";
 // import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { UserPost} from "../../../components/cardpost/userPost/UserPost";
 import { deleteThread, getThread } from "../../../store/thread/ThreadSlicer";
 import Swal from "sweetalert2";
@@ -13,6 +13,7 @@ const DetailReportThread = () => {
   const dispacth = useDispatch();
   const response = useSelector((state) => state.thread);
   const loader = useSelector((state) => state.thread.fecthStatus);
+  const navigation = useNavigate();
 
   useEffect(() => {
     dispacth(getThread(param.id));
@@ -31,6 +32,7 @@ const DetailReportThread = () => {
       if (result.isConfirmed) {
         Swal.fire("Deleted!", "Topic has been deleted.", "success");
         dispacth(deleteThread(id));
+        navigation("/dashboard/thread");
       }
     });
   };

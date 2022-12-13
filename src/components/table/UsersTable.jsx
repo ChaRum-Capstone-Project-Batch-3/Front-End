@@ -13,10 +13,6 @@ const UsersTable = (props) => {
   const navigate = useNavigate();
 
   const dispacth = useDispatch();
-
-  const getInfo = (record) => {
-    setInfoKeyId(record.key);
-  };
   //
   const handleDelete = (record) => {
     Swal.fire({

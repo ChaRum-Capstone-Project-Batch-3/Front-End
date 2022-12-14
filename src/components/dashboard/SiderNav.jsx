@@ -2,6 +2,7 @@ import { Image, Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
 import React from "react";
 import { Items } from "./ListNavigate";
+import './navbar.css';
 
 import LogoCharum from "./logo-charum.png";
 

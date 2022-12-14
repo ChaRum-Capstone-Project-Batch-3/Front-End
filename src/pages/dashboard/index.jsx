@@ -1,6 +1,8 @@
 import { Layout } from "antd";
 import React, { useState } from "react";
 import "./Dashboard.css";
+import "../dashboard/threads/Thread.css";
+import "../dashboard/media/Media.css";
 
 import SiderNav from "../../components/dashboard/SiderNav";
 import { Outlet } from "react-router-dom";
@@ -25,7 +27,7 @@ const Dashboard = () => {
       <Layout
         className="site-layout"
         style={{
-          marginLeft: !collapsed.status ? "150px" : "75px",
+          marginLeft: !collapsed.status ? "130px" : "75px",
         }}
       >
         <Header className="header-bar site-layout-background"></Header>

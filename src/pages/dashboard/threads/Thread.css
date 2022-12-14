@@ -3,13 +3,13 @@
 /* Table */
 .table {
   /* border: 2px solid #000000; */
-  padding: 10px 100px;
+  padding: 10px 90px;
   width: 95vw;
 }
 .header-table {
   height: fit-content;
   /* border: 2px solid #000000; */
-  width: 1300px;
+  width: auto;
 }
 .manage-thread-table {
   /* border: 2px solid #000000; */
@@ -86,7 +86,7 @@
   font-family: "Inter";
   font-size: 16px;
 }
-.editable-row{
+.editable-row {
   padding-top: 2px !important;
   padding-bottom: 2px !important;
 }
@@ -102,7 +102,6 @@
   width: inherit;
   height: fit-content;
   margin-top: 10px;
-  
 }
 .main-card h1,
 .main-card h2,
@@ -119,10 +118,11 @@
   width: fit-content;
   height: inherit;
 }
-.card-details{
+.card-details {
   height: 700px;
 }
-.card, .card-header{
+.card,
+.card-header {
   display: flex;
 }
 .card .card-header {
@@ -188,10 +188,10 @@
   padding-left: 20px;
 }
 .interaction-body,
-.interaction-footer{
+.interaction-footer {
   border: 0px solid #cfcfcf;
 }
-.interaction-body{
+.interaction-body {
   padding: 0px;
   display: flex;
   margin-bottom: 8px;
@@ -202,12 +202,12 @@
   height: 280px;
   width: inherit;
 }
-.total-reports{
+.total-reports {
   margin-right: 45px;
   margin-left: 15px;
 }
 .total-reports,
-.account-reached{
+.account-reached {
   width: 345px;
   height: 155px;
   display: grid;
@@ -298,7 +298,7 @@
   margin-top: 5px;
   height: 200px;
 }
-.bar-size{
+.bar-size {
   height: 15px;
 }
 /* 
@@ -367,13 +367,13 @@
   width: 320px;
   margin-left: 31vw;
 }
-.button-delete-user{
+.button-delete-user {
   display: flex;
   width: 800px;
   height: 100px;
   padding-top: 20px;
 }
-.button-delete-2{
+.button-delete-2 {
   height: 50px !important;
 }
 .button-delete,

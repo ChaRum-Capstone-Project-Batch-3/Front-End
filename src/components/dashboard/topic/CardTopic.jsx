@@ -1,4 +1,4 @@
-import { Button, Card } from "antd";
+import { Button, Card, Skeleton } from "antd";
 import Meta from "antd/es/card/Meta";
 import React from "react";
 import { DeleteOutlined, EditFilled } from "@ant-design/icons";
@@ -33,15 +33,28 @@ const CardTopic = (props) => {
 
   return (
     <div className="list-body">
-      {props.response?.data?.map((value) => (
+      {props.response.data?.map((value) => (
         <div className="card-topic" key={value._id}>
           <Card
             style={{
               width: "250px",
             }}
-            cover={<img alt="example" src={BusinessImage} />}
+            cover={<img height={150} alt="example" src={value.imageURL} />}
           >
-            <Meta title={value.topic} description={value.description} />
+            <Meta
+              title={
+                <p
+                  style={{
+                    padding: "0px",
+                    margin: "0px",
+                    textAlign: "center",
+                  }}
+                >
+                  {value.topic}
+                </p>
+              }
+              description={value.description}
+            />
             <div className="button-group">
               <div
                 className="btn-edit"

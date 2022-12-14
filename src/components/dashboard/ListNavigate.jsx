@@ -5,7 +5,8 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import Cookies from "js-cookie";
-import { Link } from "react-router-dom";
+import { Link, Navigate, redirect, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function getItem(label, key, icon, children) {
   return {
@@ -40,15 +41,27 @@ export const Items = [
   getItem(
     <span
       onClick={() => {
-        Cookies.remove("token");
+        Swal.fire({
+          title: `Are you sure want logout?`,
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+              title: "Logout",
+              text: "You has been logout!",
+              timer: 2000,
+            });
+            Cookies.remove("token");
+            window.location.reload();
+          }
+        });
       }}
     >
-      <Link
-        to="/login"
-        style={{ color: "red", fontWeight: "400", fontSize: "14px" }}
-      >
-        Logout
-      </Link>
+      Logout
     </span>,
     "4",
     <LogoutOutlined className="logout-btn" />

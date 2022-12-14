@@ -10,10 +10,13 @@ import { useEffect } from "react";
 const regexName = /^[A-Za-z ]*$/;
 
 const ModalTopic = (props) => {
+  // state
   const [data, setData] = useState({
     topic: "",
     description: "",
   });
+  const [image, setImage] = useState({});
+
   const dispacth = useDispatch();
   const stateData = useSelector((state) => state.topic);
 
@@ -29,7 +32,12 @@ const ModalTopic = (props) => {
   const [errorMessages, setErrorMessages] = useState({
     topic: false,
     description: false,
+    image: false,
   });
+
+  const onChangeUpload = ({ fileList }) => {
+    setImage(fileList[0]);
+  };
 
   const onChangeHandler = (e) => {
     const name = e.target.name;
@@ -67,19 +75,18 @@ const ModalTopic = (props) => {
 
   const onClickHandler = (e) => {
     e.preventDefault();
-    if (errorMessages.topic === false && errorMessages.description === false) {
+    let formData = new FormData();
+    formData.append("topic", data.topic);
+    formData.append("description", data.description);
+    formData.append("image", image.originFileObj);
+
+    if (
+      errorMessages.topic === false &&
+      errorMessages.description === false &&
+      errorMessages.image === false
+    ) {
       if (!props.getId) {
-        dispacth(
-          createTopic({ topic: data.topic, description: data.description })
-        );
-        setData({
-          topic: "",
-          description: "",
-        });
-        setErrorMessages({
-          topic: false,
-          description: false,
-        });
+        dispacth(createTopic(formData));
       } else {
         dispacth(
           updateTopic({
@@ -88,12 +95,13 @@ const ModalTopic = (props) => {
             id: props.getId,
           })
         );
-        setData({
-          topic: "",
-          description: "",
-        });
-        props.setGetId("");
       }
+      setData({
+        topic: "",
+        description: "",
+      });
+      setImage({});
+      props.setGetId("");
       props.handleOk();
     } else {
       Swal.fire("Data Kosong");
@@ -101,9 +109,11 @@ const ModalTopic = (props) => {
         topic: "",
         description: "",
       });
+      setImage({});
       setErrorMessages({
         topic: false,
         description: false,
+        image: false,
       });
     }
   };
@@ -115,6 +125,7 @@ const ModalTopic = (props) => {
       topic: false,
       description: false,
     });
+    setImage({});
   };
 
   return (
@@ -161,10 +172,25 @@ const ModalTopic = (props) => {
             required
           />
         </Form.Item>
-        <Form.Item style={{ fontWeight: "600" }} label="Upload Picture">
+        <Form.Item
+          style={{ fontWeight: "600" }}
+          label="Upload Picture"
+          validateStatus={!errorMessages.image ? "" : "error"}
+          help={!errorMessages.image ? "" : "format image png/jpg"}
+        >
           <Upload
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
             listType="picture"
+            accept=".jpg,.png"
+            name="image"
+            onChange={onChangeUpload}
+            beforeUpload={(file) => {
+              console.log(file.type === "image/png");
+              file.type === "image/png" || file.type === "image/jpg"
+                ? setErrorMessages({ ...errorMessages, image: false })
+                : setErrorMessages({ ...errorMessages, image: true });
+              return false;
+            }}
           >
             <Button icon={<UploadOutlined />}>Upload</Button>
           </Upload>

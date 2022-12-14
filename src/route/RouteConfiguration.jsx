@@ -8,6 +8,7 @@ import MainDashboard from "../pages/dashboard/main/MainDashboard";
 import ManageThread from "../pages/dashboard/threads/ManageThread";
 import TopicMain from "../pages/dashboard/topic/TopicMain";
 import ManageUsers from "../pages/dashboard/users/ManageUsers";
+import MainLandingPage from "../pages/landingPage/MainLandingPage";
 import PrivateRoute from "./PrivateRoute";
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -15,6 +16,7 @@ const RouteConfiguration = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="" element={<MainLandingPage />} />
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="login" element={<Login />} />
         </Route>

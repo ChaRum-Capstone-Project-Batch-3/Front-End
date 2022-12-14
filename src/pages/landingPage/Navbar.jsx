@@ -2,9 +2,11 @@ import { Header } from "antd/es/layout/layout";
 import "./LandingPage.css";
 import React from "react";
 import logo from "./img/logo-header.png";
-import { Image } from "antd";
+import { Button, Image } from "antd";
+import { useNavigate } from "react-router";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <Header>
       <div
@@ -28,6 +30,13 @@ const Navbar = () => {
             <li>Our Team</li>
           </ul>
         </div>
+        <Button
+          style={{ background: "white", color: "black" }}
+          onClick={() => navigate("/login")}
+          type="primary"
+        >
+          Login
+        </Button>
       </div>
     </Header>
   );

@@ -1,10 +1,9 @@
-import { Button, Card, Skeleton } from "antd";
+import { Button, Card } from "antd";
 import Meta from "antd/es/card/Meta";
 import React from "react";
 import { DeleteOutlined, EditFilled } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { deleteTopic } from "../../../store/topic/TopicSlicer";
-import BusinessImage from "./Business.png";
 import Swal from "sweetalert2";
 
 const CardTopic = (props) => {

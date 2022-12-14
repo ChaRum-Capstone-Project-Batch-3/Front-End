@@ -124,7 +124,7 @@ const ManageThread = () => {
                 searchText={searchText}
               />
             ) : (
-              <Skeleton />
+              <Skeleton active />
             )}
           </div>
         </div>

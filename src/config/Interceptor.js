@@ -10,7 +10,7 @@ export const requestHandler = async (config) => {
   if (isHandlerEnabled(config)) {
     const token = Cookies.get("token");
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = `${token}`;
     }
   }
   return config;

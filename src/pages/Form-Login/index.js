@@ -7,8 +7,21 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { fetchAuth } from "../../store/auth/AuthSlicer";
 import Cookies from "js-cookie";
+import Swal from "sweetalert2";
 
 export const Login = () => {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
   const [loadings, setLoadings] = useState([]);
   const dispatch = useDispatch();
   const [data, setData] = useState({
@@ -48,6 +61,10 @@ export const Login = () => {
     setTimeout(() => {
       if (Cookies.get("token")) {
         navigate("/dashboard");
+        Toast.fire({
+          icon: "success",
+          title: "Signed in successfully",
+        });
       }
     }, 2000);
   };
@@ -135,7 +152,6 @@ export const Login = () => {
             </div>
           </Col>
         </Row>
-        {/* Login */}
       </div>
     </>
   );

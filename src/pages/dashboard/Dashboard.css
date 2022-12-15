@@ -7,9 +7,9 @@
 }
 
 .header-bar {
-  padding: 0 !important;
   display: flex !important;
-  justify-content: center !important;
+  justify-content: end !important;
+  padding: 0px 35px !important;
   align-items: center !important;
   background: #178066 !important;
 }

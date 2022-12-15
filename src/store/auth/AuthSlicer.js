@@ -14,7 +14,8 @@ export const fetchAuth = createAsyncThunk("auth", async (data) => {
   try {
     const res = await ApiAuth.login(data);
     Cookies.set("token", res.data.data.token);
-    return res.data.data.token;
+    Cookies.set("user", JSON.stringify(res.data.data.user));
+    return res.data.data;
   } catch (error) {
     Swal.fire({
       icon: "error",

@@ -136,7 +136,10 @@ export const Login = () => {
                 </div>
                 <div className="btn-submit" onClick={(e) => onClickHandler(e)}>
                   <Button
-                    style={{ border: "none !important", background: "#04353d" }}
+                    style={{
+                      border: "none !important",
+                      background: "#04353d",
+                    }}
                     type="primary"
                     loading={loadings[0]}
                   >

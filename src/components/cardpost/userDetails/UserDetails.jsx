@@ -109,7 +109,7 @@ export const UserDetails = (props) => {
         <Card
           className="card-user"
           size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
-          bodyStyle={{ width: "80vw" }}
+          bodyStyle={{ width: "75vw" }}
         >
           <div className="card-header user-header">
             <Avatar
@@ -232,7 +232,7 @@ export const UserDetails = (props) => {
         <Card
           className="card-user"
           size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
-          bodyStyle={{ width: "80vw" }}
+          bodyStyle={{ width: "75vw" }}
         >
           {/* <UsersTable response={followers} /> */}
         </Card>

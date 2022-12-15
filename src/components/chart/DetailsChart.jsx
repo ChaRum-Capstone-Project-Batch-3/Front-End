@@ -13,48 +13,47 @@ import {
 const data = [
   {
     name: "Harrasment",
-    pv: 400
+    pv: 400,
   },
   {
     name: "Violation",
-    pv: 367
+    pv: 367,
   },
   {
     name: "Child Abuse",
-    pv: 548
+    pv: 548,
   },
   {
     name: "Spam",
-    pv: 200
+    pv: 200,
   },
   {
     name: "Annoying",
-    pv: 158
-  }
+    pv: 158,
+  },
 ];
 
 export const DetailsChart = () => {
-    return (
-      <ResponsiveContainer width={600} aspect={3.2}>
-        <ComposedChart
-        style={{ 
-          'display' : 'flex'
-         }}
-          className="chart-user"
-          layout="vertical"
-          data={data}
-          margin={{
-            bottom : 35,
-            top : 0
-          }}
-        >
-          <XAxis type="number" />
-          <YAxis dataKey="name" type="category" scale="band" />
-          <Tooltip />
-          {/* <Legend layout="horizontal" verticalAlign="middle" align="right" height={90} width={10}/> */}
-          <Bar barSize={15} dataKey="pv" fill="#0074C1" className="bar-size"/>
-        </ComposedChart>
-
-      </ResponsiveContainer>
-      );
+  return (
+    <ResponsiveContainer width={600} aspect={2.5}>
+      <ComposedChart
+        style={{
+          display: "flex",
+        }}
+        className="chart-user"
+        layout="vertical"
+        data={data}
+        margin={{
+          bottom: 35,
+          top: 0,
+        }}
+      >
+        <XAxis type="number" />
+        <YAxis dataKey="name" type="category" scale="band" />
+        <Tooltip />
+        {/* <Legend layout="horizontal" verticalAlign="middle" align="right" height={90} width={10}/> */}
+        <Bar barSize={15} dataKey="pv" fill="#0074C1" className="bar-size" />
+      </ComposedChart>
+    </ResponsiveContainer>
+  );
 };

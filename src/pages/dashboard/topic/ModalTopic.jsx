@@ -90,9 +90,8 @@ const ModalTopic = (props) => {
       } else {
         dispacth(
           updateTopic({
-            topic: data.topic,
-            description: data.description,
             id: props.getId,
+            form: formData,
           })
         );
       }

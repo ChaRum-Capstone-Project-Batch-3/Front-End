@@ -52,7 +52,7 @@ export const createTopic = createAsyncThunk("create topic", async (data) => {
 
 export const updateTopic = createAsyncThunk("update topic", async (data) => {
   try {
-    const res = await ApiTopic.updateTopic(data.id, data);
+    const res = await ApiTopic.updateTopic(data.id, data.form);
     return res.data.data.topic;
   } catch (err) {
     console.log(err.message);

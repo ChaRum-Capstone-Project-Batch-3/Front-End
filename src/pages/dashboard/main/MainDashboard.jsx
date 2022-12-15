@@ -114,7 +114,11 @@ const MainDashboard = () => {
         <div className="content-information">
           <div className="title-content-information">
             <Title level={4}>Top Topic</Title>
-            <div className="drop-down-topic">
+            <div
+              onClick={() => navigate("/dashboard/topic")}
+              className="drop-down-topic"
+              style={{ marginTop: "25px" }}
+            >
               <EllipsisOutlined style={{ cursor: "pointer" }} />
             </div>
           </div>
@@ -185,7 +189,11 @@ const MainDashboard = () => {
         <div className="content-information">
           <div className="title-content-information">
             <Title level={4}>Top Thread</Title>
-            <div className="drop-down-topic">
+            <div
+              className="drop-down-topic"
+              onClick={() => navigate("/dashboard/thread")}
+              style={{ marginTop: "25px" }}
+            >
               <EllipsisOutlined style={{ cursor: "pointer" }} />
             </div>
           </div>

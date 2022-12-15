@@ -105,15 +105,15 @@ export const UserDetails = (props) => {
 
   return (
     <>
-      <div className="main-card-user">
+      <div className="main-card">
         <Card
           className="card-user"
           size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
-          bodyStyle={{ width: "80vw" }}
+          bodyStyle={{ width: "75vw" }}
         >
-          <div className="card-header">
+          <div className="card-header user-header">
             <Avatar
-              size={{ md: 38, lg: 40, xl: 60, xxl: 60 }}
+              size={{ sm: 38, md: 48, lg: 53, xl: 60, xxl: 63 }}
               src="https://images.unsplash.com/photo-1669720229052-89cda125fc3f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzMnx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60"
             />
             <div className="header-title">
@@ -157,7 +157,7 @@ export const UserDetails = (props) => {
           </div>
           <Card
             className="interaction-footer-user"
-            size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
+            size={{ xs: 24, sm: 32, md: 40, lg: 54, xl: 60 }}
             bodyStyle={{
               padding: "0px",
               gap: "45px",
@@ -174,7 +174,7 @@ export const UserDetails = (props) => {
               }}
             >
               <h2>Likes</h2>
-              <div className="like">
+              <div className="like like-user">
                 <img src={people} alt="total" />
                 <h1> 2.477 </h1>
               </div>
@@ -188,7 +188,7 @@ export const UserDetails = (props) => {
               }}
             >
               <h2>Comment</h2>
-              <div className="comment">
+              <div className="comment comment-user">
                 <img src={add} alt="reached" />
                 <h1> 2.477</h1>
               </div>
@@ -202,7 +202,7 @@ export const UserDetails = (props) => {
               }}
             >
               <h2>Shares</h2>
-              <div className="like">
+              <div className="like share-user">
                 <img src={minus} alt="total" />
                 <h1> 2.477 </h1>
               </div>
@@ -216,7 +216,7 @@ export const UserDetails = (props) => {
               }}
             >
               <h2>Bookmark</h2>
-              <div className="comment">
+              <div className="comment comment-user">
                 <img src={remove} alt="reached" />
                 <h1> 2.477</h1>
               </div>
@@ -232,7 +232,7 @@ export const UserDetails = (props) => {
         <Card
           className="card-user"
           size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
-          bodyStyle={{ width: "80vw" }}
+          bodyStyle={{ width: "75vw" }}
         >
           {/* <UsersTable response={followers} /> */}
         </Card>

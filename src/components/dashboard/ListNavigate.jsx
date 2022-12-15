@@ -5,7 +5,7 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import Cookies from "js-cookie";
-import { Link, Navigate, redirect, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function getItem(label, key, icon, children) {
@@ -39,8 +39,19 @@ export const Items = [
     <UserOutlined />
   ),
   getItem(
-    <span
+    <Link
       onClick={() => {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
         Swal.fire({
           title: `Are you sure want logout?`,
           icon: "warning",
@@ -56,13 +67,19 @@ export const Items = [
               timer: 2000,
             });
             Cookies.remove("token");
-            window.location.reload();
+            Toast.fire({
+              icon: "success",
+              title: "logout successfully",
+            }).then(() => {
+              window.location.reload();
+            });
           }
         });
       }}
+      style={{ fontSize: "15px", color: "red" }}
     >
       Logout
-    </span>,
+    </Link>,
     "4",
     <LogoutOutlined className="logout-btn" />
   ),

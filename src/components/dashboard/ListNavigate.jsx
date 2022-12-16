@@ -39,7 +39,7 @@ export const Items = [
     <UserOutlined />
   ),
   getItem(
-    <span
+    <Link
       onClick={() => {
         const Toast = Swal.mixin({
           toast: true,
@@ -76,10 +76,10 @@ export const Items = [
           }
         });
       }}
-      style={{ color: "red" }}
+      style={{ fontSize: "15px", color: "red" }}
     >
       Logout
-    </span>,
+    </Link>,
     "4",
     <LogoutOutlined className="logout-btn" />
   ),

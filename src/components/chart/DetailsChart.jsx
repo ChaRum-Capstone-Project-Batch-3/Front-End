@@ -12,64 +12,48 @@ import {
 
 const data = [
   {
-    name: "Page A",
-    uv: 590,
-    pv: 800,
-    amt: 1400,
+    name: "Harrasment",
+    pv: 400,
   },
   {
-    name: "Page B",
-    uv: 868,
-    pv: 967,
-    amt: 1506,
+    name: "Violation",
+    pv: 367,
   },
   {
-    name: "Page C",
-    uv: 1397,
-    pv: 1098,
-    amt: 989,
+    name: "Child Abuse",
+    pv: 548,
   },
   {
-    name: "Page D",
-    uv: 1480,
-    pv: 1200,
-    amt: 1228,
+    name: "Spam",
+    pv: 200,
   },
   {
-    name: "Page E",
-    uv: 1520,
-    pv: 1108,
-    amt: 1100,
-  },
-  {
-    name: "Page F",
-    uv: 1400,
-    pv: 680,
-    amt: 1700,
+    name: "Annoying",
+    pv: 158,
   },
 ];
 
 export const DetailsChart = () => {
-    return (
-        <ComposedChart
-        style={{ 'display' : 'flex' }}
-          layout="vertical"
-          width={600}
-          height={250}
-          data={data}
-          margin={{
-            top: 20,
-            right: 40,
-            bottom: 40,
-            left: 20
-          }}
-        >
-          <CartesianGrid stroke="#f5f5f5" />
-          <XAxis type="number" />
-          <YAxis dataKey="name" type="category" scale="band" />
-          <Tooltip />
-          {/* <Legend layout="horizontal" verticalAlign="middle" align="right" height={90} width={10}/> */}
-          <Bar dataKey="pv" barSize={15} fill="#0074C1" />
-        </ComposedChart>
-      );
+  return (
+    <ResponsiveContainer width={600} aspect={2.5}>
+      <ComposedChart
+        style={{
+          display: "flex",
+        }}
+        className="chart-user"
+        layout="vertical"
+        data={data}
+        margin={{
+          bottom: 35,
+          top: 0,
+        }}
+      >
+        <XAxis type="number" />
+        <YAxis dataKey="name" type="category" scale="band" />
+        <Tooltip />
+        {/* <Legend layout="horizontal" verticalAlign="middle" align="right" height={90} width={10}/> */}
+        <Bar barSize={15} dataKey="pv" fill="#0074C1" className="bar-size" />
+      </ComposedChart>
+    </ResponsiveContainer>
+  );
 };

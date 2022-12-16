@@ -1,30 +1,49 @@
 import { Breadcrumb, Card, Skeleton } from "antd";
 import React from "react";
-import { useState } from "react";
+// import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
-import { UserThread } from "../../../components/cardpost/userPost/UserPost";
-import { getThread } from "../../../store/thread/ThreadSlicer";
+import { UserPost} from "../../../components/cardpost/userPost/UserPost";
+import { deleteThread, getThread } from "../../../store/thread/ThreadSlicer";
+import Swal from "sweetalert2";
 
-const DetailReport = () => {
+const DetailReportThread = () => {
   const param = useParams();
   const dispacth = useDispatch();
   const response = useSelector((state) => state.thread);
   const loader = useSelector((state) => state.thread.fecthStatus);
+
   useEffect(() => {
     dispacth(getThread(param.id));
   }, []);
 
+  console.log(param.id)
+  const onDeleteHandler = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Deleted!", "Topic has been deleted.", "success");
+        dispacth(deleteThread(id));
+      }
+    });
+  };
+
   return (
-    <div className="site-layout-background" style={{ padding: "0 100px" }}>
-      <div className="content-main manage-thread">
-        <div className="header" style={{ padding: "0px 155px" }}>
+    <div className="table">
+      <div className="content-main manage-thread-table">
+        <div className="header-table">
           <div className="header-text">
             <span>Details Report</span>
           </div>
-          <div className="bread-crumb">
-            <Breadcrumb separator="&#62;">
+          <div className="bread-crumb-table">
+            <Breadcrumb style={{ margin: "10px 0" }} separator="&#62;">
               <Breadcrumb.Item className="breadcrumb-text">
                 Manage Thread
               </Breadcrumb.Item>
@@ -40,7 +59,10 @@ const DetailReport = () => {
         <div className="body">
           {loader !== "loading" ? (
             <div className="details-thread">
-              <UserThread response={response} />
+              <UserPost 
+                response={response}
+                onDeleteHandler={onDeleteHandler} 
+              />
             </div>
           ) : (
             <Card>
@@ -58,4 +80,4 @@ const DetailReport = () => {
   );
 };
 
-export default DetailReport;
+export default DetailReportThread;

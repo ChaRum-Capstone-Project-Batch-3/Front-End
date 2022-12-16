@@ -83,18 +83,13 @@ const ManageThread = () => {
 
   const navigate = useNavigate();
   return (
-    <div className="site-layout-background">
-      <div className="content-main manage-thread">
-        <div
-          className="header"
-          style={{
-            padding: "0 100px",
-          }}
-        >
+    <div className="table">
+      <div className="content-main manage-thread-table">
+        <div className="header-table">
           <div className="header-text">
             <span>Thread Report</span>
           </div>
-          <div className="bread-crumb">
+          <div className="bread-crumb-table">
             <Breadcrumb style={{ margin: "10px 0" }} separator="&#62;">
               <Breadcrumb.Item
                 className="breadcrumb-text"
@@ -113,11 +108,10 @@ const ManageThread = () => {
             </Breadcrumb>
             <div className="filter-thread-table">
               <div className="sort-topic">
-                {/* <Filter topic={filterTopic}/> */}
-                <Input placeholder="Cari sesuatu" onChange={handleSearch} />
+                <Filter topic={filterTopic}/>
               </div>
               <div className="sort-reported">
-                {/* <Filter report={filterReported}/> */}
+                <Filter report={filterReported}/>
               </div>
             </div>
           </div>
@@ -130,7 +124,7 @@ const ManageThread = () => {
                 searchText={searchText}
               />
             ) : (
-              <Skeleton />
+              <Skeleton active />
             )}
           </div>
         </div>

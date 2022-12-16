@@ -18,14 +18,14 @@ const DetailReportUser = () => {
   const loader = useSelector((state) => state.user.fecthStatus);
 
   return (
-    <div className="site-layout-background" style={{ padding: "0 100px" }}>
-      <div className="content-main manage-thread">
-        <div className="header" style={{ padding: "0px 155px" }}>
+    <div className="table">
+      <div className="content-main manage-thread-table">
+        <div className="header-table">
           <div className="header-text">
             <span>Details Report</span>
           </div>
-          <div className="bread-crumb">
-            <Breadcrumb separator="&#62;">
+          <div className="bread-crumb-table">
+            <Breadcrumb style={{ margin: "10px 0" }} separator="&#62;">
               <Breadcrumb.Item className="breadcrumb-text">
                 Manage Thread
               </Breadcrumb.Item>

@@ -114,7 +114,7 @@ const userSlice = createSlice({
         state.fecthStatus = "failed";
         state.error = action.error.message;
       })
-      // updated users
+      // suspend users
       .addCase(suspendUser.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         const id = action.payload._id;

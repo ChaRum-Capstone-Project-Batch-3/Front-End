@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Avatar, Card, Collapse, Image, Skeleton } from "antd";
+import { Avatar, Button, Card, Collapse, Image, Skeleton } from "antd";
 import { DetailsChart } from "../../chart/DetailsChart";
 import total from "../assets/information.svg";
 import reached from "../assets/user-square.svg";
@@ -7,6 +7,7 @@ import like from "../assets/like-tag.svg";
 import massage from "../assets/messages.svg";
 import share from "../assets/share.svg";
 import receipt from "../assets/receipt-square.svg";
+import { DeleteOutlined } from "@ant-design/icons";
 
 // const ReadMore = ({ children }) => {
 //   const [isReadMore, setIsReadMore] = useState(true);
@@ -28,20 +29,23 @@ import receipt from "../assets/receipt-square.svg";
 //   );
 // };
 
-export const UserThread = (props) => {
+export const UserPost = (props) => {
   // props data
   const data = props.response.data.thread;
   const text = data.thread?.description;
+
+  const { onDeleteHandler } = props;
+
   return (
     <>
       <div className="main-card">
         <Card
-          className="card"
+          className="card-details"
           size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
         >
           <div className="card-header">
             <Avatar
-              size={{ md: 38, lg: 40, xl: 60, xxl: 60 }}
+              size={{ sm: 38, md: 48, lg: 53, xl: 60, xxl: 63 }}
               src="https://images.unsplash.com/photo-1669720229052-89cda125fc3f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzMnx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60"
             />
             <div className="header-title">
@@ -59,9 +63,13 @@ export const UserThread = (props) => {
               preview={false}
               sizes={{ xs: 24, sm: 32, md: 40, lg: 54, xl: 60 }}
             />
-            <Collapse expandable>
+            {/* <Collapse expandable>
               <Collapse.Panel header="Read more">{text}</Collapse.Panel>
-            </Collapse>
+            </Collapse> */}
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+              ne
+            </p>
           </div>
         </Card>
 
@@ -78,12 +86,8 @@ export const UserThread = (props) => {
             </div>
             <Card
               className="interaction-body"
-              size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
               bodyStyle={{
-                padding: "0px",
-                gap: "20px",
-                display: "flex",
-                marginBottom: "8px",
+                display: 'contents'
               }}
             >
               <Card
@@ -115,9 +119,8 @@ export const UserThread = (props) => {
               className="interaction-footer"
               size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
               bodyStyle={{
-                padding: "0px",
-                gap: "20px",
                 display: "flex",
+                padding : "0px"
               }}
             >
               <Card
@@ -194,6 +197,16 @@ export const UserThread = (props) => {
                 <DetailsChart />
               </div>
             </Card>
+            <div className="button-delete-user">
+              <Button
+                className="button-delete-2"
+                size="large"
+                onClick={() => onDeleteHandler(data.thread._id)}
+                block
+              >
+                <DeleteOutlined /> Delete User
+              </Button>
+            </div>
           </div>
         </div>
       </div>

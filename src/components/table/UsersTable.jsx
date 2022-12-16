@@ -14,10 +14,6 @@ const UsersTable = (props) => {
   const navigate = useNavigate();
 
   const dispacth = useDispatch();
-
-  const getInfo = (record) => {
-    setInfoKeyId(record.key);
-  };
   //
   const handleDelete = (record) => {
     Swal.fire({
@@ -61,8 +57,9 @@ const UsersTable = (props) => {
       align: "center",
     },
     {
-      title: "Thread Amount",
-      dataIndex: "socialMedia",
+      title: "Status",
+      dataIndex: "isActive",
+      render: (val) => (!val ? "suspend" : "active"),
       width: "10%",
       align: "center",
     },
@@ -83,10 +80,6 @@ const UsersTable = (props) => {
       align: "center",
       render: (text, record) => {
         const infoDetail = isEditing(record);
-
-        // return record.followers?
-        // null : (
-
         return (
           <>
             <Popover

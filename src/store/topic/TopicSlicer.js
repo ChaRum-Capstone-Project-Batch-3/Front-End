@@ -52,7 +52,7 @@ export const createTopic = createAsyncThunk("create topic", async (data) => {
 
 export const updateTopic = createAsyncThunk("update topic", async (data) => {
   try {
-    const res = await ApiTopic.updateTopic(data.id, data);
+    const res = await ApiTopic.updateTopic(data.id, data.form);
     return res.data.data.topic;
   } catch (err) {
     console.log(err.message);
@@ -79,6 +79,9 @@ const topicSlice = createSlice({
         state.err = action.error.message;
       })
       // delete topic
+      .addCase(deleteTopic.pending, (state) => {
+        state.fecthStatus = "loading";
+      })
       .addCase(deleteTopic.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         state.data = state.data.filter((val) => val._id !== action.payload._id);
@@ -89,6 +92,9 @@ const topicSlice = createSlice({
         state.err = action.error.message;
       })
       // create topic
+      .addCase(createTopic.pending, (state) => {
+        state.fecthStatus = "loading";
+      })
       .addCase(createTopic.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         state.data.push(action.payload);
@@ -99,6 +105,9 @@ const topicSlice = createSlice({
         state.err = action.error.message;
       })
       // update topic
+      .addCase(updateTopic.pending, (state) => {
+        state.fecthStatus = "loading";
+      })
       .addCase(updateTopic.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         const id = action.payload._id;

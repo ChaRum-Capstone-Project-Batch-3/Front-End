@@ -1,45 +1,34 @@
-import { Breadcrumb, Button, Card, Typography } from "antd";
-import React, { useState } from "react";
+import { Breadcrumb, Typography } from "antd";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  PlusCircleOutlined,
-  DeleteOutlined,
-  EditFilled,
-} from "@ant-design/icons";
+import { PlusCircleOutlined } from "@ant-design/icons";
 import "./Topic.css";
-import Meta from "antd/es/card/Meta";
-import BusinessImage from "./Business.png";
 import Search from "antd/es/transfer/search";
 import ModalTopic from "./ModalTopic";
-import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllTopic } from "../../../store/topic/TopicSlicer";
+import CardTopic from "../../../components/dashboard/topic/CardTopic";
 
 const { Title } = Typography;
 const TopicMain = () => {
+  const dispacth = useDispatch();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const response = useSelector((state) => state.topic);
+  const [getId, setGetId] = useState("");
 
   const handleOk = () => {
     setIsModalOpen(false);
   };
   const handleCancel = () => {
     setIsModalOpen(false);
+    setGetId("");
   };
   const onSearch = (value) => console.log(value);
 
-  const deleteTopic = () => {
-    Swal.fire({
-      title: "Are you sure?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Deleted!", "Topic has been deleted.", "success");
-      }
-    });
-  };
+  useEffect(() => {
+    dispacth(getAllTopic());
+  }, [dispacth]);
 
   return (
     <div className="site-layout-background">
@@ -84,142 +73,18 @@ const TopicMain = () => {
               onSearch={onSearch}
             />
           </div>
-          <div className="list-body">
-            <div className="card-topic">
-              <Card
-                style={{
-                  width: "250px",
-                }}
-                cover={<img alt="example" src={BusinessImage} />}
-              >
-                <Meta
-                  title="Business"
-                  description="Question, advice, and articles to do with running and growing business "
-                />
-                <div className="button-group">
-                  <div
-                    className="btn-edit"
-                    onClick={() => setIsModalOpen(true)}
-                  >
-                    <EditFilled /> Edit
-                  </div>
-                  <Button type="primary" danger onClick={deleteTopic}>
-                    <DeleteOutlined />
-                  </Button>
-                </div>
-              </Card>
-            </div>
-            <div className="card-topic">
-              <Card
-                style={{
-                  width: "250px",
-                }}
-                cover={<img alt="example" src={BusinessImage} />}
-              >
-                <Meta
-                  title="Business"
-                  description="Question, advice, and articles to do with running and growing business "
-                />
-                <div className="button-group">
-                  <div className="btn-edit">
-                    <EditFilled /> Edit
-                  </div>
-                  <Button type="primary" danger>
-                    <DeleteOutlined />
-                  </Button>
-                </div>
-              </Card>
-            </div>
-            <div className="card-topic">
-              <Card
-                style={{
-                  width: "250px",
-                }}
-                cover={<img alt="example" src={BusinessImage} />}
-              >
-                <Meta
-                  title="Business"
-                  description="Question, advice, and articles to do with running and growing business "
-                />
-                <div className="button-group">
-                  <div className="btn-edit">
-                    <EditFilled /> Edit
-                  </div>
-                  <Button type="primary" danger>
-                    <DeleteOutlined />
-                  </Button>
-                </div>
-              </Card>
-            </div>
-            <div className="card-topic">
-              <Card
-                style={{
-                  width: "250px",
-                }}
-                cover={<img alt="example" src={BusinessImage} />}
-              >
-                <Meta
-                  title="Business"
-                  description="Question, advice, and articles to do with running and growing business "
-                />
-                <div className="button-group">
-                  <div className="btn-edit">
-                    <EditFilled /> Edit
-                  </div>
-                  <Button type="primary" danger>
-                    <DeleteOutlined />
-                  </Button>
-                </div>
-              </Card>
-            </div>
-            <div className="card-topic">
-              <Card
-                style={{
-                  width: "250px",
-                }}
-                cover={<img alt="example" src={BusinessImage} />}
-              >
-                <Meta
-                  title="Business"
-                  description="Question, advice, and articles to do with running and growing business "
-                />
-                <div className="button-group">
-                  <div className="btn-edit">
-                    <EditFilled /> Edit
-                  </div>
-                  <Button type="primary" danger>
-                    <DeleteOutlined />
-                  </Button>
-                </div>
-              </Card>
-            </div>
-            <div className="card-topic">
-              <Card
-                style={{
-                  width: "250px",
-                }}
-                cover={<img alt="example" src={BusinessImage} />}
-              >
-                <Meta
-                  title="Business"
-                  description="Question, advice, and articles to do with running and growing business "
-                />
-                <div className="button-group">
-                  <div className="btn-edit">
-                    <EditFilled /> Edit
-                  </div>
-                  <Button type="primary" danger>
-                    <DeleteOutlined />
-                  </Button>
-                </div>
-              </Card>
-            </div>
-          </div>
+          <CardTopic
+            response={response}
+            setIsModalOpen={setIsModalOpen}
+            setGetId={setGetId}
+          />
         </div>
         <ModalTopic
           isModalOpen={isModalOpen}
           handleCancel={handleCancel}
           handleOk={handleOk}
+          setGetId={setGetId}
+          getId={getId}
         />
       </div>
     </div>

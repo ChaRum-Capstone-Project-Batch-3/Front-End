@@ -3,10 +3,12 @@ import "./LandingPage.css";
 import React, { useState } from "react";
 import NavbarList from "./NavbarList";
 import logo from "./img/logo-header.png";
-import { Image, Drawer, Button } from "antd";
+import { Button, Image, Drawer } from "antd";
 import { AlignRightOutlined } from '@ant-design/icons';
+import { useNavigate } from "react-router";
 
 const Navbar = () => {
+  const navigate = useNavigate();
 
   const [visible, setVisible] = useState(false);
 
@@ -17,7 +19,6 @@ const Navbar = () => {
     const closeDrawer = () => {
         setVisible(false)
     }
-
   return (
     <Header>
       <div
@@ -46,8 +47,24 @@ const Navbar = () => {
             >
                 <div className='menuMobile'>
                     <NavbarList className="menuMobile" mode="vertical"/>
+                    <Button
+                      className="btn-login-mobile"
+                      style={{ background: "white", color: "black" }}
+                      onClick={() => navigate("/login")}
+                      type="primary"
+                    >
+                      Login
+                    </Button>
                 </div>
         </Drawer>
+        <Button
+          className="btn-login"
+          style={{ background: "white", color: "black" }}
+          onClick={() => navigate("/login")}
+          type="primary"
+        >
+          Login
+        </Button>
       </div>
     </Header>
   );

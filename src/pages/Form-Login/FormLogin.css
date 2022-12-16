@@ -28,13 +28,10 @@ a {
 }
 .box {
   /* border: 2px solid #178066; */
-  width: 1400px;
+  display: flex;
   height: auto;
 }
-.box .row-main {
-  /* border: 2px solid #178066; */
-  height: 963px;
-}
+
 .box .row-main .col-1 {
   /* border: 2px solid #178066; */
   padding: 30px;
@@ -43,7 +40,11 @@ a {
 .box .row-main .col-2 {
   /* border: 2px solid #fff700; */
   background-color: #178066;
-  display: flexbox;
+  width: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
   padding-left: 3vw;
   padding-top: 3.5vh;
 }

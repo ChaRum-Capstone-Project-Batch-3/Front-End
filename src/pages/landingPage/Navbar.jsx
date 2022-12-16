@@ -1,12 +1,24 @@
 import { Header } from "antd/es/layout/layout";
 import "./LandingPage.css";
-import React from "react";
+import React, { useState } from "react";
+import NavbarList from "./NavbarList";
 import logo from "./img/logo-header.png";
-import { Button, Image } from "antd";
+import { Button, Image, Drawer } from "antd";
+import { AlignRightOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router";
 
 const Navbar = () => {
   const navigate = useNavigate();
+
+  const [visible, setVisible] = useState(false);
+
+    const showDrawer = () => {
+        setVisible(true)
+    }
+
+    const closeDrawer = () => {
+        setVisible(false)
+    }
   return (
     <Header>
       <div
@@ -22,15 +34,31 @@ const Navbar = () => {
           <Image width={120} src={logo} preview={false} />
         </div>
         <div className="nav-list-menu">
-          <ul style={{ display: "flex", gap: "30px" }}>
-            <li>Home</li>
-            <li>Feature</li>
-            <li>About</li>
-            <li>Download</li>
-            <li>Our Team</li>
-          </ul>
+          <NavbarList className='ant-menu-horizontal-custom' mode="horizontal" style={{display: "flex", gap: "30px", background: 'rgba(23, 128, 102, 1)'}} />
         </div>
+          <Button className="barsMenu" type="primary" onClick={showDrawer}>
+            <AlignRightOutlined style={{ fontSize: '22px' }} />
+          </Button>
+        <Drawer title='Charum'
+                    placement='right'
+                    closable={false}
+                    visible={visible}
+                    onClose={closeDrawer}
+            >
+                <div className='menuMobile'>
+                    <NavbarList className="menuMobile" mode="vertical"/>
+                    <Button
+                      className="btn-login-mobile"
+                      style={{ background: "white", color: "black" }}
+                      onClick={() => navigate("/login")}
+                      type="primary"
+                    >
+                      Login
+                    </Button>
+                </div>
+        </Drawer>
         <Button
+          className="btn-login"
           style={{ background: "white", color: "black" }}
           onClick={() => navigate("/login")}
           type="primary"

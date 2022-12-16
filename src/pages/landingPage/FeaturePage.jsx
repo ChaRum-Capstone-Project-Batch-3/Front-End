@@ -38,9 +38,9 @@ const FeaturePage = () => {
             justifyContent: "center",
           }}
         >
-          <Image width={400} src={Thread} preview={false} />
-          <Image width={400} src={Bookmark} preview={false} />
-          <Image width={400} src={Group} preview={false} />
+          <Image className="featured-image" width={400} src={Thread} preview={false} />
+          <Image className="featured-image" width={400} src={Bookmark} preview={false} />
+          <Image className="featured-image" width={400} src={Group} preview={false} />
         </div>
       </div>
     </div>

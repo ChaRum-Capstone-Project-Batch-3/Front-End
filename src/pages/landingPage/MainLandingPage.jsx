@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import { Content, Footer } from "antd/es/layout/layout";
+import { Content } from "antd/es/layout/layout";
 import React from "react";
 import AboutPage from "./AboutPage";
 import Download from "./Download";
@@ -7,6 +7,7 @@ import FeaturePage from "./FeaturePage";
 import HomePage from "./HomePage";
 import Navbar from "./Navbar";
 import Team from "./Team";
+import Footer from "./Footer";
 
 const MainLandingPage = () => {
   return (
@@ -18,8 +19,8 @@ const MainLandingPage = () => {
         <AboutPage />
         <Download />
         <Team />
+        <Footer />
       </Content>
-      <Footer>Footer</Footer>
     </Layout>
   );
 };

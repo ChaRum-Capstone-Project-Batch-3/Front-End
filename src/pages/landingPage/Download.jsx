@@ -53,7 +53,7 @@ const Download = () => {
         </div>
       </div>
       <div className="download-img">
-        <Image src={DownloadPhone} preview={false} width={400} />
+        <Image className="download-phone" src={DownloadPhone} preview={false} width={400} />
       </div>
     </div>
   );

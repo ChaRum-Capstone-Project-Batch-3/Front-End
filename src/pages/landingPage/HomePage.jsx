@@ -17,7 +17,7 @@ const HomePage = () => {
       }}
     >
       <div className="home-img-phone">
-        <Image width={660} src={LandingPageCharum} preview={false} />
+        <Image className="img-phone" width={700} src={LandingPageCharum} preview={false} />
       </div>
       <div
         className="charum-landing"
@@ -52,7 +52,7 @@ const HomePage = () => {
         </div>
         <div
           className="text-landing"
-          style={{ fontWeight: "600", fontSize: "20px" }}
+          style={{ fontWeight: "600", fontSize: "20px", inlineSize: "350px", textAlign: "left" }}
         >
           The right place to educate yourself and spread knowledge
         </div>

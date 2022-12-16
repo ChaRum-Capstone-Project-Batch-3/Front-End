@@ -16,7 +16,7 @@ const AboutPage = () => {
       }}
     >
       <div className="side-img">
-        <Image src={OrangDuduk} width={400} preview={false} />
+        <Image className="about-img" src={OrangDuduk} width={400} preview={false} />
       </div>
       <div className="body-content">
         <Title

@@ -11,6 +11,7 @@ import Highlighter from "react-highlight-words";
 
 const ThreadTable = (props) => {
   const searchText = props.searchData
+  const data = props.reponse
   const navigate = useNavigate();
   const dispacth = useDispatch();
 
@@ -48,7 +49,14 @@ const ThreadTable = (props) => {
     {
       title: "Username",
       dataIndex: "creator",
-      render: (val) => val.userName,
+      render: val => (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={val.userName.toString()}
+        />
+      ),
       width: "12%",
     },
     {
@@ -67,7 +75,14 @@ const ThreadTable = (props) => {
     {
       title: "Topic",
       dataIndex: "topic",
-      render: (val) => val.topic,
+      render: val => (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={val.topic.toString()}
+        />
+      ),
       width: "10%",
     },
     {
@@ -75,7 +90,14 @@ const ThreadTable = (props) => {
       dataIndex: "createdAt",
       render: (val) => {
         moment.locale("id");
-        return moment(val).format("ll");
+        return (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={moment(val).format("ll").toString()}
+        />
+        )
       },
       width: "10%",
     },

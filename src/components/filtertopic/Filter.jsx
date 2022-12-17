@@ -1,5 +1,6 @@
 import { ClearOutlined, SearchOutlined } from "@ant-design/icons";
 import { Select } from "antd";
+import moment from "moment";
 import React, { useState } from "react";
 import Highlighter from "react-highlight-words";
 
@@ -25,7 +26,10 @@ const NewFilter = (props) => {
     const newFilteredData = data.filter((item) => {
       return (
         item._id.toLowerCase().includes(lowerCaseSearchText) ||
-        item.title.toLowerCase().includes(lowerCaseSearchText)
+        item.title.toLowerCase().includes(lowerCaseSearchText) ||
+        item.creator.userName.toLowerCase().includes(lowerCaseSearchText) ||
+        item.topic.topic.toLowerCase().includes(lowerCaseSearchText) ||
+        moment(item.createdAt).format("ll").toLowerCase().includes(lowerCaseSearchText)
       );
     });
     setData(newEvent, newFilteredData)

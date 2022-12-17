@@ -8,17 +8,17 @@ import { useEffect } from "react";
 import { getAllThread } from "../../../store/thread/ThreadSlicer";
 
 const ManageThread = () => {
+  const response = useSelector((state) => state.thread);
+
   // state
   const [page, setPage] = useState(1);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(response.data.threads);
 
   // navigate
   const navigate = useNavigate();
 
   // data
   const dispacth = useDispatch();
-
-  const response = useSelector((state) => state.thread);
 
   useEffect(() => {
     dispacth(getAllThread(page));
@@ -62,8 +62,13 @@ const ManageThread = () => {
             </div>
           </div>
           <div className="table-thread">
-            {response?.fecthStatus !== "loading" ? (
-              <ThreadTable response={data} page={page} setPage={setPage} />
+            {response.fecthStatus !== "loading" ? (
+              <ThreadTable
+                data={data}
+                response={response.data.threads}
+                page={page}
+                setPage={setPage}
+              />
             ) : (
               <Skeleton active />
             )}

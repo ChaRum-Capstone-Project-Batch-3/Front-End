@@ -19,16 +19,19 @@ const useDounce = (data, ms) => {
 const Filter = (props) => {
   const [_text, setTopic] = useState("");
   const text = useDounce(_text, 1000);
+  console.log(props.response);
 
   useEffect(() => {
     if (text !== "") {
       props.setData(
         props.response.filter(
           (val) =>
-            val.topic?.topic.toLowerCase() === text.toLowerCase() ||
-            val.topic?.topic.toLowerCase().match(text.toLowerCase()) ||
+            val.topic.topic.toLowerCase() === text.toLowerCase() ||
+            val.topic.topic.toLowerCase().match(text.toLowerCase()) ||
             val.title.toLowerCase() === text.toLowerCase() ||
-            val.title.toLowerCase().match(text.toLowerCase())
+            val.title.toLowerCase().match(text.toLowerCase()) ||
+            val.creator.userName.toLowerCase() === text.toLowerCase() ||
+            val.creator.userName.toLowerCase().match(text.toLowerCase())
         )
       );
     } else {

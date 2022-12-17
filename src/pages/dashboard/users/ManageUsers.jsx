@@ -48,12 +48,12 @@ const ManageUsers = () => {
               </Breadcrumb.Item>
             </Breadcrumb>
             <div className="filter-thread-table">
-              <div className="sort-topic">
+              {/* <div className="sort-topic">
                 <Filter topic={filterTopic} />
-              </div>
-              <div className="sort-reported">
+              </div> */}
+              {/* <div className="sort-reported">
                 <Filter report={filterReported} />
-              </div>
+              </div> */}
             </div>
           </div>
           {loader !== "loading" ? (

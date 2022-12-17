@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Popover, Table } from "antd";
 import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteUser, getUser } from "../../store/users/UserSlicer";
 import Swal from "sweetalert2";
@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 const UsersTable = (props) => {
   const data = props.response;
   const [infoKeyId, setInfoKeyId] = useState("");
+
   const isEditing = (record) => record.key === infoKeyId;
   const navigate = useNavigate();
 

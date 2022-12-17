@@ -103,7 +103,10 @@ const ModalTopic = (props) => {
       props.setGetId("");
       props.handleOk();
     } else {
-      Swal.fire("Data Kosong");
+      Swal.fire({
+        title: "Ente Kadang-kadang",
+        icon: "error",
+      });
       setData({
         topic: "",
         description: "",
@@ -126,6 +129,8 @@ const ModalTopic = (props) => {
     });
     setImage({});
   };
+
+  console.log("image ", image);
 
   return (
     <Modal open={props.isModalOpen} footer={null} onCancel={onCancel}>

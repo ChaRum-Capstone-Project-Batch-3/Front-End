@@ -9,25 +9,6 @@ import share from "../assets/share.svg";
 import receipt from "../assets/receipt-square.svg";
 import { DeleteOutlined } from "@ant-design/icons";
 
-// const ReadMore = ({ children }) => {
-//   const [isReadMore, setIsReadMore] = useState(true);
-//   const text = children;
-//   const toggleReadMore = () => {
-//     setIsReadMore(!isReadMore);
-//   };
-//   return (
-//     <p className="text">
-//       {isReadMore ? text.slice(0, 250) : text}
-//       <span
-//         onClick={toggleReadMore}
-//         className="read-or-hide"
-//         style={{ color: "#989797" }}
-//       >
-//         {isReadMore ? " ...Read more" : " Show less"}
-//       </span>
-//     </p>
-//   );
-// };
 
 export const UserPost = (props) => {
   // props data

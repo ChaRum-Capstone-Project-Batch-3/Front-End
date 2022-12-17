@@ -7,20 +7,19 @@ const NewFilter = (props) => {
 
   //data props
   const data = props.response;
+  const catchData = props.catchData;
   const [propsData, setPropsData] = useState( data )
 
   // data search
   const [filteredData, setFilteredData] = useState('');
   const [searchText, setSearchText] = useState('');
   const [selectData, setSelectData] = useState('');
-  // console.log(filteredData);
+  // console.log(data);
 
   function handleSearch(event) {
     const newEvent = event;
 
     setSearchText(newEvent);
-    console.log(searchText)
-    
     const lowerCaseSearchText = searchText.toLowerCase();
 
     const newFilteredData = data.filter((item) => {
@@ -29,25 +28,27 @@ const NewFilter = (props) => {
         item.title.toLowerCase().includes(lowerCaseSearchText)
       );
     });
-    clearData(newEvent, newFilteredData)
+    setData(newEvent, newFilteredData)
   }
 
   function handleChange(event) {
-    const newEvent = event;
+    if(event !== ''){
 
-    setSelectData(newEvent);
-    const lowerCaseSelected = selectData.toLowerCase();
-
-    const newSelect = data.filter((item) => {
-      return (
-        item._id.toLowerCase().includes(lowerCaseSelected) ||
-        item.title.toLowerCase().includes(lowerCaseSelected)
-      );
-    });
-    // if(filteredData!==""){
-    //   setFilteredData('')
-    // }
-    clearData(newEvent, newSelect)
+      const newEvent = event;
+  
+      setSelectData(newEvent);
+      const lowerCaseSelected = selectData.toLowerCase();
+  
+      const newSelect = data.filter((item) => {
+        return (
+          item._id.toLowerCase().includes(lowerCaseSelected) ||
+          item.title.toLowerCase().includes(lowerCaseSelected)
+        );
+      });
+      setData(newEvent, newSelect)
+    }else{
+      setSelectData('');
+    }
   }
 
   const onClear = () => {
@@ -56,13 +57,16 @@ const NewFilter = (props) => {
       setSearchText('');
   };
 
-  const clearData = (newEvent, newFilter) => {
+  const setData = (newEvent, newFilter) => {
     if(newEvent!==''){
       setFilteredData(newFilter);
+      catchData(newEvent, newFilter)
     }
     else{
       setFilteredData('');
+      catchData('')
     }
+      
   };
 
   return (

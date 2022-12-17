@@ -10,9 +10,10 @@ import Swal from "sweetalert2";
 import Highlighter from "react-highlight-words";
 
 const ThreadTable = (props) => {
+  const searchText = props.searchData
   const navigate = useNavigate();
   const dispacth = useDispatch();
-  const searchText = props.searchText;
+
   const onDeleteHandler = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -35,6 +36,14 @@ const ThreadTable = (props) => {
       dataIndex: "_id",
       key: "_id",
       width: "5%",
+      render: text => (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text.toString()}
+        />
+      ) 
     },
     {
       title: "Username",
@@ -46,6 +55,14 @@ const ThreadTable = (props) => {
       title: "Thread Title",
       dataIndex: "title",
       width: "15%",
+      render: text => (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text.toString()}
+        />
+      ) 
     },
     {
       title: "Topic",

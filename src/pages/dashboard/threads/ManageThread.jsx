@@ -11,6 +11,8 @@ import { getAllThread } from "../../../store/thread/ThreadSlicer";
 const ManageThread = () => {
   // state
   const [page, setPage] = useState(1);
+  const [searchData, setSearchData] = useState('');
+  const [filteredData, setFilteredData] = useState('');
 
   // data
   const dispacth = useDispatch();
@@ -19,6 +21,22 @@ const ManageThread = () => {
   useEffect(() => {
     dispacth(getAllThread(page));
   }, [dispacth]);
+
+  const catchData = (search, filtered) =>{
+
+    const newSearch = search;
+    const newFilter = filtered;
+
+    if(newSearch!==''){
+      setSearchData(newSearch);
+      setFilteredData(newFilter);
+    }else{
+      console.log('data blm masuk');
+      setSearchData('');
+      setFilteredData('');
+    }
+    console.log(filteredData);
+  }
 
   const navigate = useNavigate();
   return (
@@ -49,6 +67,7 @@ const ManageThread = () => {
               <div className="sort-topic">
                 <Filter
                 response={response.data?.threads}
+                catchData={catchData}
                 />
               </div>
               <div className="sort-reported">
@@ -58,7 +77,12 @@ const ManageThread = () => {
           <div className="table-thread">
             {response?.fecthStatus !== "loading" ? (
               <ThreadTable
-                response={response.data?.threads}
+                response={
+                  filteredData !=='' ?
+                  filteredData :
+                  response.data?.threads
+                }
+                searchData={searchData}
                 page={page}
                 setPage={setPage}
               />

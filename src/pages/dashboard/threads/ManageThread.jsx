@@ -1,8 +1,8 @@
-import { Breadcrumb, Input, Skeleton, Table } from "antd";
+import { Breadcrumb, Skeleton } from "antd";
 import React, { useState } from "react";
 import ThreadTable from "../../../components/table/ThreadTable";
 import Filter from "../../../components/filtertopic/Filter";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllThread } from "../../../store/thread/ThreadSlicer";
@@ -22,7 +22,7 @@ const ManageThread = () => {
 
   useEffect(() => {
     dispacth(getAllThread(page));
-  }, [dispacth]);
+  }, [dispacth, page]);
 
   return (
     <div className="table">

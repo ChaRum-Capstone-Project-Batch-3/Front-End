@@ -7,7 +7,6 @@ import { deleteThread, getThread } from "../../store/thread/ThreadSlicer";
 import moment from "moment";
 import "moment/locale/id";
 import Swal from "sweetalert2";
-import Highlighter from "react-highlight-words";
 
 const ThreadTable = (props) => {
   const navigate = useNavigate();
@@ -20,7 +19,7 @@ const ThreadTable = (props) => {
     } else {
       setData(props.data);
     }
-  }, [props.data]);
+  }, [props.data, props.response]);
 
   const onDeleteHandler = (id) => {
     Swal.fire({

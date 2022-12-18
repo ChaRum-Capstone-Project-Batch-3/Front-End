@@ -1,7 +1,7 @@
+import { Input } from "antd";
 import React from "react";
-import { Select } from "antd";
-import { useState } from "react";
-import { useEffect } from "react";
+import { SearchOutlined } from "@ant-design/icons";
+import { useState, useEffect } from "react";
 
 const useDounce = (data, ms) => {
   const [value, setValue] = useState("");
@@ -37,7 +37,7 @@ const Filter = (props) => {
     } else {
       props.setData(props.response);
     }
-  }, [text]);
+  }, [text, props]);
 
   const onChangeHandler = (e) => {
     setTopic(e.target.value);
@@ -85,7 +85,12 @@ const Filter = (props) => {
     //     },
     //   ]}
     // />
-    <input type="text" placeholder="search topic" onChange={onChangeHandler} />
+    <Input
+      placeholder="Search"
+      onChange={onChangeHandler}
+      prefix={<SearchOutlined />}
+    />
+    // <input type="text" placeholder="search topic" onChange={onChangeHandler} />
   );
 };
 export default Filter;

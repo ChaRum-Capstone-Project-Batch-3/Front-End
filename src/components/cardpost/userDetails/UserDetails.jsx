@@ -225,8 +225,8 @@ export const UserDetails = (props) => {
         </Card>
       </div>
       <div className="filter">
-        <Filter topic={filterTopic} />
-        <Filter report={filterReported} />
+        {/* <Filter topic={filterTopic} />
+        <Filter report={filterReported} /> */}
       </div>
       <div className="main-card-user">
         <Card

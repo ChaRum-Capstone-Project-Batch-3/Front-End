@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import NavbarList from "./NavbarList";
 import logo from "./img/logo-header.png";
 import { Button, Image, Drawer } from "antd";
-import { AlignRightOutlined } from '@ant-design/icons';
+import { AlignRightOutlined, CloseOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router";
 
 const Navbar = () => {
@@ -12,13 +12,13 @@ const Navbar = () => {
 
   const [visible, setVisible] = useState(false);
 
-    const showDrawer = () => {
-        setVisible(true)
-    }
+  const showDrawer = () => {
+    setVisible(true);
+  };
 
-    const closeDrawer = () => {
-        setVisible(false)
-    }
+  const closeDrawer = () => {
+    setVisible(false);
+  };
   return (
     <Header>
       <div
@@ -34,28 +34,38 @@ const Navbar = () => {
           <Image width={120} src={logo} preview={false} />
         </div>
         <div className="nav-list-menu">
-          <NavbarList className='ant-menu-horizontal-custom' mode="horizontal" style={{display: "flex", gap: "30px", background: 'rgba(23, 128, 102, 1)'}} />
+          <NavbarList
+            className="ant-menu-horizontal-custom"
+            mode="horizontal"
+            style={{
+              display: "flex",
+              gap: "30px",
+              background: "rgba(23, 128, 102, 1)",
+            }}
+          />
         </div>
-          <Button className="barsMenu" type="primary" onClick={showDrawer}>
-            <AlignRightOutlined style={{ fontSize: '22px' }} />
-          </Button>
-        <Drawer title='Charum'
-                    placement='right'
-                    closable={false}
-                    visible={visible}
-                    onClose={closeDrawer}
+        <Button className="barsMenu" type="primary" onClick={showDrawer}>
+          <AlignRightOutlined style={{ fontSize: "22px" }} />
+        </Button>
+        <Drawer
+          title="Charum"
+          placement="right"
+          closable={false}
+          visible={visible}
+          onClose={closeDrawer}
+          width={250}
+        >
+          <div className="menuMobile">
+            <NavbarList className="menuMobile" mode="vertical" />
+            <Button
+              className="btn-login-mobile"
+              style={{ background: "white", color: "black" }}
+              onClick={() => navigate("/login")}
+              type="primary"
             >
-                <div className='menuMobile'>
-                    <NavbarList className="menuMobile" mode="vertical"/>
-                    <Button
-                      className="btn-login-mobile"
-                      style={{ background: "white", color: "black" }}
-                      onClick={() => navigate("/login")}
-                      type="primary"
-                    >
-                      Login
-                    </Button>
-                </div>
+              Login
+            </Button>
+          </div>
         </Drawer>
         <Button
           className="btn-login"

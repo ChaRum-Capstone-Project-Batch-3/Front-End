@@ -1,7 +1,6 @@
 import { Breadcrumb, Skeleton } from "antd";
 import React, { useState } from "react";
 import UsersTable from "../../../components/table/UsersTable";
-import Filter from "../../../components/filtertopic/Filter";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -9,8 +8,6 @@ import { getAllUsers } from "../../../store/users/UserSlicer";
 
 const ManageUsers = () => {
   // state
-  const [filterTopic, setFilterTopic] = useState(true);
-  const [filterReported, setFilterReported] = useState(true);
   const [page, setPage] = useState(1);
 
   // data
@@ -18,7 +15,7 @@ const ManageUsers = () => {
 
   useEffect(() => {
     dispacth(getAllUsers(page));
-  }, [dispacth]);
+  }, [dispacth, page]);
 
   const response = useSelector((state) => state.user.data.users);
   const loader = useSelector((state) => state.user.fecthStatus);
@@ -48,12 +45,12 @@ const ManageUsers = () => {
               </Breadcrumb.Item>
             </Breadcrumb>
             <div className="filter-thread-table">
-              <div className="sort-topic">
+              {/* <div className="sort-topic">
                 <Filter topic={filterTopic} />
-              </div>
-              <div className="sort-reported">
+              </div> */}
+              {/* <div className="sort-reported">
                 <Filter report={filterReported} />
-              </div>
+              </div> */}
             </div>
           </div>
           {loader !== "loading" ? (

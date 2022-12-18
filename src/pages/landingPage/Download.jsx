@@ -29,6 +29,7 @@ const Download = () => {
             Download Us
           </Title>
           <p
+            className="download-text"
             style={{
               fontSize: "20px",
               fontWeight: "400",
@@ -53,7 +54,12 @@ const Download = () => {
         </div>
       </div>
       <div className="download-img">
-        <Image className="download-phone" src={DownloadPhone} preview={false} width={400} />
+        <Image
+          className="download-phone"
+          src={DownloadPhone}
+          preview={false}
+          width={400}
+        />
       </div>
     </div>
   );

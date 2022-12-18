@@ -7,6 +7,7 @@ const Team = () => {
   return (
     <div
       className="team-page"
+      id="our-team"
       style={{
         display: "flex",
         justifyContent: "center",

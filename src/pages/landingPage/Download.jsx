@@ -9,6 +9,7 @@ const Download = () => {
   return (
     <div
       className="download-page"
+      id="download"
       style={{
         display: "flex",
         justifyContent: "center",

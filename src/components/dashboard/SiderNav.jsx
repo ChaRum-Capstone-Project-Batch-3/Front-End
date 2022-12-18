@@ -14,8 +14,9 @@ const SiderNav = (props) => {
   const path = useLocation();
   useEffect(() => {
     if (path.pathname === "/dashboard") setPage("1");
-    else if (path.pathname === "/dashboard/thread") setPage("2");
-    else if (path.pathname === "/dashboard/users") setPage("3");
+    else if (path.pathname === "/dashboard/topic") setPage("2");
+    else if (path.pathname === "/dashboard/thread") setPage("3");
+    else if (path.pathname === "/dashboard/users") setPage("4");
   }, [path]);
   return (
     <Sider

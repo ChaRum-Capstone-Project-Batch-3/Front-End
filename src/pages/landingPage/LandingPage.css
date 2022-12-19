@@ -7,6 +7,10 @@
   margin-top: 5px;
 }
 
+a::hover {
+  color: white;
+}
+
 .ant-menu-horizontal-custom {
   background: transparent;
   border-bottom: none;
@@ -76,6 +80,7 @@ header.ant-layout-header {
     flex-wrap: wrap;
     font-size: 15px !important;
     text-align: center !important;
+    padding: 0px 20px;
   }
 
   .logo-landing h1 {
@@ -101,6 +106,15 @@ header.ant-layout-header {
   }
   .text-body {
     inline-size: 350px !important;
+  }
+  .download-page {
+    padding: 126px 30px !important;
+  }
+  .download-text {
+    padding: 10px;
+  }
+  .text-body p {
+    padding: 0px 30px;
   }
   img.about-img {
     width: 300px !important;

@@ -3,6 +3,7 @@ import {
   PieChartOutlined,
   ContainerOutlined,
   LogoutOutlined,
+  FileTextOutlined,
 } from "@ant-design/icons";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
@@ -25,17 +26,24 @@ export const Items = [
     <PieChartOutlined />
   ),
   getItem(
-    <Link to="/dashboard/thread" style={{ fontSize: "15px" }}>
-      Manage Threads
+    <Link to="/dashboard/topic" style={{ fontSize: "15px" }}>
+      Manage Topic
     </Link>,
     "2",
+    <FileTextOutlined />
+  ),
+  getItem(
+    <Link to="/dashboard/thread" style={{ fontSize: "15px" }}>
+      Manage Thread
+    </Link>,
+    "3",
     <ContainerOutlined />
   ),
   getItem(
     <Link to="/dashboard/users" style={{ fontSize: "15px" }}>
       Manage Users
     </Link>,
-    "3",
+    "4",
     <UserOutlined />
   ),
   getItem(
@@ -80,7 +88,7 @@ export const Items = [
     >
       Logout
     </Link>,
-    "4",
+    "5",
     <LogoutOutlined className="logout-btn" />
   ),
 ];

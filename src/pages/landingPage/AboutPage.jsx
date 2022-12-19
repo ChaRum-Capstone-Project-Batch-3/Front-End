@@ -6,6 +6,7 @@ const AboutPage = () => {
   return (
     <div
       className="about-page"
+      id="about"
       style={{
         display: "flex",
         padding: "140px 0 225px 0",
@@ -16,7 +17,12 @@ const AboutPage = () => {
       }}
     >
       <div className="side-img">
-        <Image className="about-img" src={OrangDuduk} width={400} preview={false} />
+        <Image
+          className="about-img"
+          src={OrangDuduk}
+          width={400}
+          preview={false}
+        />
       </div>
       <div className="body-content">
         <Title

@@ -103,7 +103,10 @@ const ModalTopic = (props) => {
       props.setGetId("");
       props.handleOk();
     } else {
-      Swal.fire("Data Kosong");
+      Swal.fire({
+        title: "Ente Kadang-kadang",
+        icon: "error",
+      });
       setData({
         topic: "",
         description: "",

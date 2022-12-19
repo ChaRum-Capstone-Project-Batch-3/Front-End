@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Popover, Table } from "antd";
 import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteThread, getThread } from "../../store/thread/ThreadSlicer";
 import moment from "moment";
 import "moment/locale/id";
 import Swal from "sweetalert2";
-import Highlighter from "react-highlight-words";
 
 const ThreadTable = (props) => {
   const navigate = useNavigate();
   const dispacth = useDispatch();
-  const searchText = props.searchText;
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    if (props.data.length === 0) {
+      setData(props.response);
+    } else {
+      setData(props.data);
+    }
+  }, [props.data, props.response]);
+
   const onDeleteHandler = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -119,7 +127,7 @@ const ThreadTable = (props) => {
   return (
     <Table
       bordered
-      dataSource={props?.response}
+      dataSource={data}
       columns={mergedColumns}
       rowClassName="editable-row"
       rowKey={(val) => val._id}

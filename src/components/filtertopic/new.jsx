@@ -32,7 +32,7 @@ const NewFilter = (props) => {
   const [selectData, setSelectData] = useState('');
 
   // interval Value
-  const text = useDounce(searchText, 500)
+  const text = useDounce(searchText, 1000)
 
   useEffect(() => {
     if(searchText !== ''){

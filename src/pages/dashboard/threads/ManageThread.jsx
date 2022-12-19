@@ -1,8 +1,9 @@
 import { Breadcrumb, Input, Skeleton, Table } from "antd";
 import React, { useState } from "react";
 import ThreadTable from "../../../components/table/ThreadTable";
-import Filter from "../../../components/filtertopic/Filter";
-import { useLocation, useNavigate } from "react-router-dom";
+// import Filter from "../../../components/filtertopic/Filter";
+import NewFilter from "../../../components/filtertopic/new";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllThread } from "../../../store/thread/ThreadSlicer";
@@ -35,7 +36,6 @@ const ManageThread = () => {
       setSearchData('');
       setFilteredData('');
     }
-    console.log(filteredData);
   }
 
   const navigate = useNavigate();
@@ -65,7 +65,11 @@ const ManageThread = () => {
             </Breadcrumb>
             <div className="filter-thread-table">
               <div className="sort-topic">
-                <Filter
+                {/* <Filter
+                response={response.data?.threads}
+                catchData={catchData}
+                /> */}
+                <NewFilter
                 response={response.data?.threads}
                 catchData={catchData}
                 />

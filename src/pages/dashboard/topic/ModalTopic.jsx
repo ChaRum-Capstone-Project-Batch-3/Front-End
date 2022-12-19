@@ -130,8 +130,6 @@ const ModalTopic = (props) => {
     setImage({});
   };
 
-  console.log("image ", image);
-
   return (
     <Modal open={props.isModalOpen} footer={null} onCancel={onCancel}>
       <Form

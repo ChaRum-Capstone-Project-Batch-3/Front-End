@@ -3,7 +3,7 @@ import React from "react";
 // import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { UserPost} from "../../../components/cardpost/userPost/UserPost";
 import { deleteThread, getThread } from "../../../store/thread/ThreadSlicer";
 import Swal from "sweetalert2";
@@ -18,7 +18,6 @@ const DetailReportThread = () => {
     dispacth(getThread(param.id));
   }, []);
 
-  console.log(param.id)
   const onDeleteHandler = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -37,7 +36,7 @@ const DetailReportThread = () => {
 
   return (
     <div className="table">
-      <div className="content-main manage-thread-table">
+      <div className="manage-thread-table detail">
         <div className="header-table">
           <div className="header-text">
             <span>Details Report</span>

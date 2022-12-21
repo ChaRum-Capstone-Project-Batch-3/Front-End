@@ -73,14 +73,14 @@ export const Login = () => {
     <>
       <div className="box">
         <Row className="row-main">
-          <Col span={11} className="col-1">
+          <Col span={12} className="col-1">
             <Image
               preview={false}
               style={{ width: "39vw", height: "35vw" }}
               src={newSvg}
             />
           </Col>
-          <Col span={13} className="col-2">
+          <Col span={12} className="col-2">
             <div className="title">
               <h1>Welcome Back!</h1>
             </div>

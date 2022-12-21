@@ -25,10 +25,6 @@
       height: 530px;
       display: flex;
     }
-    .card-user{
-      border: 2px solid #000000;
-      width: 1000px ;
-    }
     .main-card h1,
     .main-card h2,
     .main-card h3,
@@ -181,21 +177,135 @@
     }
   }
   
-  @media (max-width: 1100px){
+@media (min-width: 1280px) and (max-width: 1580px){
     /* Table */
     .table{
-      display: flex;
-      width: 800px;
+      display: flex !important;
+      width: 1450px !important;
       justify-content: start;
-      padding-left: 70px;
+      padding-left: 110px;
+    }
+    .manage-thread-table {
+      margin-left: 0px !important;
+      padding: 0px 10px;
+      width: inherit !important;
     }
     .header-table {
       height: fit-content;
-      width: 800px;
     }
-    .manage-thread-table {
-      margin-left: 0px;
+    /* Details Report */
+    .detail{
+      width: 1230px !important;
     }
-  }
-  /*  */
+    .details-thread{
+      width: inherit;
+    }
+    .main-card{
+      display: flex;
+      gap: 20px;
+      height: fit-content;
+    }
+    .card-details{
+      height: 560px;
+      display: flex;
+    }
+    .interaction{
+      width: inherit !important;
+    }
+    /* Card Body */
+    .thread-interaction{
+      /* border: 2px solid #000000; */
+      width: 730px;
+      display: inherit !important;
+      height: 290px !important;
+    }
+    .interaction-body{
+      width: inherit !important;
+      height: 120px !important;
+      gap: 35px;
+    }
+    .total-reports{
+      margin-right: 15px !important;
+      margin-left: 5px !important;
+    }
+    .total-reports,
+    .account-reached{
+      /* border: 2px solid #000000; */
+      width: 300px !important;
+      height: 130px !important;
+      margin-top: 5px;
+    }
+    .total-reports img,
+    .account-reached img{
+      width: 35px;
+      height: 35px;
+    }
+    .total-reports h2,
+    .account-reached h2{
+      padding-top: 2px;
+    }
+    .total-reports h1,
+    .total-reports h2,
+    .account-reached h1,
+    .account-reached h2{
+      font-size: 22px !important;
+      font-family: "Roboto" !important;
+      font-style: normal !important;
+      font-weight: 500 !important;
+    }
+    .total-reports h1,
+    .account-reached h1{
+      margin-left: 1px !important;
+      padding-bottom: 5px;
+    }
+    /* Card Footer */
+    .interaction-footer{
+      justify-content: left !important;
+      width: inherit !important;
+      height: 85px !important;
+      margin-top: 20px;
+    }
+    .total-likes,
+    .total-comments {
+      width: 128px !important;
+      height: inherit !important;
+      display: grid !important;
+      padding-left: 15px !important;
+      margin-left: 34px !important;
+    }
+    .total-likes h1,
+    .total-comments h1 {
+      margin-left: 10px !important;
+      margin-top: 2px !important;
+      font-size: 15px !important;
+    }
+    /* Details */
+    .details-report{
+      display: inherit;
+      width: 730px !important;
+      height: 190px !important;
+    }
+    /* Chart */
+    .chart-user{
+      height: inherit !important;
+      width: 800px !important;
+      margin-left: 0px !important;
+      padding-right: 25px !important;
+    }
+    /* Button */
+    .button-delete-user{
+      display: flex;
+      width: 730px !important;
+      padding-top: 10px;
+    }
+    /* 
+    *
+    User
+    *
+    */
+    .card-user{
+      width: inherit;
+    }
+}
+/*  */
   

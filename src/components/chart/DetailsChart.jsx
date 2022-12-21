@@ -35,7 +35,7 @@ const data = [
 
 export const DetailsChart = () => {
   return (
-    <ResponsiveContainer width={600} aspect={2.5}>
+    <ResponsiveContainer width={650} aspect={4}>
       <ComposedChart
         style={{
           display: "flex",
@@ -44,7 +44,7 @@ export const DetailsChart = () => {
         layout="vertical"
         data={data}
         margin={{
-          bottom: 35,
+          bottom: 25,
           top: 0,
         }}
       >

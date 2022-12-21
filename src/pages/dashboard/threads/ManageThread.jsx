@@ -56,9 +56,6 @@ const ManageThread = () => {
                   data={data}
                 />
               </div>
-              {/* <div className="sort-reported">
-                <Filter report={filterReported}/>
-              </div> */}
             </div>
           </div>
           <div className="table-thread">

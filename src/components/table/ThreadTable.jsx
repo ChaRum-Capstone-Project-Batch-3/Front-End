@@ -64,8 +64,7 @@ const ThreadTable = (props) => {
     },
     {
       title: "Report",
-      dataIndex: "report",
-      render: () => 20,
+      dataIndex: "totalReported",
       width: "10%",
     },
     {

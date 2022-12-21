@@ -23,7 +23,7 @@ const DetailReportUser = () => {
       <div className="content-main manage-thread-table">
         <div className="header-table">
           <div className="header-text">
-            <span>Details Report</span>
+            <span>User Detail</span>
           </div>
           <div className="bread-crumb-table">
             <Breadcrumb style={{ margin: "10px 0" }} separator="&#62;">
@@ -35,7 +35,7 @@ const DetailReportUser = () => {
                 Users Report
               </Breadcrumb.Item>
               <Breadcrumb.Item className="manageThread">
-                Details Report
+                User Detail
               </Breadcrumb.Item>
             </Breadcrumb>
           </div>

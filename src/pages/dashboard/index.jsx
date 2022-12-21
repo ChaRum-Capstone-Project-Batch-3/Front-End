@@ -43,7 +43,7 @@ const Dashboard = () => {
               color: "white",
             }}
           >
-            {dataUser.userName}
+            Hello, {dataUser.userName}
             <Avatar
               size={40}
               src={

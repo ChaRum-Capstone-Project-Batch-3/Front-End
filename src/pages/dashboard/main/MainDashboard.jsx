@@ -12,11 +12,28 @@ import LogoBusiness from "../img/bussines.png";
 import ChartMain from "./ChartMain";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import {
+  reportStat,
+  threadStat,
+  userStat,
+} from "../../../store/auth/AuthSlicer";
 const { Title } = Typography;
 
 const MainDashboard = () => {
   const navigate = useNavigate();
   const dataUser = JSON.parse(Cookies.get("user"));
+  const dispacth = useDispatch();
+  const response = useSelector((state) => state.login.statistik);
+
+  console.log(response);
+
+  useEffect(() => {
+    dispacth(userStat());
+    dispacth(threadStat());
+    dispacth(reportStat());
+  }, [dispacth]);
 
   return (
     <div className="site-layout-background">
@@ -76,7 +93,7 @@ const MainDashboard = () => {
             <div className="tittle-box-content" style={{ color: "white" }}>
               Users
               <span className="body-box-content" style={{ color: "white" }}>
-                351
+                {response.user["total users"]}
               </span>
             </div>
             <Image width={48} src={LogoCounterUser} preview={false} />
@@ -91,7 +108,10 @@ const MainDashboard = () => {
           >
             <div className="tittle-box-content">
               Thread
-              <span className="body-box-content">10000</span>
+              <span className="body-box-content">
+                {" "}
+                {response.thread["total threads"]}
+              </span>
             </div>
             <Image width={48} src={LogoCounterThread} preview={false} />
           </div>
@@ -105,7 +125,9 @@ const MainDashboard = () => {
           >
             <div className="tittle-box-content">
               Report
-              <span className="body-box-content">5221</span>
+              <span className="body-box-content">
+                {response.report["total reports"]}
+              </span>
             </div>
             <Image width={48} src={LogoCounterReport} preview={false} />
           </div>

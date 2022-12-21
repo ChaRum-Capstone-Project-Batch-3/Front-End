@@ -22,7 +22,7 @@ const DetailReportThread = () => {
       <div className="manage-thread-table detail">
         <div className="header-table">
           <div className="header-text">
-            <span>Details Report</span>
+            <span>Thread Detail</span>
           </div>
           <div className="bread-crumb-table">
             <Breadcrumb style={{ margin: "10px 0" }} separator="&#62;">
@@ -34,7 +34,7 @@ const DetailReportThread = () => {
                 Thread Report
               </Breadcrumb.Item>
               <Breadcrumb.Item className="manageThread">
-                Details Report
+                Thread Detail
               </Breadcrumb.Item>
             </Breadcrumb>
           </div>

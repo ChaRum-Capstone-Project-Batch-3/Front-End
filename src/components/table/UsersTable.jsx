@@ -10,7 +10,6 @@ const UsersTable = (props) => {
   const data = props.response;
 
   const navigate = useNavigate();
-
   const dispacth = useDispatch();
   //
   const handleDelete = (record) => {

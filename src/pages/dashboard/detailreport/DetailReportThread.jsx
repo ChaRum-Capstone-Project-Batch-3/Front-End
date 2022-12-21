@@ -16,11 +16,27 @@ const DetailReportThread = () => {
 
   useEffect(() => {
     dispacth(getThread(param.id));
-  }, [dispacth, param.id]);
+  }, []);
+
+  const onDeleteHandler = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Deleted!", "Topic has been deleted.", "success");
+        dispacth(deleteThread(id));
+      }
+    });
+  };
 
   return (
     <div className="table">
-      <div className="content-main manage-thread-table">
+      <div className="manage-thread-table detail">
         <div className="header-table">
           <div className="header-text">
             <span>Details Report</span>

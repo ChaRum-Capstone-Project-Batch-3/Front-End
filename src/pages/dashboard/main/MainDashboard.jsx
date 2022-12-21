@@ -11,10 +11,13 @@ import LogoMovie from "../img/movie.png";
 import LogoBusiness from "../img/bussines.png";
 import ChartMain from "./ChartMain";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 const { Title } = Typography;
 
 const MainDashboard = () => {
   const navigate = useNavigate();
+  const dataUser = JSON.parse(Cookies.get("user"));
+
   return (
     <div className="site-layout-background">
       <div
@@ -34,7 +37,9 @@ const MainDashboard = () => {
         </Breadcrumb>
         <div className="header-content">
           <div className="text-head-content">
-            <span className="title-head">Hello Vinka!</span>
+            <span className="title-head">
+              Hello {dataUser.userName.toUpperCase()}
+            </span>
             <p className="body-head">
               Tahukah kamu literasi digital masih kurang di masyarkat, maka dari
               itu buat lebih banyak topik untuk menjangkau diskusi lebih banyak

@@ -2,13 +2,14 @@ import { Breadcrumb, Card, Skeleton } from "antd";
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { UserDetails } from "../../../components/cardpost/userDetails/UserDetails";
 import { getUser } from "../../../store/users/UserSlicer";
 
 const DetailReportUser = () => {
   const param = useParams();
   const dispacth = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispacth(getUser(param.id));
@@ -26,11 +27,12 @@ const DetailReportUser = () => {
           </div>
           <div className="bread-crumb-table">
             <Breadcrumb style={{ margin: "10px 0" }} separator="&#62;">
-              <Breadcrumb.Item className="breadcrumb-text">
-                Manage Thread
-              </Breadcrumb.Item>
-              <Breadcrumb.Item className="manageThread">
-                Thread Report
+              <Breadcrumb.Item
+                className="manageThread"
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate("/dashboard/users")}
+              >
+                Users Report
               </Breadcrumb.Item>
               <Breadcrumb.Item className="manageThread">
                 Details Report

@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Swal from "sweetalert2";
 import ApiUser from "../../apis/User.api";
 
+import errNotFound from "../error-page.png";
+
 const initialState = {
   data: {
     users: [],
@@ -41,8 +43,18 @@ export const deleteUser = createAsyncThunk("delete user by id", async (id) => {
     return res.data.data;
   } catch (error) {
     Swal.fire({
-      icon: "error",
-      title: error.message,
+      imageUrl: errNotFound,
+      imageWidth: 400,
+      title: `Oops Failed!
+      No internet connection found.
+      Check your connection.`,
+      imageAlt: "Not Found Image",
+      confirmButtonColor: "red",
+      confirmButtonText: "Try Again",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
     });
   }
 });

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Swal from "sweetalert2";
 import ApiThread from "../../apis/Thread.api";
+import errNotFound from "../error-page.png";
 
 const initialState = {
   data: {
@@ -36,8 +37,12 @@ export const deleteThread = createAsyncThunk("delete thread", async (id) => {
     return res.data;
   } catch (error) {
     Swal.fire({
+      imageUrl: errNotFound,
+      imageWidth: 400,
+      imageHeight: 200,
       icon: "error",
       title: error.message,
+      imageAlt: "Not Found Image",
     });
   }
 });

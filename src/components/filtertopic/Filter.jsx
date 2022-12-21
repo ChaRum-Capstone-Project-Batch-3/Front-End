@@ -19,7 +19,6 @@ const useDounce = (data, ms) => {
 const Filter = (props) => {
   const [_text, setTopic] = useState("");
   const text = useDounce(_text, 1000);
-  console.log(props.response);
 
   useEffect(() => {
     if (text !== "") {

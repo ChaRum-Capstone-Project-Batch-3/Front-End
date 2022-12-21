@@ -35,13 +35,7 @@ const ManageUsers = () => {
                 onClick={() => navigate("/dashboard")}
                 style={{ cursor: "pointer" }}
               >
-                Manage Users
-              </Breadcrumb.Item>
-              <Breadcrumb.Item
-                onClick={() => navigate("/thread")}
-                style={{ cursor: "pointer" }}
-              >
-                Data Users{" "}
+                Users Report
               </Breadcrumb.Item>
             </Breadcrumb>
             <div className="filter-thread-table">

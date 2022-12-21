@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Popover, Table } from "antd";
 import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
@@ -8,9 +8,7 @@ import Swal from "sweetalert2";
 
 const UsersTable = (props) => {
   const data = props.response;
-  const [infoKeyId, setInfoKeyId] = useState("");
 
-  const isEditing = (record) => record.key === infoKeyId;
   const navigate = useNavigate();
 
   const dispacth = useDispatch();
@@ -41,6 +39,7 @@ const UsersTable = (props) => {
       title: "ID",
       dataIndex: "_id",
       key: "_id",
+      render: (item, record, index) => <>{index + 1}</>,
       width: "5%",
       align: "center",
     },
@@ -52,8 +51,16 @@ const UsersTable = (props) => {
     },
     {
       title: "Followers",
-      dataIndex: "email",
+      dataIndex: "followers",
+      render: () => 10,
       width: "12%",
+      align: "center",
+    },
+    {
+      title: "Report Amount",
+      dataIndex: "Report",
+      render: () => 10,
+      width: "10%",
       align: "center",
     },
     {
@@ -63,23 +70,16 @@ const UsersTable = (props) => {
       width: "10%",
       align: "center",
     },
-    {
-      title: "Report Amount",
-      dataIndex: "createdAt",
-      width: "10%",
-      align: "center",
-    },
+
     {
       title: "Action",
       dataIndex: "operation",
       width: "10%",
       align: "center",
       render: (text, record) => {
-        const infoDetail = isEditing(record);
         return (
           <>
             <Popover
-              defaultOpen={infoDetail}
               content={
                 <div style={{ display: "grid" }}>
                   <Button

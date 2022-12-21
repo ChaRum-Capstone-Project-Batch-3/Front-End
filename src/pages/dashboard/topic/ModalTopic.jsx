@@ -104,7 +104,7 @@ const ModalTopic = (props) => {
       props.handleOk();
     } else {
       Swal.fire({
-        title: "Ente Kadang-kadang",
+        title: "Please Input again!!",
         icon: "error",
       });
       setData({
@@ -187,8 +187,7 @@ const ModalTopic = (props) => {
             name="image"
             onChange={onChangeUpload}
             beforeUpload={(file) => {
-              console.log(file.type === "image/png");
-              file.type === "image/png" || file.type === "image/jpg"
+              file.type === "image/png" || file.type === "image/jpeg"
                 ? setErrorMessages({ ...errorMessages, image: false })
                 : setErrorMessages({ ...errorMessages, image: true });
               return false;

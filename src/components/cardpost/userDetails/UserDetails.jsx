@@ -19,6 +19,7 @@ import {
   unSuspendUser,
 } from "../../../store/users/UserSlicer";
 import Swal from "sweetalert2";
+import { MockTable } from "../../table/MockTable";
 // import { useDispatch, useSelector } from "react-redux";
 // import { useEffect } from "react";
 // import { getAllThread } from "../../../store/thread/ThreadSlicer";
@@ -108,8 +109,7 @@ export const UserDetails = (props) => {
       <div className="main-card">
         <Card
           className="card-user"
-          size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
-          bodyStyle={{ width: "75vw" }}
+          size={{ xs: 24, sm: 32, md: 40, lg: 54, xl: 60 }}
         >
           <div className="card-header user-header">
             <Avatar
@@ -228,13 +228,13 @@ export const UserDetails = (props) => {
         {/* <Filter topic={filterTopic} />
         <Filter report={filterReported} /> */}
       </div>
-      <div className="main-card-user">
+      <div className="main-card-table">
         <Card
           className="card-user"
           size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
-          bodyStyle={{ width: "75vw" }}
+          bodyStyle={{ width: "78vw" }}
         >
-          {/* <UsersTable response={followers} /> */}
+          <MockTable />
         </Card>
       </div>
     </>

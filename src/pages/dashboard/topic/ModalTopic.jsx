@@ -187,7 +187,6 @@ const ModalTopic = (props) => {
             name="image"
             onChange={onChangeUpload}
             beforeUpload={(file) => {
-              console.log(file.type === "image/png");
               file.type === "image/png" || file.type === "image/jpg"
                 ? setErrorMessages({ ...errorMessages, image: false })
                 : setErrorMessages({ ...errorMessages, image: true });

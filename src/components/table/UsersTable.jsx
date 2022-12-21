@@ -8,11 +8,7 @@ import Swal from "sweetalert2";
 
 const UsersTable = (props) => {
   const data = props.response;
-  const [infoKeyId, setInfoKeyId] = useState("");
-
-  const isEditing = (record) => record.key === infoKeyId;
   const navigate = useNavigate();
-
   const dispacth = useDispatch();
   //
   const handleDelete = (record) => {
@@ -75,11 +71,9 @@ const UsersTable = (props) => {
       width: "10%",
       align: "center",
       render: (text, record) => {
-        const infoDetail = isEditing(record);
         return (
           <>
             <Popover
-              defaultOpen={infoDetail}
               content={
                 <div style={{ display: "grid" }}>
                   <Button

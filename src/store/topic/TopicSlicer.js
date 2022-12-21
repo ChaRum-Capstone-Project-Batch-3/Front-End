@@ -55,7 +55,6 @@ export const updateTopic = createAsyncThunk("update topic", async (data) => {
     const res = await ApiTopic.updateTopic(data.id, data.form);
     return res.data.data.topic;
   } catch (err) {
-    console.log(err.message);
     throw Error(err.message);
   }
 });

@@ -1,6 +1,5 @@
 import { Breadcrumb, Card, Skeleton } from "antd";
 import React from "react";
-// import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -17,22 +16,6 @@ const DetailReportThread = () => {
   useEffect(() => {
     dispacth(getThread(param.id));
   }, []);
-
-  const onDeleteHandler = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Deleted!", "Topic has been deleted.", "success");
-        dispacth(deleteThread(id));
-      }
-    });
-  };
 
   return (
     <div className="table">

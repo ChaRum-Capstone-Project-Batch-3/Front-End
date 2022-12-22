@@ -14,11 +14,8 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {
-  reportStat,
-  threadStat,
-  userStat,
-} from "../../../store/auth/AuthSlicer";
+import { getStats } from "../../../store/auth/AuthSlicer";
+
 const { Title } = Typography;
 
 const MainDashboard = () => {
@@ -27,12 +24,8 @@ const MainDashboard = () => {
   const dispacth = useDispatch();
   const response = useSelector((state) => state.login.statistik);
 
-  console.log(response);
-
   useEffect(() => {
-    dispacth(userStat());
-    dispacth(threadStat());
-    dispacth(reportStat());
+    dispacth(getStats());
   }, [dispacth]);
 
   return (
@@ -55,7 +48,7 @@ const MainDashboard = () => {
         <div className="header-content">
           <div className="text-head-content">
             <span className="title-head">
-              Hello {dataUser.userName.toUpperCase()}
+              Selamat Datang, {dataUser.displayName}
             </span>
             <p className="body-head">
               Tahukah kamu literasi digital masih kurang di masyarkat, maka dari
@@ -93,7 +86,7 @@ const MainDashboard = () => {
             <div className="tittle-box-content" style={{ color: "white" }}>
               Users
               <span className="body-box-content" style={{ color: "white" }}>
-                {response.user["total users"]}
+                {response.total_users}
               </span>
             </div>
             <Image width={48} src={LogoCounterUser} preview={false} />
@@ -108,10 +101,7 @@ const MainDashboard = () => {
           >
             <div className="tittle-box-content">
               Thread
-              <span className="body-box-content">
-                {" "}
-                {response.thread["total threads"]}
-              </span>
+              <span className="body-box-content">{response.total_threads}</span>
             </div>
             <Image width={48} src={LogoCounterThread} preview={false} />
           </div>
@@ -125,9 +115,7 @@ const MainDashboard = () => {
           >
             <div className="tittle-box-content">
               Report
-              <span className="body-box-content">
-                {response.report["total reports"]}
-              </span>
+              <span className="body-box-content">{response.total_reports}</span>
             </div>
             <Image width={48} src={LogoCounterReport} preview={false} />
           </div>

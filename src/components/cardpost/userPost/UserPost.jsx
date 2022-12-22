@@ -14,30 +14,31 @@ import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { deleteThread } from "../../../store/thread/ThreadSlicer";
 
-// const ReadMore = ({ children }) => {
-//   const [isReadMore, setIsReadMore] = useState(true);
-//   const text = children;
-//   const toggleReadMore = () => {
-//     setIsReadMore(!isReadMore);
-//   };
-//   return (
-//     <p className="text">
-//       {isReadMore ? text.slice(0, 250) : text}
-//       <span
-//         onClick={toggleReadMore}
-//         className="read-or-hide"
-//         style={{ color: "#989797" }}
-//       >
-//         {isReadMore ? " ...Read more" : " Show less"}
-//       </span>
-//     </p>
-//   );
-// };
+const ReadMore = ({ children }) => {
+  const [isReadMore, setIsReadMore] = useState(true);
+  const text = children;
+  const toggleReadMore = () => {
+    setIsReadMore(!isReadMore);
+  };
+  return (
+    <p className="text">
+      {isReadMore ? text.slice(0, 250) : text}
+      <span
+        onClick={toggleReadMore}
+        className="read-or-hide"
+        style={{ color: "#989797" }}
+      >
+        {isReadMore ? " ...Read more" : " Show less"}
+      </span>
+    </p>
+  );
+};
 
 export const UserPost = (props) => {
   // props data
   const data = props.response.data.thread;
   const text = data.thread?.description;
+
   const dispacth = useDispatch();
   const navigate = useNavigate();
 
@@ -61,10 +62,7 @@ export const UserPost = (props) => {
   return (
     <>
       <div className="main-card">
-        <Card
-          className="card-details"
-          size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
-        >
+        <Card className="card-details" style={{ height: "auto" }}>
           <div className="card-header">
             <Avatar
               size={{ sm: 38, md: 48, lg: 53, xl: 60, xxl: 63 }}
@@ -105,10 +103,7 @@ export const UserPost = (props) => {
             {/* <Collapse expandable>
               <Collapse.Panel header="Read more">{text}</Collapse.Panel>
             </Collapse> */}
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              ne
-            </p>
+            <ReadMore children={text} />
           </div>
         </Card>
 
@@ -262,7 +257,7 @@ export const UserPost = (props) => {
                 }}
                 block
               >
-                <DeleteOutlined /> Delete User
+                <DeleteOutlined /> Delete Thread
               </Button>
             </div>
           </div>

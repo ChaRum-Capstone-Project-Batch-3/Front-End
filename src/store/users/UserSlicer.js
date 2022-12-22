@@ -133,7 +133,7 @@ const userSlice = createSlice({
       })
       .addCase(getAllUsers.fulfilled, (state, action) => {
         state.fecthStatus = "success";
-        state.data.users = action.payload;
+        state.data.users = action.payload.users;
       })
       .addCase(getAllUsers.rejected, (state, action) => {
         state.fecthStatus = "failed";
@@ -157,7 +157,7 @@ const userSlice = createSlice({
       })
       .addCase(deleteUser.fulfilled, (state, action) => {
         state.fecthStatus = "success";
-        state.data.users.users = state.data.users.users.filter(
+        state.data.users = state.data.users.filter(
           (val) => val._id !== action.payload.user._id
         );
       })
@@ -169,10 +169,10 @@ const userSlice = createSlice({
       .addCase(suspendUser.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         const id = action.payload.user._id;
-        const indexData = state.data.users.users.findIndex(
+        const indexData = state.data.users.findIndex(
           (value) => value._id === id
         );
-        const newArr = [...state.data.users.users];
+        const newArr = [...state.data.users];
         if (indexData >= 0) {
           newArr[indexData] = action.payload.user;
         }
@@ -187,10 +187,10 @@ const userSlice = createSlice({
       .addCase(unSuspendUser.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         const id = action.payload.user._id;
-        const indexData = state.data.users.users.findIndex(
+        const indexData = state.data.users.findIndex(
           (value) => value._id === id
         );
-        const newArr = [...state.data.users.users];
+        const newArr = [...state.data.users];
         if (indexData >= 0) {
           newArr[indexData] = action.payload.user;
         }

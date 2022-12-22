@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Button, Card, Select } from "antd";
+import { Avatar, Button, Card, Select, Tag } from "antd";
 import people from "../assets/people.svg";
 import add from "../assets/user-add.svg";
 import minus from "../assets/user-minus.svg";
@@ -89,7 +89,22 @@ export const UserDetails = (props) => {
             <div className="header-title">
               <h3>
                 {" "}
-                {props.response?.displayName} || {`${props.response?.isActive}`}{" "}
+                {props.response?.displayName}{" "}
+                {props.response?.isActive === false ? (
+                  <Tag
+                    style={{ padding: "0 20px", margin: "0 20px" }}
+                    colod="volcano"
+                  >
+                    Suspend
+                  </Tag>
+                ) : (
+                  <Tag
+                    style={{ padding: "0 20px", margin: "0 20px" }}
+                    color="geekblue"
+                  >
+                    Active
+                  </Tag>
+                )}
               </h3>
               <p> 0 Followers | 100 Following</p>
             </div>

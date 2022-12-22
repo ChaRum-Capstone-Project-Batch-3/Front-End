@@ -8,37 +8,33 @@ import { getAllUsers } from "../../../store/users/UserSlicer";
 import UserFilter from "../../../components/filtertopic/UserFilter";
 
 const ManageUsers = () => {
-  const response = useSelector((state) => state.user.data.users);
+  const response = useSelector((state) => state.user.data);
   const loader = useSelector((state) => state.user.fecthStatus);
+  console.log(response);
 
-  // state
   const page = 1;
-  const [searchData, setSearchData] = useState('');
-  const [filteredData, setFilteredData] = useState('');
-
-  // navigate
+  const [searchData, setSearchData] = useState("");
+  const [filteredData, setFilteredData] = useState("");
 
   const navigate = useNavigate();
-
   const dispacth = useDispatch();
 
   useEffect(() => {
     dispacth(getAllUsers(page));
-  }, [dispacth, page]);
+  }, [dispacth]);
 
-  const catchData = (search, filtered) =>{
+  const catchData = (search, filtered) => {
     const newSearch = search;
     const newFilter = filtered;
 
-    if(newSearch!==''){
+    if (newSearch !== "") {
       setSearchData(newSearch);
       setFilteredData(newFilter);
-    }else{
-      setSearchData('');
-      setFilteredData('');
+    } else {
+      setSearchData("");
+      setFilteredData("");
     }
-  }
-
+  };
 
   return (
     <div className="table">
@@ -59,10 +55,7 @@ const ManageUsers = () => {
             </Breadcrumb>
             <div className="filter-thread-table">
               <div className="sort-topic">
-              <UserFilter
-                response={response.users}
-                catchData={catchData}
-              />
+                <UserFilter response={response.users} catchData={catchData} />
               </div>
               {/* <div className="sort-reported">
                 <Filter report={filterReported} />
@@ -71,13 +64,9 @@ const ManageUsers = () => {
           </div>
           {loader !== "loading" ? (
             <div className="table-thread">
-              <UsersTable 
-              response={
-                filteredData !== ''?
-                filteredData :
-                response.users
-              }
-              searchData={searchData}
+              <UsersTable
+                response={filteredData !== "" ? filteredData : response.users}
+                searchData={searchData}
               />
             </div>
           ) : (

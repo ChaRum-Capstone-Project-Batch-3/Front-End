@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { deleteUser, getUser } from "../../store/users/UserSlicer";
 import Swal from "sweetalert2";
 import Highlighter from "react-highlight-words";
-import moment from "moment/moment";
 
 const UsersTable = (props) => {
   const data = props.response;
@@ -41,12 +40,11 @@ const UsersTable = (props) => {
       title: "ID",
       dataIndex: "_id",
       key: "_id",
-      render: (item, record, index) => <>{index + 1}</>,
       width: "5%",
       align: "center",
-      render: val => (
+      render: (val) => (
         <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
           searchWords={[searchText]}
           autoEscape
           textToHighlight={val.toString()}
@@ -58,9 +56,9 @@ const UsersTable = (props) => {
       dataIndex: "userName",
       width: "10%",
       align: "center",
-      render: val => (
+      render: (val) => (
         <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
           searchWords={[searchText]}
           autoEscape
           textToHighlight={val.toString()}
@@ -70,57 +68,22 @@ const UsersTable = (props) => {
     {
       title: "Followers",
       dataIndex: "followers",
-      render: () => 10,
       width: "12%",
       align: "center",
-      render: val => (
-        <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={val.toString()}
-        />
-      ),
+      render: () => 10,
     },
     {
       title: "Status",
       dataIndex: "isActive",
-      render: val => (
-        <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={!val ? "suspend" : "active"}
-        />
-      ),
-
       width: "10%",
       align: "center",
-    },
-    {
-      title: "Status",
-      dataIndex: "isActive",
       render: (val) =>
         val === false ? (
           <Tag color="volcano">Suspend</Tag>
         ) : (
           <Tag color="geekblue">Active</Tag>
         ),
-      width: "10%",
-      align: "center",
-      render: (val) => {
-        moment.locale("id");
-        return (
-        <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={moment(val).format("ll").toString()}
-        />
-        )
-      },
     },
-
     {
       title: "Action",
       dataIndex: "operation",

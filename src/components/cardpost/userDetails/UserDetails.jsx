@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Avatar, Button, Card, Image, Select, Skeleton } from "antd";
+import React from "react";
+import { Avatar, Button, Card, Select } from "antd";
 import people from "../assets/people.svg";
 import add from "../assets/user-add.svg";
 import minus from "../assets/user-minus.svg";
@@ -19,32 +19,6 @@ import {
 } from "../../../store/users/UserSlicer";
 import Swal from "sweetalert2";
 import { MockTable } from "../../table/MockTable";
-
-import UserFilter from "../../filtertopic/UserFilter";
-// import { useDispatch, useSelector } from "react-redux";
-// import { useEffect } from "react";
-// import { getAllThread } from "../../../store/thread/ThreadSlicer";
-
-const ReadMore = ({ children }) => {
-  const [isReadMore, setIsReadMore] = useState(true);
-  const text = children;
-  const toggleReadMore = () => {
-    setIsReadMore(!isReadMore);
-  };
-  return (
-    <p className="text">
-      {isReadMore ? text.slice(0, 250) : text}
-      <span
-        onClick={toggleReadMore}
-        className="read-or-hide"
-        style={{ color: "#989797" }}
-      >
-        {isReadMore ? " ...Read more" : " Show less"}
-      </span>
-    </p>
-  );
-};
-
 
 export const UserDetails = (props) => {
   // state
@@ -106,10 +80,7 @@ export const UserDetails = (props) => {
   return (
     <>
       <div className="main-card">
-        <Card
-          className="card-user"
-          size={{ xs: 24, sm: 32, md: 40, lg: 54, xl: 60 }}
-        >
+        <Card className="card-user" style={{ heigh: "fit-content" }}>
           <div className="card-header user-header">
             <Avatar
               size={{ sm: 38, md: 48, lg: 53, xl: 60, xxl: 63 }}
@@ -156,7 +127,6 @@ export const UserDetails = (props) => {
           </div>
           <Card
             className="interaction-footer-user"
-            size={{ xs: 24, sm: 32, md: 40, lg: 54, xl: 60 }}
             bodyStyle={{
               padding: "0px",
               gap: "45px",
@@ -225,15 +195,14 @@ export const UserDetails = (props) => {
       </div>
       <div className="filter">
         <Select
-          style={{ width: 200 }}
-          allowClear={<ClearOutlined/>}
+          style={{ width: "200px" }}
+          allowClear={<ClearOutlined />}
         ></Select>
       </div>
-      <div className="main-card-table">
+      <div className="main-card-table" style={{ height: "fit-content" }}>
         <Card
           className="card-user"
-          size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
-          bodyStyle={{ width: "78vw" }}
+          bodyStyle={{ width: "78vw", height: "fit-content" }}
         >
           <MockTable />
         </Card>

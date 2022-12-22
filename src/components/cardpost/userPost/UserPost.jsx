@@ -8,45 +8,69 @@ import massage from "../assets/messages.svg";
 import share from "../assets/share.svg";
 import receipt from "../assets/receipt-square.svg";
 import { DeleteOutlined } from "@ant-design/icons";
+import imageDefault from "./default.jpg";
+import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import { deleteThread } from "../../../store/thread/ThreadSlicer";
 
-// const ReadMore = ({ children }) => {
-//   const [isReadMore, setIsReadMore] = useState(true);
-//   const text = children;
-//   const toggleReadMore = () => {
-//     setIsReadMore(!isReadMore);
-//   };
-//   return (
-//     <p className="text">
-//       {isReadMore ? text.slice(0, 250) : text}
-//       <span
-//         onClick={toggleReadMore}
-//         className="read-or-hide"
-//         style={{ color: "#989797" }}
-//       >
-//         {isReadMore ? " ...Read more" : " Show less"}
-//       </span>
-//     </p>
-//   );
-// };
+const ReadMore = ({ children }) => {
+  const [isReadMore, setIsReadMore] = useState(true);
+  const text = children;
+  const toggleReadMore = () => {
+    setIsReadMore(!isReadMore);
+  };
+  return (
+    <p className="text">
+      {isReadMore ? text?.slice(0, 250) : text}
+      <span
+        onClick={toggleReadMore}
+        className="read-or-hide"
+        style={{ color: "#989797" }}
+      >
+        {isReadMore ? " ...Read more" : " Show less"}
+      </span>
+    </p>
+  );
+};
 
 export const UserPost = (props) => {
   // props data
   const data = props.response.data.thread;
   const text = data.thread?.description;
+  const dispatch = useDispatch();
 
-  const { onDeleteHandler } = props;
+  const navigate = useNavigate();
+
+  const onDeleteHandler = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Deleted!", "Topic has been deleted.", "success");
+        dispatch(deleteThread(id));
+        navigate("/dashboard/thread");
+      }
+    });
+  };
 
   return (
     <>
       <div className="main-card">
-        <Card
-          className="card-details"
-          size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
-        >
+        <Card className="card-details" style={{ height: "auto" }}>
           <div className="card-header">
             <Avatar
-              size={{ sm: 38, md: 48, lg: 50, xl: 55, xxl: 63 }}
-              src="https://images.unsplash.com/photo-1669720229052-89cda125fc3f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzMnx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60"
+              size={{ sm: 38, md: 48, lg: 53, xl: 60, xxl: 63 }}
+              src={
+                data?.thread?.creator.profilePictureURL === ""
+                  ? imageDefault
+                  : data?.thread?.creator.profilePictureURL
+              }
             />
             <div className="header-title">
               <h3> {data?.thread?.creator.displayName} </h3>
@@ -55,7 +79,20 @@ export const UserPost = (props) => {
           </div>
           <div className="card-body">
             <div className="card-title">
-              <div className="content-class">{data?.thread?.title}</div>
+              <div
+                className="content-class"
+                style={{
+                  fontFamily: "Roboto",
+                  fontSize: "28px",
+                  fontWeight: "600",
+                  lineHeight: "40px",
+                  letterSpacing: "0.0025em",
+                  textAlign: "left",
+                  textTransform: "uppercase",
+                }}
+              >
+                {data?.thread?.title}
+              </div>
             </div>
             <Image
               className="image"
@@ -66,10 +103,7 @@ export const UserPost = (props) => {
             {/* <Collapse expandable>
               <Collapse.Panel header="Read more">{text}</Collapse.Panel>
             </Collapse> */}
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              ne
-            </p>
+            <ReadMore children={text} />
           </div>
         </Card>
 
@@ -82,12 +116,20 @@ export const UserPost = (props) => {
             }}
           >
             <div className="interaction-header">
-              <h1> Thread Interaction</h1>
+              <h1
+                style={{
+                  fontFamily: "Roboto",
+                  fontWeight: "600",
+                  fontSize: "24px",
+                }}
+              >
+                Thread Interaction
+              </h1>
             </div>
             <Card
               className="interaction-body"
               bodyStyle={{
-                display: 'contents'
+                display: "contents",
               }}
             >
               <Card
@@ -120,7 +162,7 @@ export const UserPost = (props) => {
               size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
               bodyStyle={{
                 display: "flex",
-                padding : "0px"
+                padding: "0px",
               }}
             >
               <Card
@@ -191,7 +233,16 @@ export const UserPost = (props) => {
               }}
             >
               <div className="interaction-header">
-                <h1> Details Report</h1>
+                <h1
+                  style={{
+                    fontFamily: "Roboto",
+                    fontWeight: "600",
+                    fontSize: "24px",
+                  }}
+                >
+                  {" "}
+                  Details Report
+                </h1>
               </div>
               <div className="chart-body">
                 <DetailsChart />
@@ -201,10 +252,12 @@ export const UserPost = (props) => {
               <Button
                 className="button-delete-2"
                 size="large"
-                onClick={() => onDeleteHandler(data.thread._id)}
+                onClick={() => {
+                  onDeleteHandler(data.thread._id);
+                }}
                 block
               >
-                <DeleteOutlined /> Delete User
+                <DeleteOutlined /> Delete Thread
               </Button>
             </div>
           </div>

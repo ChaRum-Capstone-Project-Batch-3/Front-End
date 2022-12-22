@@ -34,15 +34,8 @@ const ManageThread = () => {
           <div className="bread-crumb-table">
             <Breadcrumb style={{ margin: "10px 0" }} separator="&#62;">
               <Breadcrumb.Item
-                className="breadcrumb-text"
-                onClick={() => navigate("/dashboard")}
-                style={{ cursor: "pointer" }}
-              >
-                Manage Thread
-              </Breadcrumb.Item>
-              <Breadcrumb.Item
                 className="manageThread"
-                onClick={() => navigate("/thread")}
+                onClick={() => navigate("/dashboard/thread")}
                 style={{ cursor: "pointer" }}
               >
                 Thread Report

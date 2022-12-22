@@ -11,10 +11,23 @@ import LogoMovie from "../img/movie.png";
 import LogoBusiness from "../img/bussines.png";
 import ChartMain from "./ChartMain";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getStats } from "../../../store/auth/AuthSlicer";
+
 const { Title } = Typography;
 
 const MainDashboard = () => {
   const navigate = useNavigate();
+  const dataUser = JSON.parse(Cookies.get("user"));
+  const dispacth = useDispatch();
+  const response = useSelector((state) => state.login.statistik);
+
+  useEffect(() => {
+    dispacth(getStats());
+  }, [dispacth]);
+
   return (
     <div className="site-layout-background">
       <div
@@ -34,7 +47,9 @@ const MainDashboard = () => {
         </Breadcrumb>
         <div className="header-content">
           <div className="text-head-content">
-            <span className="title-head">Hello Vinka!</span>
+            <span className="title-head">
+              Selamat Datang, {dataUser.displayName}
+            </span>
             <p className="body-head">
               Tahukah kamu literasi digital masih kurang di masyarkat, maka dari
               itu buat lebih banyak topik untuk menjangkau diskusi lebih banyak
@@ -71,7 +86,7 @@ const MainDashboard = () => {
             <div className="tittle-box-content" style={{ color: "white" }}>
               Users
               <span className="body-box-content" style={{ color: "white" }}>
-                351
+                {response.total_users}
               </span>
             </div>
             <Image width={48} src={LogoCounterUser} preview={false} />
@@ -86,7 +101,7 @@ const MainDashboard = () => {
           >
             <div className="tittle-box-content">
               Thread
-              <span className="body-box-content">10000</span>
+              <span className="body-box-content">{response.total_threads}</span>
             </div>
             <Image width={48} src={LogoCounterThread} preview={false} />
           </div>
@@ -100,7 +115,7 @@ const MainDashboard = () => {
           >
             <div className="tittle-box-content">
               Report
-              <span className="body-box-content">5221</span>
+              <span className="body-box-content">{response.total_reports}</span>
             </div>
             <Image width={48} src={LogoCounterReport} preview={false} />
           </div>

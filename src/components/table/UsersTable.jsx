@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, Popover, Table } from "antd";
+import React from "react";
+import { Button, Popover, Table, Tag } from "antd";
 import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 
 const UsersTable = (props) => {
   const data = props.response;
+
   const navigate = useNavigate();
   const dispacth = useDispatch();
   //
@@ -37,6 +38,7 @@ const UsersTable = (props) => {
       title: "ID",
       dataIndex: "_id",
       key: "_id",
+      render: (item, record, index) => <>{index + 1}</>,
       width: "5%",
       align: "center",
     },
@@ -48,23 +50,31 @@ const UsersTable = (props) => {
     },
     {
       title: "Followers",
-      dataIndex: "email",
+      dataIndex: "followers",
+      render: () => 10,
       width: "12%",
+      align: "center",
+    },
+    {
+      title: "Report Amount",
+      dataIndex: "Report",
+      render: () => 10,
+      width: "10%",
       align: "center",
     },
     {
       title: "Status",
       dataIndex: "isActive",
-      render: (val) => (!val ? "suspend" : "active"),
+      render: (val) =>
+        val === false ? (
+          <Tag color="volcano">Suspend</Tag>
+        ) : (
+          <Tag color="geekblue">Active</Tag>
+        ),
       width: "10%",
       align: "center",
     },
-    {
-      title: "Report Amount",
-      dataIndex: "createdAt",
-      width: "10%",
-      align: "center",
-    },
+
     {
       title: "Action",
       dataIndex: "operation",

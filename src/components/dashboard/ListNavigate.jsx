@@ -75,6 +75,7 @@ export const Items = [
               timer: 2000,
             });
             Cookies.remove("token");
+            Cookies.remove("user");
             Toast.fire({
               icon: "success",
               title: "logout successfully",

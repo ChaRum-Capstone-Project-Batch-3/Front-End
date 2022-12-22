@@ -5,19 +5,40 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllUsers } from "../../../store/users/UserSlicer";
+import UserFilter from "../../../components/filtertopic/UserFilter";
 
 const ManageUsers = () => {
+  const response = useSelector((state) => state.user.data.users);
+  const loader = useSelector((state) => state.user.fecthStatus);
+
+  // state
   const page = 1;
+  const [searchData, setSearchData] = useState('');
+  const [filteredData, setFilteredData] = useState('');
+
+  // navigate
+
   const navigate = useNavigate();
 
   const dispacth = useDispatch();
 
-  const response = useSelector((state) => state.user.data.users);
-  const loader = useSelector((state) => state.user.fecthStatus);
-
   useEffect(() => {
     dispacth(getAllUsers(page));
-  }, [dispacth]);
+  }, [dispacth, page]);
+
+  const catchData = (search, filtered) =>{
+    const newSearch = search;
+    const newFilter = filtered;
+
+    if(newSearch!==''){
+      setSearchData(newSearch);
+      setFilteredData(newFilter);
+    }else{
+      setSearchData('');
+      setFilteredData('');
+    }
+  }
+
 
   return (
     <div className="table">
@@ -37,9 +58,12 @@ const ManageUsers = () => {
               </Breadcrumb.Item>
             </Breadcrumb>
             <div className="filter-thread-table">
-              {/* <div className="sort-topic">
-                <Filter topic={filterTopic} />
-              </div> */}
+              <div className="sort-topic">
+              <UserFilter
+                response={response.users}
+                catchData={catchData}
+              />
+              </div>
               {/* <div className="sort-reported">
                 <Filter report={filterReported} />
               </div> */}
@@ -47,7 +71,14 @@ const ManageUsers = () => {
           </div>
           {loader !== "loading" ? (
             <div className="table-thread">
-              <UsersTable response={response.users} />
+              <UsersTable 
+              response={
+                filteredData !== ''?
+                filteredData :
+                response.users
+              }
+              searchData={searchData}
+              />
             </div>
           ) : (
             <Skeleton />

@@ -5,9 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteUser, getUser } from "../../store/users/UserSlicer";
 import Swal from "sweetalert2";
+import Highlighter from "react-highlight-words";
+import moment from "moment/moment";
 
 const UsersTable = (props) => {
   const data = props.response;
+  const searchText = props.searchData;
 
   const navigate = useNavigate();
   const dispacth = useDispatch();
@@ -41,12 +44,28 @@ const UsersTable = (props) => {
       render: (item, record, index) => <>{index + 1}</>,
       width: "5%",
       align: "center",
+      render: val => (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={val.toString()}
+        />
+      ),
     },
     {
       title: "Username",
       dataIndex: "userName",
       width: "10%",
       align: "center",
+      render: val => (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={val.toString()}
+        />
+      ),
     },
     {
       title: "Followers",
@@ -54,11 +73,27 @@ const UsersTable = (props) => {
       render: () => 10,
       width: "12%",
       align: "center",
+      render: val => (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={val.toString()}
+        />
+      ),
     },
     {
-      title: "Report Amount",
-      dataIndex: "Report",
-      render: () => 10,
+      title: "Status",
+      dataIndex: "isActive",
+      render: val => (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={!val ? "suspend" : "active"}
+        />
+      ),
+
       width: "10%",
       align: "center",
     },
@@ -73,6 +108,17 @@ const UsersTable = (props) => {
         ),
       width: "10%",
       align: "center",
+      render: (val) => {
+        moment.locale("id");
+        return (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={moment(val).format("ll").toString()}
+        />
+        )
+      },
     },
 
     {

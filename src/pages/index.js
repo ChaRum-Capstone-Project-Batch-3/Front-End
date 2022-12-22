@@ -1,5 +1,3 @@
-import { Login } from './Form-Login';
+import { Login } from "./formLogin";
 
-export {
-    Login
-}
+export { Login };

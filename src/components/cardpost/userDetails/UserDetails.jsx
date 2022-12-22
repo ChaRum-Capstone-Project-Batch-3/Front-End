@@ -10,8 +10,6 @@ import {
   StopOutlined,
   UnlockOutlined,
 } from "@ant-design/icons";
-import Filter from "../../filtertopic/Filter";
-import UsersTable from "../../table/UsersTable";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import {
@@ -21,6 +19,7 @@ import {
 } from "../../../store/users/UserSlicer";
 import Swal from "sweetalert2";
 import { MockTable } from "../../table/MockTable";
+
 import UserFilter from "../../filtertopic/UserFilter";
 // import { useDispatch, useSelector } from "react-redux";
 // import { useEffect } from "react";
@@ -46,14 +45,12 @@ const ReadMore = ({ children }) => {
   );
 };
 
+
 export const UserDetails = (props) => {
   // state
-  const [filterTopic, setFilterTopic] = useState(true);
-  const [filterReported, setFilterReported] = useState(true);
   const dispacth = useDispatch();
   const navigation = useNavigate();
   // props data
-  const followers = 20;
 
   const handleDelete = (id) => {
     Swal.fire({

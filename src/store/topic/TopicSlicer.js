@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Swal from "sweetalert2";
 import ApiTopic from "../../apis/Topic.api";
+import errNotFound from "../assets/error-page.png";
 
 const initialState = {
   data: [],
@@ -14,13 +15,23 @@ export const getAllTopic = createAsyncThunk("get all topic", async () => {
   try {
     const res = await ApiTopic.getAllTopic();
     return res.data.data.topics;
-  } catch (err) {
+  } catch (error) {
     Swal.fire({
-      title: err.message,
-      icon: "error",
+      imageUrl: errNotFound,
+      imageWidth: 400,
+      title: `Oops Failed!
+      No internet connection found.
+      Check your connection.`,
+      imageAlt: "Not Found Image",
+      confirmButtonColor: "red",
+      confirmButtonText: "Try Again",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
     });
 
-    throw Error(err.message);
+    throw Error(error.message);
   }
 });
 
@@ -28,12 +39,22 @@ export const deleteTopic = createAsyncThunk("delete topic", async (id) => {
   try {
     const res = await ApiTopic.deleteTopic(id);
     return res.data.data.topic;
-  } catch (err) {
+  } catch (error) {
     Swal.fire({
-      title: err.message,
-      icon: "error",
+      imageUrl: errNotFound,
+      imageWidth: 400,
+      title: `Oops Failed!
+      No internet connection found.
+      Check your connection.`,
+      imageAlt: "Not Found Image",
+      confirmButtonColor: "red",
+      confirmButtonText: "Try Again",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
     });
-    throw Error(err.message);
+    throw Error(error.message);
   }
 });
 
@@ -41,12 +62,19 @@ export const createTopic = createAsyncThunk("create topic", async (data) => {
   try {
     const res = await ApiTopic.createTopic(data);
     return res.data.data.topic;
-  } catch (err) {
+  } catch (error) {
     Swal.fire({
-      title: err.message,
-      icon: "error",
+      imageUrl: errNotFound,
+      imageWidth: 400,
+      title: error.message,
+      imageAlt: "Not Found Image",
+      confirmButtonColor: "red",
+      confirmButtonText: "Try Again",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
     });
-    throw Error(err.message);
   }
 });
 
@@ -54,8 +82,19 @@ export const updateTopic = createAsyncThunk("update topic", async (data) => {
   try {
     const res = await ApiTopic.updateTopic(data.id, data.form);
     return res.data.data.topic;
-  } catch (err) {
-    throw Error(err.message);
+  } catch (error) {
+    Swal.fire({
+      imageUrl: errNotFound,
+      imageWidth: 400,
+      title: error.message,
+      imageAlt: "Not Found Image",
+      confirmButtonColor: "red",
+      confirmButtonText: "Try Again",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
+    });
   }
 });
 

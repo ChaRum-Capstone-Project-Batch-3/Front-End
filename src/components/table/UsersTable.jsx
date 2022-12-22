@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, Popover, Table } from "antd";
+import React from "react";
+import { Button, Popover, Table, Tag } from "antd";
 import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -11,6 +11,7 @@ import moment from "moment/moment";
 const UsersTable = (props) => {
   const data = props.response;
   const searchText = props.searchData;
+
   const navigate = useNavigate();
   const dispacth = useDispatch();
   //
@@ -40,6 +41,7 @@ const UsersTable = (props) => {
       title: "ID",
       dataIndex: "_id",
       key: "_id",
+      render: (item, record, index) => <>{index + 1}</>,
       width: "5%",
       align: "center",
       render: val => (
@@ -67,7 +69,8 @@ const UsersTable = (props) => {
     },
     {
       title: "Followers",
-      dataIndex: "email",
+      dataIndex: "followers",
+      render: () => 10,
       width: "12%",
       align: "center",
       render: val => (
@@ -90,12 +93,19 @@ const UsersTable = (props) => {
           textToHighlight={!val ? "suspend" : "active"}
         />
       ),
+
       width: "10%",
       align: "center",
     },
     {
-      title: "Report Amount",
-      dataIndex: "createdAt",
+      title: "Status",
+      dataIndex: "isActive",
+      render: (val) =>
+        val === false ? (
+          <Tag color="volcano">Suspend</Tag>
+        ) : (
+          <Tag color="geekblue">Active</Tag>
+        ),
       width: "10%",
       align: "center",
       render: (val) => {
@@ -110,6 +120,7 @@ const UsersTable = (props) => {
         )
       },
     },
+
     {
       title: "Action",
       dataIndex: "operation",

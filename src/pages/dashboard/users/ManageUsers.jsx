@@ -8,19 +8,18 @@ import { getAllUsers } from "../../../store/users/UserSlicer";
 import UserFilter from "../../../components/filtertopic/UserFilter";
 
 const ManageUsers = () => {
-
   const response = useSelector((state) => state.user.data.users);
   const loader = useSelector((state) => state.user.fecthStatus);
 
   // state
-  const [page, setPage] = useState(1);
+  const page = 1;
   const [searchData, setSearchData] = useState('');
   const [filteredData, setFilteredData] = useState('');
 
   // navigate
+
   const navigate = useNavigate();
 
-  // data
   const dispacth = useDispatch();
 
   useEffect(() => {
@@ -40,6 +39,7 @@ const ManageUsers = () => {
     }
   }
 
+
   return (
     <div className="table">
       <div className="content-main manage-thread-table">
@@ -54,13 +54,7 @@ const ManageUsers = () => {
                 onClick={() => navigate("/dashboard")}
                 style={{ cursor: "pointer" }}
               >
-                Manage Users
-              </Breadcrumb.Item>
-              <Breadcrumb.Item
-                onClick={() => navigate("/thread")}
-                style={{ cursor: "pointer" }}
-              >
-                Data Users{" "}
+                Users Report
               </Breadcrumb.Item>
             </Breadcrumb>
             <div className="filter-thread-table">

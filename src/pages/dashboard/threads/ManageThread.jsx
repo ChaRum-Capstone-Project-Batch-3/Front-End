@@ -60,7 +60,7 @@ const ManageThread = () => {
                 setPage={setPage}
               />
             ) : (
-              <Skeleton active />
+              <Skeleton active style={{ width: "80vw" }} />
             )}
           </div>
         </div>

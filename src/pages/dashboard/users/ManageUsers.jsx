@@ -10,7 +10,6 @@ import UserFilter from "../../../components/filtertopic/UserFilter";
 const ManageUsers = () => {
   const response = useSelector((state) => state.user.data);
   const loader = useSelector((state) => state.user.fecthStatus);
-  console.log(response);
 
   const page = 1;
   const [searchData, setSearchData] = useState("");
@@ -70,7 +69,7 @@ const ManageUsers = () => {
               />
             </div>
           ) : (
-            <Skeleton />
+            <Skeleton active style={{ width: "80vw" }} />
           )}
         </div>
       </div>

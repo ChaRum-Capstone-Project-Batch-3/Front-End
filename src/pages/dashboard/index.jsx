@@ -6,14 +6,23 @@ import "../dashboard/media/Media.css";
 
 import SiderNav from "../../components/dashboard/SiderNav";
 import { Outlet } from "react-router-dom";
-import Cookies from "js-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { profile } from "../../store/auth/AuthSlicer";
 const { Header, Content } = Layout;
 
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState({
     status: false,
   });
-  const dataUser = JSON.parse(Cookies.get("user"));
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(profile());
+  }, [dispatch]);
+
+  const responseProfile = useSelector((state) => state.login.profile);
+  console.log(responseProfile);
 
   const clickHandler = (value) => {
     setCollapsed({ ...collapsed, status: value });
@@ -43,8 +52,8 @@ const Dashboard = () => {
               color: "white",
             }}
           >
-            Hello, {dataUser.displayName}
-            <Avatar size={40} src={dataUser.profilePictureURL} />
+            Hello, {responseProfile?.displayName}
+            <Avatar size={40} src={responseProfile?.profilePictureURL} />
           </div>
         </Header>
         <Content

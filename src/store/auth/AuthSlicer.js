@@ -5,6 +5,7 @@ import ApiAuth from "../../apis/Auth.api";
 
 const initialState = {
   data: [],
+  profile: {},
   statistik: {},
   status: false,
   fecthStatus: "idle",
@@ -14,8 +15,8 @@ const initialState = {
 export const fetchAuth = createAsyncThunk("auth", async (data) => {
   try {
     const res = await ApiAuth.login(data);
-    Cookies.set("token", res.data.data.token);
-    Cookies.set("user", JSON.stringify(res.data.data.user));
+    const arrRes = res.data.data.token.split(" ");
+    Cookies.set("token", arrRes[1]);
     return res.data.data;
   } catch (error) {
     Swal.fire({
@@ -34,6 +35,18 @@ export const getStats = createAsyncThunk("get all stat", async () => {
   }
 });
 
+export const profile = createAsyncThunk("get profile", async () => {
+  try {
+    const res = await ApiAuth.getProfile();
+    return res.data.data;
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: error.message,
+    });
+  }
+});
+
 const AuthSlice = createSlice({
   name: "login",
   initialState,
@@ -48,7 +61,16 @@ const AuthSlice = createSlice({
         state.fecthStatus = "failed";
         state.error = action.error.message;
       })
-      // sum user
+      // get profile
+      .addCase(profile.fulfilled, (state, action) => {
+        state.fecthStatus = "success";
+        state.profile = action.payload.user;
+      })
+      .addCase(profile.rejected, (state, action) => {
+        state.fecthStatus = "failed";
+        state.error = action.error.message;
+      })
+      // sum stat
       .addCase(getStats.fulfilled, (state, action) => {
         state.fecthStatus = "success";
         state.statistik = action.payload;

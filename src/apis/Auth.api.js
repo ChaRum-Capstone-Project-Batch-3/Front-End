@@ -18,6 +18,14 @@ const ApiAuth = {
       throw new Error(error.message);
     }
   },
+  async getProfile() {
+    try {
+      const res = await axiosInstance.get("user/profile");
+      return res;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  },
 };
 
 export default ApiAuth;

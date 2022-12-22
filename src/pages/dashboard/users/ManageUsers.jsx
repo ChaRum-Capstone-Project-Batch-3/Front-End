@@ -5,22 +5,36 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllUsers } from "../../../store/users/UserSlicer";
+import UserFilter from "../../../components/filtertopic/UserFilter";
 
 const ManageUsers = () => {
-  // state
-  const [page, setPage] = useState(1);
+  const response = useSelector((state) => state.user.data);
+  const loader = useSelector((state) => state.user.fecthStatus);
 
-  // data
+  const page = 1;
+  const [searchData, setSearchData] = useState("");
+  const [filteredData, setFilteredData] = useState("");
+
+  const navigate = useNavigate();
   const dispacth = useDispatch();
 
   useEffect(() => {
     dispacth(getAllUsers(page));
-  }, [dispacth, page]);
+  }, [dispacth]);
 
-  const response = useSelector((state) => state.user.data.users);
-  const loader = useSelector((state) => state.user.fecthStatus);
+  const catchData = (search, filtered) => {
+    const newSearch = search;
+    const newFilter = filtered;
 
-  const navigate = useNavigate();
+    if (newSearch !== "") {
+      setSearchData(newSearch);
+      setFilteredData(newFilter);
+    } else {
+      setSearchData("");
+      setFilteredData("");
+    }
+  };
+
   return (
     <div className="table">
       <div className="content-main manage-thread-table">
@@ -35,19 +49,13 @@ const ManageUsers = () => {
                 onClick={() => navigate("/dashboard")}
                 style={{ cursor: "pointer" }}
               >
-                Manage Users
-              </Breadcrumb.Item>
-              <Breadcrumb.Item
-                onClick={() => navigate("/thread")}
-                style={{ cursor: "pointer" }}
-              >
-                Data Users{" "}
+                Users Report
               </Breadcrumb.Item>
             </Breadcrumb>
             <div className="filter-thread-table">
-              {/* <div className="sort-topic">
-                <Filter topic={filterTopic} />
-              </div> */}
+              <div className="sort-topic">
+                <UserFilter response={response.users} catchData={catchData} />
+              </div>
               {/* <div className="sort-reported">
                 <Filter report={filterReported} />
               </div> */}
@@ -55,10 +63,13 @@ const ManageUsers = () => {
           </div>
           {loader !== "loading" ? (
             <div className="table-thread">
-              <UsersTable response={response.users} />
+              <UsersTable
+                response={filteredData !== "" ? filteredData : response.users}
+                searchData={searchData}
+              />
             </div>
           ) : (
-            <Skeleton />
+            <Skeleton active style={{ width: "80vw" }} />
           )}
         </div>
       </div>

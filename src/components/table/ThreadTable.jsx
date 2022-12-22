@@ -41,8 +41,9 @@ const ThreadTable = (props) => {
     {
       title: "#",
       dataIndex: "_id",
+      render: (item, record, index) => <>{index + 1}</>,
       key: "_id",
-      width: "5%",
+      width: "2%",
     },
     {
       title: "Username",
@@ -59,6 +60,11 @@ const ThreadTable = (props) => {
       title: "Topic",
       dataIndex: "topic",
       render: (val) => val.topic,
+      width: "10%",
+    },
+    {
+      title: "Report",
+      dataIndex: "totalReported",
       width: "10%",
     },
     {

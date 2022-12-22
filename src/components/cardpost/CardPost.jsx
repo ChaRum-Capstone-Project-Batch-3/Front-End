@@ -6,8 +6,6 @@ import { useLocation } from "react-router-dom";
 
 const CardPost = ({ response }) => {
   const getPath = useLocation().pathname;
-  console.log(getPath === "/users/details*");
-  console.log("path now ", getPath);
   return (
     <>
       {!response ? (

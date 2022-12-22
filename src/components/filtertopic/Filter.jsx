@@ -19,7 +19,6 @@ const useDounce = (data, ms) => {
 const Filter = (props) => {
   const [_text, setTopic] = useState("");
   const text = useDounce(_text, 1000);
-  console.log(props.response);
 
   useEffect(() => {
     if (text !== "") {
@@ -43,54 +42,11 @@ const Filter = (props) => {
     setTopic(e.target.value);
   };
   return (
-    // <Select
-    //   showSearch
-    //   onChange={onChangeHandler}
-    //   style={{
-    //     width: 200,
-    //   }}
-    //   allowClear="clearIcon"
-    //   placeholder={props.topic ? "Search By Topic" : "Search By Reported"}
-    //   optionFilterProp="children"
-    //   filterOption={(input, option) => (option?.label ?? "").includes(input)}
-    //   filterSort={(optionA, optionB) =>
-    //     (optionA?.label ?? "")
-    //       .toLowerCase()
-    //       .localeCompare((optionB?.label ?? "").toLowerCase())
-    //   }
-    //   options={[
-    //     {
-    //       value: "1",
-    //       label: "Not Identified",
-    //     },
-    //     {
-    //       value: "2",
-    //       label: "Closed",
-    //     },
-    //     {
-    //       value: "3",
-    //       label: "Communicated",
-    //     },
-    //     {
-    //       value: "4",
-    //       label: "Identified",
-    //     },
-    //     {
-    //       value: "5",
-    //       label: "Resolved",
-    //     },
-    //     {
-    //       value: "6",
-    //       label: "Cancelled",
-    //     },
-    //   ]}
-    // />
     <Input
       placeholder="Search"
       onChange={onChangeHandler}
       prefix={<SearchOutlined />}
     />
-    // <input type="text" placeholder="search topic" onChange={onChangeHandler} />
   );
 };
 export default Filter;

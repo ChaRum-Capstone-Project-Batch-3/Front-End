@@ -29,13 +29,16 @@ a {
 .box {
   /* border: 2px solid #178066; */
   display: flex;
-  height: auto;
+  height: 962px;
 }
-
+.row-main{
+  height: inherit
+}
 .box .row-main .col-1 {
   /* border: 2px solid #178066; */
   padding: 30px;
   padding-top: 17vh;
+  padding-left: 130px;
 }
 .box .row-main .col-2 {
   /* border: 2px solid #fff700; */
@@ -47,6 +50,7 @@ a {
   align-content: center;
   padding-left: 3vw;
   padding-top: 3.5vh;
+  padding-bottom: 80px;
 }
 .box .row-main .col-2 .title {
   /* border: 2px solid #fff700; */
@@ -180,4 +184,26 @@ input[type="password"] {
   font-size: 22px;
   line-height: 23px;
   letter-spacing: 0.0014em;
+}
+
+@media (min-width: 1280px) and (max-width: 1580px){
+  /* Table */
+  .box{
+    height: 790px;
+  }
+  .row-main{
+    height: 800px;
+  }
+  .row-main .col-1 {
+    /* border: 2px solid #178066; */
+    padding: 30px !important;
+    padding-top: 15vh !important;
+    padding-left: 130px !important;
+  }
+  .row-main .col-2 {
+    padding-top: 0px;
+    padding-bottom: 80px;
+    width: 900px;
+    height: inherit !important;
+  }
 }

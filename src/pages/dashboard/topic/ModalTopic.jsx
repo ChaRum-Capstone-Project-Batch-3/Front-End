@@ -25,7 +25,7 @@ const ModalTopic = (props) => {
       const index = stateData?.data.findIndex((val) => val._id === props.getId);
       setData(stateData.data[index]);
     }
-  }, [props.getId]);
+  }, [props.getId, stateData]);
 
   const [form] = Form.useForm();
 
@@ -104,7 +104,7 @@ const ModalTopic = (props) => {
       props.handleOk();
     } else {
       Swal.fire({
-        title: "Ente Kadang-kadang",
+        title: "Please Input again!!",
         icon: "error",
       });
       setData({
@@ -129,8 +129,6 @@ const ModalTopic = (props) => {
     });
     setImage({});
   };
-
-  console.log("image ", image);
 
   return (
     <Modal open={props.isModalOpen} footer={null} onCancel={onCancel}>
@@ -189,8 +187,7 @@ const ModalTopic = (props) => {
             name="image"
             onChange={onChangeUpload}
             beforeUpload={(file) => {
-              console.log(file.type === "image/png");
-              file.type === "image/png" || file.type === "image/jpg"
+              file.type === "image/png" || file.type === "image/jpeg"
                 ? setErrorMessages({ ...errorMessages, image: false })
                 : setErrorMessages({ ...errorMessages, image: true });
               return false;

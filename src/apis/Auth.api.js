@@ -10,6 +10,14 @@ const ApiAuth = {
       throw new Error(message);
     }
   },
+  async getAllStat() {
+    try {
+      const res = await axiosInstance.get("admin/statistics");
+      return res;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  },
 };
 
 export default ApiAuth;

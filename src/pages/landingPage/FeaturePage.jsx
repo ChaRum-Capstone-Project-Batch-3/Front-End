@@ -8,6 +8,7 @@ const { Title } = Typography;
 const FeaturePage = () => {
   return (
     <div
+      id="feature"
       className="feature-page"
       style={{ background: "rgba(23, 128, 102, 1)" }}
     >
@@ -38,9 +39,24 @@ const FeaturePage = () => {
             justifyContent: "center",
           }}
         >
-          <Image className="featured-image" width={400} src={Thread} preview={false} />
-          <Image className="featured-image" width={400} src={Bookmark} preview={false} />
-          <Image className="featured-image" width={400} src={Group} preview={false} />
+          <Image
+            className="featured-image"
+            width={400}
+            src={Thread}
+            preview={false}
+          />
+          <Image
+            className="featured-image"
+            width={400}
+            src={Bookmark}
+            preview={false}
+          />
+          <Image
+            className="featured-image"
+            width={400}
+            src={Group}
+            preview={false}
+          />
         </div>
       </div>
     </div>

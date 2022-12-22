@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Swal from "sweetalert2";
 import ApiThread from "../../apis/Thread.api";
+import errNotFound from "../assets/error-page.png";
 
 const initialState = {
   data: {
@@ -16,8 +17,14 @@ export const getAllThread = createAsyncThunk("get all thread", async (page) => {
   try {
     const res = await ApiThread.getAllThread(page);
     return res.data.data.threads;
-  } catch (err) {
-    Swal.fire({ icon: "error", title: err.message });
+  } catch (error) {
+    Swal.fire({
+      imageUrl: errNotFound,
+      imageWidth: 400,
+      imageHeight: 200,
+      title: error.message,
+      imageAlt: "Not Found Image",
+    });
   }
 });
 
@@ -25,8 +32,14 @@ export const getThread = createAsyncThunk("get thread", async (id) => {
   try {
     const res = await ApiThread.getThreadId(id);
     return res.data.data;
-  } catch (err) {
-    Swal.fire({ icon: "error", title: err.message });
+  } catch (error) {
+    Swal.fire({
+      imageUrl: errNotFound,
+      imageWidth: 400,
+      imageHeight: 200,
+      title: error.message,
+      imageAlt: "Not Found Image",
+    });
   }
 });
 
@@ -36,8 +49,11 @@ export const deleteThread = createAsyncThunk("delete thread", async (id) => {
     return res.data;
   } catch (error) {
     Swal.fire({
-      icon: "error",
+      imageUrl: errNotFound,
+      imageWidth: 400,
+      imageHeight: 200,
       title: error.message,
+      imageAlt: "Not Found Image",
     });
   }
 });

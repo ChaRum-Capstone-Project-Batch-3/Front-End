@@ -1,18 +1,17 @@
-import React, { useState } from "react";
-import { Button, Popover, Table } from "antd";
+import React from "react";
+import { Button, Popover, Table, Tag } from "antd";
 import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteUser, getUser } from "../../store/users/UserSlicer";
 import Swal from "sweetalert2";
+import Highlighter from "react-highlight-words";
 
 const UsersTable = (props) => {
   const data = props.response;
-  const [infoKeyId, setInfoKeyId] = useState("");
+  const searchText = props.searchData;
 
-  const isEditing = (record) => record.key === infoKeyId;
   const navigate = useNavigate();
-
   const dispacth = useDispatch();
   //
   const handleDelete = (record) => {
@@ -43,31 +42,47 @@ const UsersTable = (props) => {
       key: "_id",
       width: "5%",
       align: "center",
+      render: (val) => (
+        <Highlighter
+          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={val.toString()}
+        />
+      ),
     },
     {
       title: "Username",
       dataIndex: "userName",
       width: "10%",
       align: "center",
+      render: (val) => (
+        <Highlighter
+          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={val.toString()}
+        />
+      ),
     },
     {
       title: "Followers",
-      dataIndex: "email",
+      dataIndex: "followers",
       width: "12%",
       align: "center",
+      render: () => 10,
     },
     {
       title: "Status",
       dataIndex: "isActive",
-      render: (val) => (!val ? "suspend" : "active"),
       width: "10%",
       align: "center",
-    },
-    {
-      title: "Report Amount",
-      dataIndex: "createdAt",
-      width: "10%",
-      align: "center",
+      render: (val) =>
+        val === false ? (
+          <Tag color="volcano">Suspend</Tag>
+        ) : (
+          <Tag color="geekblue">Active</Tag>
+        ),
     },
     {
       title: "Action",
@@ -75,11 +90,9 @@ const UsersTable = (props) => {
       width: "10%",
       align: "center",
       render: (text, record) => {
-        const infoDetail = isEditing(record);
         return (
           <>
             <Popover
-              defaultOpen={infoDetail}
               content={
                 <div style={{ display: "grid" }}>
                   <Button

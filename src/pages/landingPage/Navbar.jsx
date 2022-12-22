@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import NavbarList from "./NavbarList";
 import logo from "./img/logo-header.png";
 import { Button, Image, Drawer } from "antd";
-import { AlignRightOutlined, CloseOutlined } from "@ant-design/icons";
+import { AlignRightOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router";
 
 const Navbar = () => {
@@ -20,7 +20,7 @@ const Navbar = () => {
     setVisible(false);
   };
   return (
-    <Header>
+    <Header style={{ position: "fixed", zIndex: "1" }}>
       <div
         className="nav-content"
         style={{

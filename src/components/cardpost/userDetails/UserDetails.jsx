@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-import { Avatar, Button, Card, Image, Skeleton } from "antd";
+import React from "react";
+import { Avatar, Button, Card, Select, Tag } from "antd";
 import people from "../assets/people.svg";
 import add from "../assets/user-add.svg";
 import minus from "../assets/user-minus.svg";
 import remove from "../assets/user-remove.svg";
 import {
+  ClearOutlined,
   DeleteOutlined,
   StopOutlined,
   UnlockOutlined,
 } from "@ant-design/icons";
-import Filter from "../../filtertopic/Filter";
-import UsersTable from "../../table/UsersTable";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import {
@@ -19,38 +18,13 @@ import {
   unSuspendUser,
 } from "../../../store/users/UserSlicer";
 import Swal from "sweetalert2";
-// import { useDispatch, useSelector } from "react-redux";
-// import { useEffect } from "react";
-// import { getAllThread } from "../../../store/thread/ThreadSlicer";
-
-const ReadMore = ({ children }) => {
-  const [isReadMore, setIsReadMore] = useState(true);
-  const text = children;
-  const toggleReadMore = () => {
-    setIsReadMore(!isReadMore);
-  };
-  return (
-    <p className="text">
-      {isReadMore ? text.slice(0, 250) : text}
-      <span
-        onClick={toggleReadMore}
-        className="read-or-hide"
-        style={{ color: "#989797" }}
-      >
-        {isReadMore ? " ...Read more" : " Show less"}
-      </span>
-    </p>
-  );
-};
+import { MockTable } from "../../table/MockTable";
 
 export const UserDetails = (props) => {
   // state
-  const [filterTopic, setFilterTopic] = useState(true);
-  const [filterReported, setFilterReported] = useState(true);
   const dispacth = useDispatch();
   const navigation = useNavigate();
   // props data
-  const followers = 20;
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -106,20 +80,35 @@ export const UserDetails = (props) => {
   return (
     <>
       <div className="main-card">
-        <Card
-          className="card-user"
-          size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
-          bodyStyle={{ width: "75vw" }}
-        >
+        <Card className="card-user" style={{ heigh: "fit-content" }}>
           <div className="card-header user-header">
             <Avatar
               size={{ sm: 38, md: 48, lg: 53, xl: 60, xxl: 63 }}
-              src="https://images.unsplash.com/photo-1669720229052-89cda125fc3f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzMnx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60"
+              src={
+                !props.response?.profilePictureURL
+                  ? "https://images.unsplash.com/photo-1669720229052-89cda125fc3f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzMnx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60"
+                  : props.response?.profilePictureURL
+              }
             />
             <div className="header-title">
               <h3>
                 {" "}
-                {props.response?.displayName} || {`${props.response?.isActive}`}{" "}
+                {props.response?.displayName}{" "}
+                {props.response?.isActive === false ? (
+                  <Tag
+                    style={{ padding: "0 20px", margin: "0 20px" }}
+                    colod="volcano"
+                  >
+                    Suspend
+                  </Tag>
+                ) : (
+                  <Tag
+                    style={{ padding: "0 20px", margin: "0 20px" }}
+                    color="geekblue"
+                  >
+                    Active
+                  </Tag>
+                )}
               </h3>
               <p> 0 Followers | 100 Following</p>
             </div>
@@ -157,7 +146,6 @@ export const UserDetails = (props) => {
           </div>
           <Card
             className="interaction-footer-user"
-            size={{ xs: 24, sm: 32, md: 40, lg: 54, xl: 60 }}
             bodyStyle={{
               padding: "0px",
               gap: "45px",
@@ -225,16 +213,17 @@ export const UserDetails = (props) => {
         </Card>
       </div>
       <div className="filter">
-        {/* <Filter topic={filterTopic} />
-        <Filter report={filterReported} /> */}
+        <Select
+          style={{ width: "200px" }}
+          allowClear={<ClearOutlined />}
+        ></Select>
       </div>
-      <div className="main-card-user">
+      <div className="main-card-table" style={{ height: "fit-content" }}>
         <Card
           className="card-user"
-          size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 70 }}
-          bodyStyle={{ width: "75vw" }}
+          bodyStyle={{ width: "78vw", height: "fit-content" }}
         >
-          {/* <UsersTable response={followers} /> */}
+          <MockTable />
         </Card>
       </div>
     </>

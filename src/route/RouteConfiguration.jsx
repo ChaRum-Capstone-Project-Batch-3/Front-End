@@ -8,6 +8,7 @@ import MainDashboard from "../pages/dashboard/main/MainDashboard";
 import ManageThread from "../pages/dashboard/threads/ManageThread";
 import TopicMain from "../pages/dashboard/topic/TopicMain";
 import ManageUsers from "../pages/dashboard/users/ManageUsers";
+import ErrorPage from "../pages/err-page/ErrorPage";
 import MainLandingPage from "../pages/landingPage/MainLandingPage";
 import PrivateRoute from "./PrivateRoute";
 import ProtectedRoute from "./ProtectedRoute";
@@ -30,6 +31,7 @@ const RouteConfiguration = () => {
             <Route path="users/details/:id" element={<DetailReportUser />} />
           </Route>
         </Route>
+        <Route path="*" element={<ErrorPage/>} />
       </Routes>
     </BrowserRouter>
   );

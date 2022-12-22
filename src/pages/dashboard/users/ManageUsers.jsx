@@ -7,8 +7,15 @@ import { useEffect } from "react";
 import { getAllUsers } from "../../../store/users/UserSlicer";
 
 const ManageUsers = () => {
+
+  const response = useSelector((state) => state.user.data.users);
+  const loader = useSelector((state) => state.user.fecthStatus);
+
   // state
   const [page, setPage] = useState(1);
+
+  // navigate
+  const navigate = useNavigate();
 
   // data
   const dispacth = useDispatch();
@@ -17,10 +24,6 @@ const ManageUsers = () => {
     dispacth(getAllUsers(page));
   }, [dispacth, page]);
 
-  const response = useSelector((state) => state.user.data.users);
-  const loader = useSelector((state) => state.user.fecthStatus);
-
-  const navigate = useNavigate();
   return (
     <div className="table">
       <div className="content-main manage-thread-table">

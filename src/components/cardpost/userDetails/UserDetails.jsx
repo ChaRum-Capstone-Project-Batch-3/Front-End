@@ -9,8 +9,6 @@ import {
   StopOutlined,
   UnlockOutlined,
 } from "@ant-design/icons";
-import Filter from "../../filtertopic/Filter";
-import UsersTable from "../../table/UsersTable";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import {
@@ -20,38 +18,12 @@ import {
 } from "../../../store/users/UserSlicer";
 import Swal from "sweetalert2";
 import { MockTable } from "../../table/MockTable";
-// import { useDispatch, useSelector } from "react-redux";
-// import { useEffect } from "react";
-// import { getAllThread } from "../../../store/thread/ThreadSlicer";
-
-const ReadMore = ({ children }) => {
-  const [isReadMore, setIsReadMore] = useState(true);
-  const text = children;
-  const toggleReadMore = () => {
-    setIsReadMore(!isReadMore);
-  };
-  return (
-    <p className="text">
-      {isReadMore ? text.slice(0, 250) : text}
-      <span
-        onClick={toggleReadMore}
-        className="read-or-hide"
-        style={{ color: "#989797" }}
-      >
-        {isReadMore ? " ...Read more" : " Show less"}
-      </span>
-    </p>
-  );
-};
 
 export const UserDetails = (props) => {
   // state
-  const [filterTopic, setFilterTopic] = useState(true);
-  const [filterReported, setFilterReported] = useState(true);
   const dispacth = useDispatch();
   const navigation = useNavigate();
   // props data
-  const followers = 20;
 
   const handleDelete = (id) => {
     Swal.fire({

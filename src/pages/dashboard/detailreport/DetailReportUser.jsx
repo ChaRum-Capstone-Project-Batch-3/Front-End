@@ -13,7 +13,7 @@ const DetailReportUser = () => {
 
   useEffect(() => {
     dispacth(getUser(param.id));
-  }, []);
+  }, [dispacth, param.id]);
 
   const response = useSelector((state) => state.user.data.user);
   const loader = useSelector((state) => state.user.fecthStatus);
@@ -51,7 +51,7 @@ const DetailReportUser = () => {
                 avatar
                 active
                 className="skeleton"
-                paragraph={{ width: 1200 }}
+                paragraph={{ width: "750px" }}
               ></Skeleton>
             </Card>
           )}

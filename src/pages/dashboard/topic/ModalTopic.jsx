@@ -25,7 +25,7 @@ const ModalTopic = (props) => {
       const index = stateData?.data.findIndex((val) => val._id === props.getId);
       setData(stateData.data[index]);
     }
-  }, [props.getId]);
+  }, [props.getId, stateData]);
 
   const [form] = Form.useForm();
 

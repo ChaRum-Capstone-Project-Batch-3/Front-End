@@ -170,5 +170,5 @@ const columns = [
 ];
 
 export const MockTable = () => {
-  return <Table dataSource={dataSource} columns={columns} />;
+  return <Table rowKey="_id" dataSource={dataSource} columns={columns} />;
 };

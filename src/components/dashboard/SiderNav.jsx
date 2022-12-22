@@ -10,13 +10,13 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 const SiderNav = (props) => {
-  const [page, setPage] = useState("1");
+  const [page, setPage] = useState("");
   const path = useLocation();
   useEffect(() => {
     if (path.pathname === "/dashboard") setPage("1");
-    else if (path.pathname === "/dashboard/topic") setPage("2");
-    else if (path.pathname === "/dashboard/thread") setPage("3");
-    else if (path.pathname === "/dashboard/users") setPage("4");
+    else if (path.pathname.match("/dashboard/topic")) setPage("2");
+    else if (path.pathname.match("/dashboard/thread")) setPage("3");
+    else if (path.pathname.match("/dashboard/users")) setPage("4");
   }, [path]);
   return (
     <Sider
@@ -33,13 +33,7 @@ const SiderNav = (props) => {
       }}
     >
       <Image src={LogoCharum} preview={false} />
-      <Menu
-        theme="light"
-        defaultSelectedKeys={[page]}
-        selectedKeys={[page]}
-        mode="inline"
-        items={Items}
-      />
+      <Menu theme="light" selectedKeys={[page]} mode="inline" items={Items} />
     </Sider>
   );
 };

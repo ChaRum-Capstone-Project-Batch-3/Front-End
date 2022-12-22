@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Swal from "sweetalert2";
 import ApiTopic from "../../apis/Topic.api";
-
-import errNotFound from "../error-page.png";
+import errNotFound from "../assets/error-page.png";
 
 const initialState = {
   data: [],
@@ -18,8 +17,18 @@ export const getAllTopic = createAsyncThunk("get all topic", async () => {
     return res.data.data.topics;
   } catch (error) {
     Swal.fire({
-      title: error.message,
-      icon: "error",
+      imageUrl: errNotFound,
+      imageWidth: 400,
+      title: `Oops Failed!
+      No internet connection found.
+      Check your connection.`,
+      imageAlt: "Not Found Image",
+      confirmButtonColor: "red",
+      confirmButtonText: "Try Again",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
     });
 
     throw Error(error.message);
@@ -55,10 +64,17 @@ export const createTopic = createAsyncThunk("create topic", async (data) => {
     return res.data.data.topic;
   } catch (error) {
     Swal.fire({
+      imageUrl: errNotFound,
+      imageWidth: 400,
       title: error.message,
-      icon: "error",
+      imageAlt: "Not Found Image",
+      confirmButtonColor: "red",
+      confirmButtonText: "Try Again",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
     });
-    throw Error(error.message);
   }
 });
 
@@ -67,7 +83,18 @@ export const updateTopic = createAsyncThunk("update topic", async (data) => {
     const res = await ApiTopic.updateTopic(data.id, data.form);
     return res.data.data.topic;
   } catch (error) {
-    throw Error(error.message);
+    Swal.fire({
+      imageUrl: errNotFound,
+      imageWidth: 400,
+      title: error.message,
+      imageAlt: "Not Found Image",
+      confirmButtonColor: "red",
+      confirmButtonText: "Try Again",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
+    });
   }
 });
 

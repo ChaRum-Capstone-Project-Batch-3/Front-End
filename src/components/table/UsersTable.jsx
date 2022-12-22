@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Button, Popover, Table } from "antd";
+import React from "react";
+import { Button, Popover, Table, Tag } from "antd";
 import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -65,7 +65,12 @@ const UsersTable = (props) => {
     {
       title: "Status",
       dataIndex: "isActive",
-      render: (val) => (!val ? "suspend" : "active"),
+      render: (val) =>
+        val === false ? (
+          <Tag color="volcano">Suspend</Tag>
+        ) : (
+          <Tag color="geekblue">Active</Tag>
+        ),
       width: "10%",
       align: "center",
     },

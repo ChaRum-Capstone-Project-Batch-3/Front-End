@@ -9,7 +9,7 @@ import share from "../assets/share.svg";
 import receipt from "../assets/receipt-square.svg";
 import { DeleteOutlined } from "@ant-design/icons";
 import imageDefault from "./default.jpg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { deleteThread } from "../../../store/thread/ThreadSlicer";
@@ -22,7 +22,7 @@ const ReadMore = ({ children }) => {
   };
   return (
     <p className="text">
-      {isReadMore ? text.slice(0, 250) : text}
+      {isReadMore ? text?.slice(0, 250) : text}
       <span
         onClick={toggleReadMore}
         className="read-or-hide"
@@ -38,8 +38,8 @@ export const UserPost = (props) => {
   // props data
   const data = props.response.data.thread;
   const text = data.thread?.description;
+  const dispatch = useDispatch();
 
-  const dispacth = useDispatch();
   const navigate = useNavigate();
 
   const onDeleteHandler = (id) => {
@@ -53,7 +53,7 @@ export const UserPost = (props) => {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Deleted!", "Topic has been deleted.", "success");
-        dispacth(deleteThread(id));
+        dispatch(deleteThread(id));
         navigate("/dashboard/thread");
       }
     });

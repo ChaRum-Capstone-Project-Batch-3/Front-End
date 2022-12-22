@@ -6,15 +6,21 @@ import { useDispatch } from "react-redux";
 import { deleteUser, getUser } from "../../store/users/UserSlicer";
 import Swal from "sweetalert2";
 import Highlighter from "react-highlight-words";
+import Highlight from "react-highlight-words";
 import moment from "moment/moment";
 
 const UsersTable = (props) => {
   const data = props.response;
   const searchText = props.searchData;
-
+  // 
   const navigate = useNavigate();
   const dispacth = useDispatch();
   //
+  const convertToString = (value) => {
+    const newValue = value
+    return newValue ? "Active" : "Suspend" ;
+  }
+
   const handleDelete = (record) => {
     Swal.fire({
       title: `Are you sure want to delete ${record.userName}?`,
@@ -41,17 +47,18 @@ const UsersTable = (props) => {
       title: "ID",
       dataIndex: "_id",
       key: "_id",
-      render: (item, record, index) => <>{index + 1}</>,
+      render: ((item, record, index) => (
+        <>
+          <Highlighter
+              highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+              searchWords={[searchText]}
+              autoEscape
+              textToHighlight={(index+1).toString()}
+          />
+        </>
+      )),
       width: "5%",
-      align: "center",
-      render: val => (
-        <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={val.toString()}
-        />
-      ),
+      align: "center"
     },
     {
       title: "Username",
@@ -70,57 +77,61 @@ const UsersTable = (props) => {
     {
       title: "Followers",
       dataIndex: "followers",
-      render: () => 10,
+      render: (() => (
+        <>
+        <Highlighter
+            highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+            searchWords={[searchText]}
+            autoEscape
+            textToHighlight={(2341).toString()}
+        />
+      </>
+      )),
       width: "12%",
-      align: "center",
-      render: val => (
-        <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={val.toString()}
-        />
-      ),
-    },
-    {
-      title: "Status",
-      dataIndex: "isActive",
-      render: val => (
-        <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={!val ? "suspend" : "active"}
-        />
-      ),
-
-      width: "10%",
-      align: "center",
+      align: "center"
     },
     {
       title: "Status",
       dataIndex: "isActive",
       render: (val) =>
         val === false ? (
-          <Tag color="volcano">Suspend</Tag>
+          <Tag color="volcano">
+            <Highlight
+              highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+              searchWords={[searchText]}
+              autoEscape
+              textToHighlight={convertToString(val)}
+            />
+          </Tag>
         ) : (
-          <Tag color="geekblue">Active</Tag>
+          <Tag color="geekblue">
+            <Highlight
+              highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+              searchWords={[searchText]}
+              autoEscape
+              textToHighlight={convertToString(val)}
+            />
+          </Tag>
         ),
       width: "10%",
-      align: "center",
-      render: (val) => {
-        moment.locale("id");
-        return (
-        <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={moment(val).format("ll").toString()}
-        />
-        )
-      },
+      align: "center"
     },
-
+    {
+      title: "Report Amount",
+      dataIndex: "report",
+      render: (() => (
+        <>
+        <Highlighter
+            highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+            searchWords={[searchText]}
+            autoEscape
+            textToHighlight={(345).toString()}
+        />
+      </>
+      )),
+      width: "10%",
+      align: "center"
+    },
     {
       title: "Action",
       dataIndex: "operation",

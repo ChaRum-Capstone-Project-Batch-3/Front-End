@@ -313,6 +313,23 @@
     .main-card-table{
       height: 270px;
     }
+    /* 
+    *
+    Error Page
+    *
+    */
+    .err_page{
+      height: 720px;
+      width: 1449px ;
+      text-align: center;
+    }
+    .err_page h1{
+      margin-top: 270px;
+      margin-right: 90px;
+      font-size: 100px;
+      font-family: "Roboto" !important;
+      font-style: normal !important;
+      font-weight: 700 !important;
+    }
 }
-/*  */
   

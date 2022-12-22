@@ -27,10 +27,11 @@ const RouteConfiguration = () => {
             <Route path="topic" element={<TopicMain />} />
             <Route path="thread" element={<ManageThread />} />
             <Route path="thread/details/:id" element={<DetailReportThread />} />
-            <Route path="users" element={<ErrorPage />} />
+            <Route path="users" element={<ManageUsers />} />
             <Route path="users/details/:id" element={<DetailReportUser />} />
           </Route>
         </Route>
+        <Route path="*" element={<ErrorPage/>} />
       </Routes>
     </BrowserRouter>
   );

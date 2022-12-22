@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllUsers } from "../../../store/users/UserSlicer";
+import UserFilter from "../../../components/filtertopic/UserFilter";
 
 const ManageUsers = () => {
 
@@ -13,6 +14,8 @@ const ManageUsers = () => {
 
   // state
   const [page, setPage] = useState(1);
+  const [searchData, setSearchData] = useState('');
+  const [filteredData, setFilteredData] = useState('');
 
   // navigate
   const navigate = useNavigate();
@@ -23,6 +26,19 @@ const ManageUsers = () => {
   useEffect(() => {
     dispacth(getAllUsers(page));
   }, [dispacth, page]);
+
+  const catchData = (search, filtered) =>{
+    const newSearch = search;
+    const newFilter = filtered;
+
+    if(newSearch!==''){
+      setSearchData(newSearch);
+      setFilteredData(newFilter);
+    }else{
+      setSearchData('');
+      setFilteredData('');
+    }
+  }
 
   return (
     <div className="table">
@@ -48,9 +64,12 @@ const ManageUsers = () => {
               </Breadcrumb.Item>
             </Breadcrumb>
             <div className="filter-thread-table">
-              {/* <div className="sort-topic">
-                <Filter topic={filterTopic} />
-              </div> */}
+              <div className="sort-topic">
+              <UserFilter
+                response={response.users}
+                catchData={catchData}
+              />
+              </div>
               {/* <div className="sort-reported">
                 <Filter report={filterReported} />
               </div> */}
@@ -58,7 +77,14 @@ const ManageUsers = () => {
           </div>
           {loader !== "loading" ? (
             <div className="table-thread">
-              <UsersTable response={response.users} />
+              <UsersTable 
+              response={
+                filteredData !== ''?
+                filteredData :
+                response.users
+              }
+              searchData={searchData}
+              />
             </div>
           ) : (
             <Skeleton />

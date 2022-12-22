@@ -5,9 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteUser, getUser } from "../../store/users/UserSlicer";
 import Swal from "sweetalert2";
+import Highlighter from "react-highlight-words";
+import moment from "moment/moment";
 
 const UsersTable = (props) => {
   const data = props.response;
+  const searchText = props.searchData;
   const navigate = useNavigate();
   const dispacth = useDispatch();
   //
@@ -39,23 +42,54 @@ const UsersTable = (props) => {
       key: "_id",
       width: "5%",
       align: "center",
+      render: val => (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={val.toString()}
+        />
+      ),
     },
     {
       title: "Username",
       dataIndex: "userName",
       width: "10%",
       align: "center",
+      render: val => (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={val.toString()}
+        />
+      ),
     },
     {
       title: "Followers",
       dataIndex: "email",
       width: "12%",
       align: "center",
+      render: val => (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={val.toString()}
+        />
+      ),
     },
     {
       title: "Status",
       dataIndex: "isActive",
-      render: (val) => (!val ? "suspend" : "active"),
+      render: val => (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={!val ? "suspend" : "active"}
+        />
+      ),
       width: "10%",
       align: "center",
     },
@@ -64,6 +98,17 @@ const UsersTable = (props) => {
       dataIndex: "createdAt",
       width: "10%",
       align: "center",
+      render: (val) => {
+        moment.locale("id");
+        return (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={moment(val).format("ll").toString()}
+        />
+        )
+      },
     },
     {
       title: "Action",

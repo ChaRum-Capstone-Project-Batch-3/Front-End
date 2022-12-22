@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Avatar, Button, Card, Image, Skeleton } from "antd";
+import { Avatar, Button, Card, Image, Select, Skeleton } from "antd";
 import people from "../assets/people.svg";
 import add from "../assets/user-add.svg";
 import minus from "../assets/user-minus.svg";
 import remove from "../assets/user-remove.svg";
 import {
+  ClearOutlined,
   DeleteOutlined,
   StopOutlined,
   UnlockOutlined,
@@ -20,6 +21,7 @@ import {
 } from "../../../store/users/UserSlicer";
 import Swal from "sweetalert2";
 import { MockTable } from "../../table/MockTable";
+import UserFilter from "../../filtertopic/UserFilter";
 // import { useDispatch, useSelector } from "react-redux";
 // import { useEffect } from "react";
 // import { getAllThread } from "../../../store/thread/ThreadSlicer";
@@ -225,8 +227,10 @@ export const UserDetails = (props) => {
         </Card>
       </div>
       <div className="filter">
-        {/* <Filter topic={filterTopic} />
-        <Filter report={filterReported} /> */}
+        <Select
+          style={{ width: 200 }}
+          allowClear={<ClearOutlined/>}
+        ></Select>
       </div>
       <div className="main-card-table">
         <Card

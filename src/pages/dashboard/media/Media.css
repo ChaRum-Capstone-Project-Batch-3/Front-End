@@ -204,6 +204,7 @@
       display: flex;
       gap: 20px;
       height: fit-content;
+      margin: 0px;
     }
     .card-details{
       height: 560px;
@@ -305,6 +306,12 @@
     */
     .card-user{
       width: inherit;
+    }
+    .filter{
+      margin: 10px 0px !important;
+    }
+    .main-card-table{
+      height: 270px;
     }
 }
 /*  */

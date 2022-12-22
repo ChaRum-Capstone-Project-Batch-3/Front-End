@@ -56,9 +56,6 @@ const ManageUsers = () => {
               <div className="sort-topic">
                 <UserFilter response={response.users} catchData={catchData} />
               </div>
-              {/* <div className="sort-reported">
-                <Filter report={filterReported} />
-              </div> */}
             </div>
           </div>
           {loader !== "loading" ? (

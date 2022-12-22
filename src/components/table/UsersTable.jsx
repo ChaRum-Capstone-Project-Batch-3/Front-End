@@ -73,6 +73,13 @@ const UsersTable = (props) => {
       render: () => 10,
     },
     {
+      title: "Report",
+      dataIndex: "report",
+      width: "12%",
+      align: "center",
+      render: () => 20,
+    },
+    {
       title: "Status",
       dataIndex: "isActive",
       width: "10%",

@@ -84,7 +84,11 @@ export const UserDetails = (props) => {
           <div className="card-header user-header">
             <Avatar
               size={{ sm: 38, md: 48, lg: 53, xl: 60, xxl: 63 }}
-              src="https://images.unsplash.com/photo-1669720229052-89cda125fc3f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzMnx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60"
+              src={
+                !props.response?.profilePictureURL
+                  ? "https://images.unsplash.com/photo-1669720229052-89cda125fc3f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzMnx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60"
+                  : props.response?.profilePictureURL
+              }
             />
             <div className="header-title">
               <h3>

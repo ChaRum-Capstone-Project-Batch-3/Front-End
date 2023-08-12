@@ -3,7 +3,7 @@ import axios from "axios";
 import { requestHandler } from "./Interceptor";
 
 const config = {
-  baseURL: "https://charum-api.nyakit.in/api/v1",
+  baseURL: "https://backend-fgd-production.up.railway.app/api/v1",
   Headers: {
     "content-type": "multipart/form-data",
   },
